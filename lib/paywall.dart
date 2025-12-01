@@ -59,7 +59,10 @@ class _PaywallScreenState extends State<PaywallScreen>
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       child: Text(
-        'Once you subscribe, the subscription will commence immediately. You have the option to cancel at any time. Subscriptions will be automatically renewed unless you disable auto-renewal at least 24 hours prior to the end of the current period.',
+        !isFreeTrial
+            ? 'Once you subscribe, the subscription will commence immediately. You have the option to cancel at any time. Subscriptions will be automatically renewed unless you disable auto-renewal at least 24 hours prior to the end of the current period.'
+            : 'After free trial ends, the subscription will commence immediately. You have the option to cancel at any time. Subscriptions will be automatically renewed unless you disable auto-renewal at least 24 hours prior to the end of the current period.',
+
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.white.withOpacity(0.5),
@@ -90,6 +93,12 @@ class _PaywallScreenState extends State<PaywallScreen>
               pkg.identifier.toLowerCase().contains('weekly') ||
               pkg.packageType == PackageType.weekly,
         );
+
+        // Set isFreeTrial based on selected package
+        if (selectedPackage != null) {
+          isFreeTrial = hasFreeTrial(selectedPackage!);
+        }
+
         // PRINT ALL PROMOTIONAL OFFER CODES FOR EACH PACKAGE
         for (final pkg in packages) {
           print('Package: ${pkg.identifier}');
@@ -144,7 +153,7 @@ class _PaywallScreenState extends State<PaywallScreen>
     if (pkg.packageType == PackageType.weekly ||
         pkg.identifier.toLowerCase().contains('weekly')) {
       if (hasFreeTrial(pkg)) {
-        isFreeTrial = true;
+        // isFreeTrial = true;
 
         return 'Weekly';
       } else {
@@ -159,6 +168,7 @@ class _PaywallScreenState extends State<PaywallScreen>
   }
 
   String getButtonText() {
+    // Remove the setState calls from here
     if (selectedPackage != null && hasFreeTrial(selectedPackage!)) {
       return 'Start Free Trial';
     } else {
@@ -714,6 +724,9 @@ class _PaywallScreenState extends State<PaywallScreen>
                                               ? null
                                               : () => setState(() {
                                                   selectedPackage = pkg;
+                                                  isFreeTrial = hasFreeTrial(
+                                                    pkg,
+                                                  ); // Add this line
                                                   handlePurchase();
                                                 }),
                                           child: AnimatedContainer(

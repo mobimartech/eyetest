@@ -99,6 +99,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       setState(() {
         isSubscribed = activeEntitlement != null;
       });
+
       print('Subscription status: $isSubscribed');
       // Update animation after subscription check
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -159,8 +160,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       const SizedBox(height: 32),
 
                       // ADD THIS TEST NOTIFICATION SECTION
-                     // _buildNotificationTestSection(),
-                    //  const SizedBox(height: 32),
+                      // _buildNotificationTestSection(),
+                      //  const SizedBox(height: 32),
                       _buildTestsSection(),
                       if (!isSubscribed && !isAndroid) ...[
                         const SizedBox(height: 20),

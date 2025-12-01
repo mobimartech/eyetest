@@ -16,9 +16,9 @@ class _VisualAcuityTestState extends State<VisualAcuityTest>
   late Animation<double> _slideAnimation;
 
   final List<String> images = [
-    'assets/img/snellen_chart_1.png',
+    'assets/img/snellen_chart_1.jpg',
     'assets/img/snellen_chart_2.png',
-    'assets/img/snellen_chart_3.png',
+    'assets/img/snellen_chart_3.jpg',
   ];
 
   @override
@@ -285,7 +285,7 @@ class _VisualAcuityTestState extends State<VisualAcuityTest>
                 ),
                 SizedBox(height: 8),
                 Text(
-                  'Read the smallest line you can see clearly from your normal reading distance. Cover one eye at a time if needed.',
+                  'Read the smallest line you can see clearly, or identify the direction of the opening in each symbol. Test from the appropriate distance and cover one eye at a time if needed.',
                   style: TextStyle(
                     fontSize: 14,
                     color: Color(0xFFAAAAAA),

@@ -27,21 +27,21 @@ class _ColorVisionTestState extends State<ColorVisionTest>
 
   final List<String> testImages = [
     'assets/img/ColorVisionTest1.png',
-    'assets/img/ColorVisionTest2.png',
+    'assets/img/ColorVisionTest2.jpg',
     'assets/img/ColorVisionTest3.png',
     'assets/img/ColorVisionTest4.png',
     'assets/img/ColorVisionTest5.png',
     'assets/img/ColorVisionTest6.png',
   ];
 
-  final List<String> correctAnswers = ['12', '8', '5', '6', 'A', 'C'];
+  final List<String> correctAnswers = ['12', '27', '5', '6', 'N', 'W'];
   final List<String> testDescriptions = [
-    'Ishihara Plate 1',
-    'Ishihara Plate 2',
-    'Ishihara Plate 3',
-    'Ishihara Plate 4',
-    'Ishihara Plate 5',
-    'Ishihara Plate 6',
+    'Plate 1',
+    'Plate 2',
+    'Plate 3',
+    'Plate 4',
+    'Plate 5',
+    'Plate 6',
   ];
 
   @override

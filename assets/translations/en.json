@@ -1,0 +1,468 @@
+{
+  "app_title": "EyeTest",
+  "app_subtitle": "Vision Analytics",
+  "premium_active": "Premium Active",
+  "free_version": "Free Version",
+  "upgrade": "UPGRADE",
+  "pro": "PRO",
+  "ask_ai": "Ask AI",
+  "total_tests": "Total Tests",
+  "available": "Available",
+  "uses": "Uses",
+  "vision_assessment_suite": "Vision Assessment Suite",
+  "start_test": "Start Test",
+  "upgrade_to_access": "Upgrade to Access",
+  "unlock_professional": "Unlock Professional Analysis",
+  "unlock_description": "Get access to all vision tests with detailed reports and tracking",
+  "upgrade_now": "Upgrade Now",
+  "done": "Done",
+  "tests": {
+    "visual_acuity": {
+      "title": "Visual Acuity Test",
+      "description": "Comprehensive clarity assessment using advanced Snellen methodology"
+    },
+    "vision_field": {
+      "title": "Vision Field Analysis",
+      "description": "Advanced peripheral vision mapping and blind spot detection"
+    },
+    "color_vision": {
+      "title": "Color Perception Test",
+      "description": "Professional Ishihara color vision deficiency screening"
+    },
+    "astigmatism": {
+      "title": "Astigmatism Screening",
+      "description": "Precise corneal irregularity detection and measurement"
+    },
+    "amsler_grid": {
+      "title": "Amsler Grid Analysis",
+      "description": "Macular degeneration and central vision distortion screening"
+    },
+    "dry_eye": {
+      "title": "Dry Eye Assessment",
+      "description": "Comprehensive tear film stability and eye comfort evaluation"
+    }
+  },
+  "features": {
+    "all_tests": "All 6 Professional Tests",
+    "ai_chat": "AI Eye Doctor Chat",
+    "analytics": "Detailed Analytics",
+    "tracking": "Progress Tracking",
+    "no_ads": "No Ads"
+  },
+  "visual_acuity": {
+    "title": "Visual Acuity Test",
+    "step_counter": "Step {current} of {total}",
+    "progress": "{percent}% Complete",
+    "dialog": {
+      "title": "Test Complete!",
+      "message": "You have completed the visual acuity test. Please consult an eye care professional for a comprehensive evaluation.",
+      "ok": "OK"
+    },
+    "instructions": {
+      "title": "Instructions",
+      "description": "Read the smallest line you can see clearly, or identify the direction of the opening in each symbol. Test from the appropriate distance and cover one eye at a time if needed."
+    },
+    "chart": {
+      "name": "Snellen Chart {number}",
+      "distance": "Distance",
+      "distance_value": "20 ft",
+      "type": "Type",
+      "type_value": "Standard"
+    },
+    "buttons": {
+      "previous": "Previous",
+      "next": "Next",
+      "finish": "Finish"
+    },
+    "tips": {
+      "title": "💡 Testing Tips",
+      "tip1": "• Ensure good lighting conditions",
+      "tip2": "• Keep device at arm's length",
+      "tip3": "• Test each eye separately",
+      "tip4": "• Take breaks if eyes feel strained"
+    }
+  },
+  "vision_field": {
+    "title": "Visual Field Test",
+    "header": {
+      "subtitle_instructions": "Peripheral Vision Assessment",
+      "subtitle_testing": "Test in Progress",
+      "subtitle_complete": "Test Completed"
+    },
+    "instructions": {
+      "title": "Test Instructions",
+      "description": "This test evaluates your peripheral vision by tracking a moving object while focusing on a central point."
+    },
+    "steps": {
+      "title": "How to Take the Test",
+      "step1": "Keep your eyes focused on the center point at all times",
+      "step2": "Use your peripheral vision to track the moving red dot",
+      "step3": "Tap anywhere on screen when you lose sight of the moving object"
+    },
+    "warning": {
+      "title": "Important Notes",
+      "message": "This is a basic screening test. For comprehensive visual field assessment, please consult an eye care professional."
+    },
+    "testing": {
+      "instruction": "Focus on the center • Tap when object disappears"
+    },
+    "complete": {
+      "title": "Test Complete",
+      "result": "Test completed. If you frequently lose sight of moving objects in your peripheral vision, consider consulting an eye care professional for a comprehensive visual field examination."
+    },
+    "buttons": {
+      "start": "Start Visual Field Test",
+      "stop": "Stop Test",
+      "retry": "Take Test Again",
+      "learn_more": "🔗 Learn more about visual field tests"
+    }
+  },
+
+  "amsler_grid": {
+    "title": "Amsler Grid Test",
+    "header": {
+      "subtitle_testing": "Visual Field Assessment",
+      "subtitle_complete": "Test Completed"
+    },
+    "progress": {
+      "half": "50% Complete",
+      "complete": "100% Complete"
+    },
+    "instructions": {
+      "title": "Test Instructions",
+      "description": "Focus on the central dot in the grid below. Observe if any lines appear wavy, distorted, missing, or blurred while keeping your focus on the center."
+    },
+    "chart_title": "Amsler Grid",
+    "hint": "💡 Hint",
+    "question": {
+      "title": "What do you observe?",
+      "description": "While focusing on the central dot, do any of the lines appear wavy, distorted, or missing?"
+    },
+    "answers": {
+      "yes": "Yes, I see distortions",
+      "no": "No, grid appears normal"
+    },
+    "result": {
+      "positive": {
+        "title": "Visual Disturbances Detected",
+        "description": "You've reported seeing distortions in the Amsler grid. This could indicate potential vision issues that may affect your central vision, such as macular problems or other retinal conditions.",
+        "recommendation": "We strongly recommend scheduling a comprehensive eye examination with an eye care professional for proper diagnosis and evaluation of your central vision."
+      },
+      "negative": {
+        "title": "No Visual Disturbances Detected",
+        "description": "Excellent! If the grid appeared normal with straight, undistorted lines, your central vision screening appears normal. However, this is just a basic screening test.",
+        "recommendation": "Continue with regular eye exams as recommended by eye care professionals to maintain optimal eye health and monitor any changes over time."
+      },
+      "recommendations_title": "Recommendations:"
+    },
+    "tips": {
+      "title": "💡 Testing Tips",
+      "tip1": "• Keep your eyes focused on the center dot at all times",
+      "tip2": "• Test each eye separately if possible",
+      "tip3": "• View from your normal reading distance (12-14 inches)",
+      "tip4": "• Look for wavy, missing, or distorted grid lines"
+    },
+    "buttons": {
+      "retry": "Take Test Again",
+      "learn_more": "🔗 Learn More"
+    }
+  },
+  "astigmatism": {
+    "title": "Astigmatism Test",
+    "header": {
+      "subtitle_testing": "Line Clarity Assessment",
+      "subtitle_complete": "Test Completed"
+    },
+    "instructions": {
+      "title": "Test Instructions",
+      "description": "Look carefully at the lines in the image below. Observe if any lines appear blurry, wavy, distorted, or less clear than others."
+    },
+    "chart_title": "Astigmatism Chart",
+    "chart_note": "Focus on each set of lines and compare their clarity",
+    "hint": "💡 Hint",
+    "question": {
+      "title": "What do you observe?",
+      "description": "Do any of the lines appear blurry, wavy, or distorted compared to others?"
+    },
+    "answers": {
+      "yes": "Yes, some lines appear distorted",
+      "no": "No, all lines appear clear"
+    },
+    "result": {
+      "positive": {
+        "title": "Possible Astigmatism Detected",
+        "description": "Based on your response, you may have astigmatism. This is a common refractive error that causes blurred or distorted vision due to an irregularly shaped cornea or lens.",
+        "recommendation": "Consider scheduling a comprehensive eye examination with an eye care professional for proper diagnosis and treatment options, which may include corrective lenses or other treatments."
+      },
+      "negative": {
+        "title": "No Astigmatism Detected",
+        "description": "Great! If all lines appeared clear and straight, you likely don't have significant astigmatism symptoms. However, this is just a basic screening test.",
+        "recommendation": "Continue with regular eye exams as recommended by eye care professionals to maintain optimal eye health and catch any changes early."
+      },
+      "recommendations_title": "Recommendations:"
+    },
+    "tips": {
+      "title": "💡 Testing Tips",
+      "tip1": "• View the image from your normal reading distance",
+      "tip2": "• Ensure you have good lighting conditions",
+      "tip3": "• Test each eye separately if possible",
+      "tip4": "• Take your time to carefully observe all lines"
+    },
+    "buttons": {
+      "retry": "Take Test Again",
+      "learn_more": "🔗 Learn More"
+    }
+  },
+  "color_vision": {
+    "title": "Color Vision Test",
+    "plate_counter": "Plate {current} of {total}",
+    "plate_name": "Plate {number}",
+    "progress": "{percent}% Complete",
+    "instructions": {
+      "title": "Test Instructions",
+      "description": "Look at the colored dots below and identify any number or letter you can see hidden within the pattern."
+    },
+    "hint": "💡 Hint",
+    "hint_dialog": {
+      "title": "💡 Helpful Hint",
+      "message": "Focus on the different colors and shades in the dot pattern. Numbers or letters are formed by dots of similar colors grouping together. If you have difficulty seeing any pattern, that information is also valuable for assessment.",
+      "got_it": "Got it!"
+    },
+    "question": "What do you see?",
+    "input_placeholder": "Enter number or letter",
+    "feedback": {
+      "correct": "Correct! Well done.",
+      "incorrect": "Incorrect. The correct answer is: {answer}"
+    },
+    "result": {
+      "title": "Test Results",
+      "score": "Test Complete!\n\nScore: {correct}/{total} ({percentage}%)\n\n",
+      "excellent": "Excellent! Your color vision appears to be normal.",
+      "good": "Good results, but consider consulting an eye care professional for a comprehensive examination.",
+      "consult": "Consider consulting an eye care professional for a thorough color vision assessment.",
+      "ok": "OK"
+    },
+    "tips": {
+      "title": "💡 Testing Tips",
+      "tip1": "• Look for patterns formed by different colored dots",
+      "tip2": "• Take your time - there's no rush",
+      "tip3": "• If you can't see anything, that's also valid information",
+      "tip4": "• Ensure good lighting conditions for accurate results"
+    },
+    "buttons": {
+      "previous": "Previous",
+      "check": "Check Answer",
+      "next": "Next Plate",
+      "finish": "Finish Test"
+    }
+  },
+  "dry_eye": {
+    "title": "Dry Eye Test",
+    "header": {
+      "subtitle_testing": "Symptom Assessment",
+      "subtitle_complete": "Test Completed"
+    },
+    "instructions": {
+      "title": "Symptom Checklist",
+      "description": "Select all symptoms you have experienced in the past few days. This will help assess your dry eye condition."
+    },
+    "select_symptoms": "Select Your Symptoms",
+    "symptoms": {
+      "dryness": "Dryness or scratchy feeling",
+      "irritation": "Irritation or burning sensation",
+      "redness": "Redness in eyes",
+      "foreign_body": "Feeling like something is in your eye",
+      "sensitivity": "Sensitivity to light"
+    },
+    "buttons": {
+      "analyze": "Analyze {count} Symptoms",
+      "complete": "Complete Assessment",
+      "retry": "Take Test Again",
+      "learn_more": "🔗 Learn More"
+    },
+    "results": {
+      "recommendations_title": "Recommendations:",
+      "single": {
+        "dryness": {
+          "title": "Mild Dry Eye Symptoms",
+          "description": "You are experiencing dryness. This is a common sign of dry eye.",
+          "recommendation": "Consider using artificial tears and monitoring your symptoms. Take regular breaks from screen time and ensure proper hydration."
+        },
+        "irritation": {
+          "title": "Mild Irritation Detected",
+          "description": "Irritation or burning could be related to dry eye or environmental factors.",
+          "recommendation": "Consider using lubricating eye drops and taking breaks from screens. Avoid dry environments when possible."
+        },
+        "redness": {
+          "title": "Eye Redness Detected",
+          "description": "Redness could be a sign of dry eye or other conditions.",
+          "recommendation": "Consider consulting an eye care professional if redness persists. Use artificial tears and avoid eye rubbing."
+        },
+        "foreign_body": {
+          "title": "Foreign Body Sensation",
+          "description": "The sensation of something in your eye could indicate dry eye or another condition.",
+          "recommendation": "Use lubricating eye drops and consult a professional if the sensation persists. Avoid touching or rubbing your eyes."
+        },
+        "sensitivity": {
+          "title": "Light Sensitivity Detected",
+          "description": "Sensitivity to light can be associated with dry eye or other issues.",
+          "recommendation": "Wear sunglasses outdoors and consider consulting an eye care professional if sensitivity persists."
+        }
+      },
+      "multiple": {
+        "title": "Multiple Symptoms Detected",
+        "description": "You have selected multiple symptoms which may indicate moderate to severe dry eye syndrome.",
+        "recommendation": "It's recommended to consult an eye care professional for a comprehensive evaluation and personalized treatment plan."
+      },
+      "none": {
+        "title": "No Dry Eye Symptoms",
+        "description": "You don't seem to have symptoms of dry eye currently.",
+        "recommendation": "Continue with regular eye check-ups to maintain good eye health. Practice good eye hygiene and take screen breaks."
+      }
+    },
+    "tips": {
+      "title": "💡 Assessment Tips",
+      "tip1": "• Consider symptoms from the past 2-3 days",
+      "tip2": "• Be honest about frequency and severity",
+      "tip3": "• Think about symptoms during different activities",
+      "tip4": "• Consider environmental factors that may affect you"
+    }
+  },
+  "challenges": {
+    "color_diff_warm": {
+      "title": "Warm Color Detective",
+      "description": "Spot the different warm-colored square"
+    },
+    "color_diff_cool": {
+      "title": "Cool Color Detective",
+      "description": "Find the different cool-colored square"
+    },
+    "color_diff_contrast": {
+      "title": "Color Contrast Master",
+      "description": "Spot the contrasting color"
+    },
+    "sharpness_letters": {
+      "title": "Letter Clarity",
+      "description": "Find the sharpest letter"
+    },
+    "sharpness_shapes": {
+      "title": "Shape Sharpness",
+      "description": "Identify the clearest shape"
+    },
+    "contrast_grayscale": {
+      "title": "Grayscale Contrast",
+      "description": "Find the highest contrast gray"
+    },
+    "contrast_color": {
+      "title": "Color Contrast",
+      "description": "Spot the most vibrant color"
+    },
+    "speed_fast": {
+      "title": "Lightning Speed",
+      "description": "Quick! Tap the different one"
+    },
+    "speed_pattern": {
+      "title": "Pattern Recognition",
+      "description": "Find the pattern breaker fast"
+    },
+    "peripheral": {
+      "title": "Peripheral Vision",
+      "description": "Spot the edge anomaly"
+    }
+  },
+  "achievements": {
+    "first_challenge": {
+      "title": "First Steps",
+      "description": "Complete your first challenge"
+    },
+    "streak_3": {
+      "title": "Getting Consistent",
+      "description": "Maintain a 3-day streak"
+    },
+    "streak_7": {
+      "title": "Week Warrior",
+      "description": "Complete challenges for 7 days straight"
+    },
+    "streak_30": {
+      "title": "Vision Champion",
+      "description": "Unstoppable 30-day streak!"
+    },
+    "challenges_10": {
+      "title": "Dedicated Trainee",
+      "description": "Complete 10 challenges"
+    },
+    "challenges_50": {
+      "title": "Vision Expert",
+      "description": "Complete 50 challenges"
+    },
+    "perfect_score": {
+      "title": "Perfectionist",
+      "description": "Get a perfect score on any challenge"
+    },
+    "color_master": {
+      "title": "Color Master",
+      "description": "Complete 10 color challenges"
+    },
+    "speed_demon": {
+      "title": "Speed Demon",
+      "description": "Complete 10 speed challenges"
+    }
+  },
+  "achievements_page": {
+    "title": "Achievements",
+    "level": "Level {level}",
+    "overall_progress": "Overall Progress",
+    "keep_collecting": "Keep collecting!",
+    "unlocked_count": "{unlocked} / {total} Achievements Unlocked",
+    "streak_master": "Streak Master",
+    "challenge_collector": "Challenge Collector",
+    "perfect_vision": "Perfect Vision",
+    "special_achievements": "Special Achievements",
+    "progress": "Progress",
+    "unlocked": "✓ UNLOCKED",
+    "close": "Close"
+  },
+  "challenge_play": {
+    "complete_title": "Challenge Complete!",
+    "round_counter": "Round {current} / {total}",
+    "grades": {
+      "excellent": "EXCELLENT",
+      "great": "GREAT",
+      "good": "GOOD",
+      "keep_trying": "KEEP TRYING"
+    },
+    "stats": {
+      "accuracy": "Accuracy",
+      "best_streak": "Best Streak",
+      "avg_speed": "Avg Speed",
+      "xp_earned": "XP Earned"
+    },
+    "done": "Done"
+  },
+  "daily_challenge": {
+    "title": "Daily Challenge",
+    "current_streak": "Current Streak",
+    "days": "days",
+    "completed": "✓ Completed",
+    "pending": "Pending",
+    "level": "Level {level}",
+    "xp_count": "{xp} XP",
+    "xp_to_next": "{current} / 500 XP to Level {next}",
+    "start_challenge": "Start Challenge",
+    "completed_today": "✓ Completed Today",
+    "achievements": "Achievements",
+    "view_all": "View All",
+    "last_7_days": "Last 7 Days"
+  },
+  "ai_chat": {
+    "title": "AI Assistant",
+    "typing": "AI typing...",
+    "online": "Online • Eye Care Specialist",
+    "disclaimer": "I'm an AI assistant, not a real doctor. This is educational information only, not medical advice. Please see a real eye doctor for actual diagnosis or treatment.",
+    "quick_1": "I have dry eyes, what can I do?",
+    "quick_2": "Tell me about astigmatism",
+    "quick_3": "Eye care tips for screen time",
+    "quick_4": "When should I see an eye doctor?",
+    "input_placeholder": "Ask about your eye health..."
+  }
+}

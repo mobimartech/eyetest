@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'vision_challenge.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ChallengeService {
   static const String _streakKey = 'vision_streak';
@@ -10,193 +11,185 @@ class ChallengeService {
   static const String _completedChallengesKey = 'completed_challenges';
   static const String _unlockedBadgesKey = 'unlocked_badges';
 
-  // EXPANDED: 10 different challenge types for maximum variety
-  static final List<VisionChallenge> allChallenges = [
-    // Color Challenges (3 variations)
-    VisionChallenge(
-      id: 'color_diff_warm',
-      title: 'Warm Color Detective',
-      description: 'Spot the different warm-colored square',
-      emoji: '🔥',
-      type: ChallengeType.colorDifference,
-      xpReward: 50,
-      duration: Duration(seconds: 30),
-      variant: 'warm', // Red, Orange, Yellow family
-    ),
-    VisionChallenge(
-      id: 'color_diff_cool',
-      title: 'Cool Color Detective',
-      description: 'Find the different cool-colored square',
-      emoji: '❄️',
-      type: ChallengeType.colorDifference,
-      xpReward: 50,
-      duration: Duration(seconds: 30),
-      variant: 'cool', // Blue, Green, Purple family
-    ),
-    VisionChallenge(
-      id: 'color_diff_contrast',
-      title: 'Color Contrast Master',
-      description: 'Spot the contrasting color',
-      emoji: '🎨',
-      type: ChallengeType.colorDifference,
-      xpReward: 60,
-      duration: Duration(seconds: 25),
-      variant: 'contrast', // Complementary colors
-    ),
+static final List<VisionChallenge> allChallenges = [
+  // Color Challenges (3 variations)
+  VisionChallenge(
+    id: 'color_diff_warm',
+    title: 'challenges.color_diff_warm.title'.tr(),
+    description: 'challenges.color_diff_warm.description'.tr(),
+    emoji: '🟥',
+    type: ChallengeType.colorDifference,
+    xpReward: 50,
+    duration: Duration(seconds: 30),
+    variant: 'warm',
+  ),
+  VisionChallenge(
+    id: 'color_diff_cool',
+    title: 'challenges.color_diff_cool.title'.tr(),
+    description: 'challenges.color_diff_cool.description'.tr(),
+    emoji: '🟦',
+    type: ChallengeType.colorDifference,
+    xpReward: 50,
+    duration: Duration(seconds: 30),
+    variant: 'cool',
+  ),
+  VisionChallenge(
+    id: 'color_diff_contrast',
+    title: 'challenges.color_diff_contrast.title'.tr(),
+    description: 'challenges.color_diff_contrast.description'.tr(),
+    emoji: '🎨',
+    type: ChallengeType.colorDifference,
+    xpReward: 60,
+    duration: Duration(seconds: 25),
+    variant: 'contrast',
+  ),
+  VisionChallenge(
+    id: 'sharpness_letters',
+    title: 'challenges.sharpness_letters.title'.tr(),
+    description: 'challenges.sharpness_letters.description'.tr(),
+    emoji: '🔡',
+    type: ChallengeType.sharpnessCheck,
+    xpReward: 60,
+    duration: Duration(seconds: 20),
+    variant: 'letters',
+  ),
+  VisionChallenge(
+    id: 'sharpness_shapes',
+    title: 'challenges.sharpness_shapes.title'.tr(),
+    description: 'challenges.sharpness_shapes.description'.tr(),
+    emoji: '🔷',
+    type: ChallengeType.sharpnessCheck,
+    xpReward: 60,
+    duration: Duration(seconds: 20),
+    variant: 'shapes',
+  ),
+  VisionChallenge(
+    id: 'contrast_grayscale',
+    title: 'challenges.contrast_grayscale.title'.tr(),
+    description: 'challenges.contrast_grayscale.description'.tr(),
+    emoji: '⬛',
+    type: ChallengeType.contrastTest,
+    xpReward: 70,
+    duration: Duration(seconds: 25),
+    variant: 'grayscale',
+  ),
+  VisionChallenge(
+    id: 'contrast_color',
+    title: 'challenges.contrast_color.title'.tr(),
+    description: 'challenges.contrast_color.description'.tr(),
+    emoji: '🌈',
+    type: ChallengeType.contrastTest,
+    xpReward: 75,
+    duration: Duration(seconds: 25),
+    variant: 'color',
+  ),
+  VisionChallenge(
+    id: 'speed_fast',
+    title: 'challenges.speed_fast.title'.tr(),
+    description: 'challenges.speed_fast.description'.tr(),
+    emoji: '⚡',
+    type: ChallengeType.focusSpeed,
+    xpReward: 80,
+    duration: Duration(seconds: 15),
+    variant: 'fast',
+  ),
+  VisionChallenge(
+    id: 'speed_pattern',
+    title: 'challenges.speed_pattern.title'.tr(),
+    description: 'challenges.speed_pattern.description'.tr(),
+    emoji: '🎯',
+    type: ChallengeType.focusSpeed,
+    xpReward: 85,
+    duration: Duration(seconds: 18),
+    variant: 'pattern',
+  ),
+  VisionChallenge(
+    id: 'peripheral',
+    title: 'challenges.peripheral.title'.tr(),
+    description: 'challenges.peripheral.description'.tr(),
+    emoji: '👁️',
+    type: ChallengeType.peripheralVision,
+    xpReward: 90,
+    duration: Duration(seconds: 30),
+    variant: 'edges',
+  ),
+];
 
-    // Sharpness Challenges (2 variations)
-    VisionChallenge(
-      id: 'sharpness_letters',
-      title: 'Letter Clarity',
-      description: 'Find the sharpest letter',
-      emoji: '🔍',
-      type: ChallengeType.sharpnessCheck,
-      xpReward: 60,
-      duration: Duration(seconds: 20),
-      variant: 'letters',
-    ),
-    VisionChallenge(
-      id: 'sharpness_shapes',
-      title: 'Shape Sharpness',
-      description: 'Identify the clearest shape',
-      emoji: '🔷',
-      type: ChallengeType.sharpnessCheck,
-      xpReward: 60,
-      duration: Duration(seconds: 20),
-      variant: 'shapes',
-    ),
+static final List<Achievement> allAchievements = [
+  Achievement(
+    id: 'first_challenge',
+    title: 'achievements.first_challenge.title'.tr(),
+    description: 'achievements.first_challenge.description'.tr(),
+    emoji: '🎉',
+    requiredCount: 1,
+    type: AchievementType.totalChallenges,
+  ),
+  Achievement(
+    id: 'streak_3',
+    title: 'achievements.streak_3.title'.tr(),
+    description: 'achievements.streak_3.description'.tr(),
+    emoji: '🔥',
+    requiredCount: 3,
+    type: AchievementType.streak,
+  ),
+  Achievement(
+    id: 'streak_7',
+    title: 'achievements.streak_7.title'.tr(),
+    description: 'achievements.streak_7.description'.tr(),
+    emoji: '⭐',
+    requiredCount: 7,
+    type: AchievementType.streak,
+  ),
+  Achievement(
+    id: 'streak_30',
+    title: 'achievements.streak_30.title'.tr(),
+    description: 'achievements.streak_30.description'.tr(),
+    emoji: '👑',
+    requiredCount: 30,
+    type: AchievementType.streak,
+  ),
+  Achievement(
+    id: 'challenges_10',
+    title: 'achievements.challenges_10.title'.tr(),
+    description: 'achievements.challenges_10.description'.tr(),
+    emoji: '💪',
+    requiredCount: 10,
+    type: AchievementType.totalChallenges,
+  ),
+  Achievement(
+    id: 'challenges_50',
+    title: 'achievements.challenges_50.title'.tr(),
+    description: 'achievements.challenges_50.description'.tr(),
+    emoji: '🎯',
+    requiredCount: 50,
+    type: AchievementType.totalChallenges,
+  ),
+  Achievement(
+    id: 'perfect_score',
+    title: 'achievements.perfect_score.title'.tr(),
+    description: 'achievements.perfect_score.description'.tr(),
+    emoji: '💯',
+    requiredCount: 1,
+    type: AchievementType.perfectScore,
+  ),
+  Achievement(
+    id: 'color_master',
+    title: 'achievements.color_master.title'.tr(),
+    description: 'achievements.color_master.description'.tr(),
+    emoji: '🌈',
+    requiredCount: 10,
+    type: AchievementType.specific,
+  ),
+  Achievement(
+    id: 'speed_demon',
+    title: 'achievements.speed_demon.title'.tr(),
+    description: 'achievements.speed_demon.description'.tr(),
+    emoji: '⚡',
+    requiredCount: 10,
+    type: AchievementType.specific,
+  ),
+];
 
-    // Contrast Challenges (2 variations)
-    VisionChallenge(
-      id: 'contrast_grayscale',
-      title: 'Grayscale Contrast',
-      description: 'Find the highest contrast gray',
-      emoji: '🌓',
-      type: ChallengeType.contrastTest,
-      xpReward: 70,
-      duration: Duration(seconds: 25),
-      variant: 'grayscale',
-    ),
-    VisionChallenge(
-      id: 'contrast_color',
-      title: 'Color Contrast',
-      description: 'Spot the most vibrant color',
-      emoji: '🌈',
-      type: ChallengeType.contrastTest,
-      xpReward: 75,
-      duration: Duration(seconds: 25),
-      variant: 'color',
-    ),
-
-    // Speed Challenges (2 variations)
-    VisionChallenge(
-      id: 'speed_fast',
-      title: 'Lightning Speed',
-      description: 'Quick! Tap the different one',
-      emoji: '⚡',
-      type: ChallengeType.focusSpeed,
-      xpReward: 80,
-      duration: Duration(seconds: 15),
-      variant: 'fast',
-    ),
-    VisionChallenge(
-      id: 'speed_pattern',
-      title: 'Pattern Recognition',
-      description: 'Find the pattern breaker fast',
-      emoji: '🎯',
-      type: ChallengeType.focusSpeed,
-      xpReward: 85,
-      duration: Duration(seconds: 18),
-      variant: 'pattern',
-    ),
-
-    // Peripheral Vision Challenge
-    VisionChallenge(
-      id: 'peripheral',
-      title: 'Peripheral Vision',
-      description: 'Spot the edge anomaly',
-      emoji: '👁️',
-      type: ChallengeType.peripheralVision,
-      xpReward: 90,
-      duration: Duration(seconds: 30),
-      variant: 'edges',
-    ),
-  ];
-
-  static final List<Achievement> allAchievements = [
-    Achievement(
-      id: 'first_challenge',
-      title: 'First Steps',
-      description: 'Complete your first challenge',
-      emoji: '🌱',
-      requiredCount: 1,
-      type: AchievementType.totalChallenges,
-    ),
-    Achievement(
-      id: 'streak_3',
-      title: 'Getting Consistent',
-      description: 'Maintain a 3-day streak',
-      emoji: '🔥',
-      requiredCount: 3,
-      type: AchievementType.streak,
-    ),
-    Achievement(
-      id: 'streak_7',
-      title: 'Week Warrior',
-      description: 'Complete challenges for 7 days straight',
-      emoji: '⭐',
-      requiredCount: 7,
-      type: AchievementType.streak,
-    ),
-    Achievement(
-      id: 'streak_30',
-      title: 'Vision Champion',
-      description: 'Unstoppable 30-day streak!',
-      emoji: '🏆',
-      requiredCount: 30,
-      type: AchievementType.streak,
-    ),
-    Achievement(
-      id: 'challenges_10',
-      title: 'Dedicated Trainee',
-      description: 'Complete 10 challenges',
-      emoji: '💪',
-      requiredCount: 10,
-      type: AchievementType.totalChallenges,
-    ),
-    Achievement(
-      id: 'challenges_50',
-      title: 'Vision Expert',
-      description: 'Complete 50 challenges',
-      emoji: '🎯',
-      requiredCount: 50,
-      type: AchievementType.totalChallenges,
-    ),
-    Achievement(
-      id: 'perfect_score',
-      title: 'Perfectionist',
-      description: 'Get a perfect score on any challenge',
-      emoji: '💎',
-      requiredCount: 1,
-      type: AchievementType.perfectScore,
-    ),
-    Achievement(
-      id: 'color_master',
-      title: 'Color Master',
-      description: 'Complete 10 color challenges',
-      emoji: '🌈',
-      requiredCount: 10,
-      type: AchievementType.specific,
-    ),
-    Achievement(
-      id: 'speed_demon',
-      title: 'Speed Demon',
-      description: 'Complete 10 speed challenges',
-      emoji: '⚡',
-      requiredCount: 10,
-      type: AchievementType.specific,
-    ),
-  ];
 
   // Get daily challenge - NOW WITH MORE VARIETY
   static VisionChallenge getDailyChallenge() {

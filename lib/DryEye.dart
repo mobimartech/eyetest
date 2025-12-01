@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DryEyeTest extends StatefulWidget {
   const DryEyeTest({Key? key}) : super(key: key);
@@ -97,51 +98,48 @@ class _DryEyeTestState extends State<DryEyeTest>
         case 'dryness':
           return {
             'type': 'mild',
-            'title': 'Mild Dry Eye Symptoms',
-            'description':
-                'You are experiencing dryness. This is a common sign of dry eye.',
-            'recommendations':
-                'Consider using artificial tears and monitoring your symptoms. Take regular breaks from screen time and ensure proper hydration.',
+            'title': 'dry_eye.results.single.dryness.title'.tr(),
+            'description': 'dry_eye.results.single.dryness.description'.tr(),
+            'recommendations': 'dry_eye.results.single.dryness.recommendation'
+                .tr(),
             'learnMoreUrl': 'https://www.aao.org/eye-health/diseases/dry-eye',
           };
         case 'irritation':
           return {
             'type': 'mild',
-            'title': 'Mild Irritation Detected',
-            'description':
-                'Irritation or burning could be related to dry eye or environmental factors.',
+            'title': 'dry_eye.results.single.irritation.title'.tr(),
+            'description': 'dry_eye.results.single.irritation.description'.tr(),
             'recommendations':
-                'Consider using lubricating eye drops and taking breaks from screens. Avoid dry environments when possible.',
+                'dry_eye.results.single.irritation.recommendation'.tr(),
             'learnMoreUrl': 'https://www.aao.org/eye-health/diseases/dry-eye',
           };
         case 'redness':
           return {
             'type': 'moderate',
-            'title': 'Eye Redness Detected',
-            'description':
-                'Redness could be a sign of dry eye or other conditions.',
-            'recommendations':
-                'Consider consulting an eye care professional if redness persists. Use artificial tears and avoid eye rubbing.',
+            'title': 'dry_eye.results.single.redness.title'.tr(),
+            'description': 'dry_eye.results.single.redness.description'.tr(),
+            'recommendations': 'dry_eye.results.single.redness.recommendation'
+                .tr(),
             'learnMoreUrl': 'https://www.aao.org/eye-health/diseases/dry-eye',
           };
         case 'foreignBody':
           return {
             'type': 'moderate',
-            'title': 'Foreign Body Sensation',
-            'description':
-                'The sensation of something in your eye could indicate dry eye or another condition.',
+            'title': 'dry_eye.results.single.foreign_body.title'.tr(),
+            'description': 'dry_eye.results.single.foreign_body.description'
+                .tr(),
             'recommendations':
-                'Use lubricating eye drops and consult a professional if the sensation persists. Avoid touching or rubbing your eyes.',
+                'dry_eye.results.single.foreign_body.recommendation'.tr(),
             'learnMoreUrl': 'https://www.aao.org/eye-health/diseases/dry-eye',
           };
         case 'sensitivity':
           return {
             'type': 'moderate',
-            'title': 'Light Sensitivity Detected',
-            'description':
-                'Sensitivity to light can be associated with dry eye or other issues.',
+            'title': 'dry_eye.results.single.sensitivity.title'.tr(),
+            'description': 'dry_eye.results.single.sensitivity.description'
+                .tr(),
             'recommendations':
-                'Wear sunglasses outdoors and consider consulting an eye care professional if sensitivity persists.',
+                'dry_eye.results.single.sensitivity.recommendation'.tr(),
             'learnMoreUrl': 'https://www.aao.org/eye-health/diseases/dry-eye',
           };
         default:
@@ -150,11 +148,9 @@ class _DryEyeTestState extends State<DryEyeTest>
     } else if (selectedSymptoms.length > 1) {
       return {
         'type': 'severe',
-        'title': 'Multiple Symptoms Detected',
-        'description':
-            'You have selected multiple symptoms which may indicate moderate to severe dry eye syndrome.',
-        'recommendations':
-            "It's recommended to consult an eye care professional for a comprehensive evaluation and personalized treatment plan.",
+        'title': 'dry_eye.results.multiple.title'.tr(),
+        'description': 'dry_eye.results.multiple.description'.tr(),
+        'recommendations': 'dry_eye.results.multiple.recommendation'.tr(),
         'learnMoreUrl': 'https://www.aao.org/eye-health/diseases/dry-eye',
       };
     } else {
@@ -165,10 +161,9 @@ class _DryEyeTestState extends State<DryEyeTest>
   Map<String, dynamic> _getNoSymptomsResult() {
     return {
       'type': 'none',
-      'title': 'No Dry Eye Symptoms',
-      'description': "You don't seem to have symptoms of dry eye currently.",
-      'recommendations':
-          'Continue with regular eye check-ups to maintain good eye health. Practice good eye hygiene and take screen breaks.',
+      'title': 'dry_eye.results.none.title'.tr(),
+      'description': 'dry_eye.results.none.description'.tr(),
+      'recommendations': 'dry_eye.results.none.recommendation'.tr(),
       'learnMoreUrl':
           'https://www.aao.org/search/public/results?q=dry%20eye&realmName=_UREALM_&wt=json&rows=10&start=0&user_id=',
     };
@@ -182,15 +177,18 @@ class _DryEyeTestState extends State<DryEyeTest>
   }
 
   Map<String, dynamic> _getSymptomData(String symptom) {
-    const data = {
-      'dryness': {'label': 'Dryness or scratchy feeling', 'icon': '💧'},
-      'irritation': {'label': 'Irritation or burning sensation', 'icon': '🔥'},
-      'redness': {'label': 'Redness in eyes', 'icon': '🔴'},
+    final data = {
+      'dryness': {'label': 'dry_eye.symptoms.dryness'.tr(), 'icon': '💧'},
+      'irritation': {'label': 'dry_eye.symptoms.irritation'.tr(), 'icon': '🔥'},
+      'redness': {'label': 'dry_eye.symptoms.redness'.tr(), 'icon': '🔴'},
       'foreignBody': {
-        'label': 'Feeling like something is in your eye',
+        'label': 'dry_eye.symptoms.foreign_body'.tr(),
         'icon': 'ℹ️',
       },
-      'sensitivity': {'label': 'Sensitivity to light', 'icon': '☀️'},
+      'sensitivity': {
+        'label': 'dry_eye.symptoms.sensitivity'.tr(),
+        'icon': '☀️',
+      },
     };
     return data[symptom] ?? {'label': '', 'icon': ''};
   }
@@ -226,7 +224,7 @@ class _DryEyeTestState extends State<DryEyeTest>
                         const SizedBox(height: 24),
                         _buildActionButton(
                           onPressed: _resetTest,
-                          title: 'Take Test Again',
+                          title: 'dry_eye.buttons.retry'.tr(),
                           isOutlined: true,
                           icon: '🔄',
                         ),
@@ -271,9 +269,9 @@ class _DryEyeTestState extends State<DryEyeTest>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Dry Eye Test',
-                  style: TextStyle(
+                Text(
+                  'dry_eye.title'.tr(),
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
                     color: Colors.white,
@@ -281,7 +279,9 @@ class _DryEyeTestState extends State<DryEyeTest>
                   ),
                 ),
                 Text(
-                  testCompleted ? 'Test Completed' : 'Symptom Assessment',
+                  testCompleted
+                      ? 'dry_eye.header.subtitle_complete'.tr()
+                      : 'dry_eye.header.subtitle_testing'.tr(),
                   style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFF18FFFF),
@@ -333,22 +333,22 @@ class _DryEyeTestState extends State<DryEyeTest>
             ),
           ),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Symptom Checklist',
-                  style: TextStyle(
+                  'dry_eye.instructions.title'.tr(),
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
-                  'Select all symptoms you have experienced in the past few days. This will help assess your dry eye condition.',
-                  style: TextStyle(
+                  'dry_eye.instructions.description'.tr(),
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFFAAAAAA),
                     height: 1.4,
@@ -380,9 +380,9 @@ class _DryEyeTestState extends State<DryEyeTest>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Select Your Symptoms',
-                      style: TextStyle(
+                    Text(
+                      'dry_eye.select_symptoms'.tr(),
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
@@ -513,8 +513,10 @@ class _DryEyeTestState extends State<DryEyeTest>
     return _buildActionButton(
       onPressed: _handleSubmit,
       title: _selectedCount > 0
-          ? 'Analyze $_selectedCount Symptoms'
-          : 'Complete Assessment',
+          ? 'dry_eye.buttons.analyze'.tr(
+              namedArgs: {'count': '$_selectedCount'},
+            )
+          : 'dry_eye.buttons.complete'.tr(),
       isPrimary: true,
       icon: '✓',
     );
@@ -590,9 +592,9 @@ class _DryEyeTestState extends State<DryEyeTest>
             ),
           ),
           const SizedBox(height: 16),
-          const Text(
-            'Recommendations:',
-            style: TextStyle(
+          Text(
+            'dry_eye.results.recommendations_title'.tr(),
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
               color: Colors.white,
@@ -607,28 +609,29 @@ class _DryEyeTestState extends State<DryEyeTest>
               height: 1.4,
             ),
           ),
-          const SizedBox(height: 16),
-          GestureDetector(
-            onTap: () => _openLearnMore(result['learnMoreUrl'] as String),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color: const Color(0xFF18FFFF).withOpacity(0.2),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: const Color(0xFF18FFFF).withOpacity(0.3),
-                ),
-              ),
-              child: const Text(
-                '🔗 Learn More',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Color(0xFF18FFFF),
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ),
+          // const SizedBox(height: 16),
+          // GestureDetector(
+          //   onTap: () => _openLearnMore(result['learnMoreUrl'] as String),
+          //   child: Container(
+          //     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          //     decoration: BoxDecoration(
+          //       color: const Color(0xFF18FFFF).withOpacity(0.2),
+          //       borderRadius: BorderRadius.circular(12),
+          //       border: Border.all(
+          //         color: const Color(0xFF18FFFF).withOpacity(0.3),
+          //       ),
+          //     ),
+          //     child: Text(
+          //       'dry_eye.buttons.learn_more'.tr(),
+          //       style: const TextStyle(
+          //         fontSize: 14,
+          //         color: Color(0xFF18FFFF),
+          //         fontWeight: FontWeight.w600,
+          //       ),
+          //     ),
+          //   ),
+          // ),
+       
         ],
       ),
     );
@@ -645,9 +648,9 @@ class _DryEyeTestState extends State<DryEyeTest>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            '💡 Assessment Tips',
-            style: TextStyle(
+          Text(
+            'dry_eye.tips.title'.tr(),
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
               color: Colors.white,
@@ -655,15 +658,15 @@ class _DryEyeTestState extends State<DryEyeTest>
           ),
           const SizedBox(height: 16),
           ...[
-            '• Consider symptoms from the past 2-3 days',
-            '• Be honest about frequency and severity',
-            '• Think about symptoms during different activities',
-            '• Consider environmental factors that may affect you',
+            'dry_eye.tips.tip1',
+            'dry_eye.tips.tip2',
+            'dry_eye.tips.tip3',
+            'dry_eye.tips.tip4',
           ].map(
-            (tip) => Padding(
+            (tipKey) => Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Text(
-                tip,
+                tipKey.tr(),
                 style: const TextStyle(
                   fontSize: 14,
                   color: Color(0xFFAAAAAA),

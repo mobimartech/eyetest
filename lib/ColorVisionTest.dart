@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ColorVisionTest extends StatefulWidget {
   const ColorVisionTest({Key? key}) : super(key: key);
@@ -35,14 +36,6 @@ class _ColorVisionTestState extends State<ColorVisionTest>
   ];
 
   final List<String> correctAnswers = ['12', '27', '5', '6', 'N', 'W'];
-  final List<String> testDescriptions = [
-    'Plate 1',
-    'Plate 2',
-    'Plate 3',
-    'Plate 4',
-    'Plate 5',
-    'Plate 6',
-  ];
 
   @override
   void initState() {
@@ -96,13 +89,15 @@ class _ColorVisionTestState extends State<ColorVisionTest>
 
     if (answer.toLowerCase() == correctAnswers[step].toLowerCase()) {
       setState(() {
-        feedback = 'Correct! Well done.';
+        feedback = 'color_vision.feedback.correct'.tr();
         isCorrect = true;
         showFeedback = true;
       });
     } else {
       setState(() {
-        feedback = 'Incorrect. The correct answer is: ${correctAnswers[step]}';
+        feedback = 'color_vision.feedback.incorrect'.tr(
+          namedArgs: {'answer': correctAnswers[step]},
+        );
         isCorrect = false;
         showFeedback = true;
       });
@@ -163,26 +158,35 @@ class _ColorVisionTestState extends State<ColorVisionTest>
     }
 
     int percentage = ((correctCount / testImages.length) * 100).round();
-    String resultMessage =
-        'Test Complete!\n\nScore: $correctCount/${testImages.length} ($percentage%)\n\n';
+    String resultMessage = 'color_vision.result.score'.tr(
+      namedArgs: {
+        'correct': '$correctCount',
+        'total': '${testImages.length}',
+        'percentage': '$percentage',
+      },
+    );
 
+    String interpretation;
     if (percentage >= 80) {
-      resultMessage += 'Excellent! Your color vision appears to be normal.';
+      interpretation = 'color_vision.result.excellent'.tr();
     } else if (percentage >= 60) {
-      resultMessage +=
-          'Good results, but consider consulting an eye care professional for a comprehensive examination.';
+      interpretation = 'color_vision.result.good'.tr();
     } else {
-      resultMessage +=
-          'Consider consulting an eye care professional for a thorough color vision assessment.';
+      interpretation = 'color_vision.result.consult'.tr();
     }
+
+    resultMessage += '\n\n$interpretation';
 
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: const Color(0xFF1A1A1A),
-        title: const Text(
-          'Test Results',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+        title: Text(
+          'color_vision.result.title'.tr(),
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+          ),
         ),
         content: Text(
           resultMessage,
@@ -194,7 +198,10 @@ class _ColorVisionTestState extends State<ColorVisionTest>
               Navigator.of(context).pop();
               Navigator.of(context).pop();
             },
-            child: const Text('OK', style: TextStyle(color: Color(0xFF7C4DFF))),
+            child: Text(
+              'color_vision.result.ok'.tr(),
+              style: const TextStyle(color: Color(0xFF7C4DFF)),
+            ),
           ),
         ],
       ),
@@ -206,13 +213,16 @@ class _ColorVisionTestState extends State<ColorVisionTest>
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: const Color(0xFF1A1A1A),
-        title: const Text(
-          '💡 Helpful Hint',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+        title: Text(
+          'color_vision.hint_dialog.title'.tr(),
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+          ),
         ),
-        content: const Text(
-          'Focus on the different colors and shades in the dot pattern. Numbers or letters are formed by dots of similar colors grouping together. If you have difficulty seeing any pattern, that information is also valuable for assessment.',
-          style: TextStyle(color: Color(0xFFAAAAAA), height: 1.4),
+        content: Text(
+          'color_vision.hint_dialog.message'.tr(),
+          style: const TextStyle(color: Color(0xFFAAAAAA), height: 1.4),
         ),
         actions: [
           TextButton(
@@ -223,11 +233,11 @@ class _ColorVisionTestState extends State<ColorVisionTest>
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Text(
-                'Got it!',
-                style: TextStyle(
+                'color_vision.hint_dialog.got_it'.tr(),
+                style: const TextStyle(
                   color: Color(0xFF0A0A0A),
                   fontWeight: FontWeight.w700,
                 ),
@@ -305,9 +315,9 @@ class _ColorVisionTestState extends State<ColorVisionTest>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Color Vision Test',
-                  style: TextStyle(
+                Text(
+                  'color_vision.title'.tr(),
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
                     color: Colors.white,
@@ -315,7 +325,12 @@ class _ColorVisionTestState extends State<ColorVisionTest>
                   ),
                 ),
                 Text(
-                  'Plate ${step + 1} of ${testImages.length}',
+                  'color_vision.plate_counter'.tr(
+                    namedArgs: {
+                      'current': '${step + 1}',
+                      'total': '${testImages.length}',
+                    },
+                  ),
                   style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFF7C4DFF),
@@ -374,7 +389,11 @@ class _ColorVisionTestState extends State<ColorVisionTest>
           ),
           const SizedBox(height: 8),
           Text(
-            '${((step + 1) / testImages.length * 100).round()}% Complete',
+            'color_vision.progress'.tr(
+              namedArgs: {
+                'percent': '${((step + 1) / testImages.length * 100).round()}',
+              },
+            ),
             style: const TextStyle(
               fontSize: 12,
               color: Color(0xFFAAAAAA),
@@ -409,22 +428,22 @@ class _ColorVisionTestState extends State<ColorVisionTest>
             ),
           ),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Test Instructions',
-                  style: TextStyle(
+                  'color_vision.instructions.title'.tr(),
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
-                  'Look at the colored dots below and identify any number or letter you can see hidden within the pattern.',
-                  style: TextStyle(
+                  'color_vision.instructions.description'.tr(),
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFFAAAAAA),
                     height: 1.4,
@@ -452,7 +471,9 @@ class _ColorVisionTestState extends State<ColorVisionTest>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                testDescriptions[step],
+                'color_vision.plate_name'.tr(
+                  namedArgs: {'number': '${step + 1}'},
+                ),
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
@@ -473,9 +494,9 @@ class _ColorVisionTestState extends State<ColorVisionTest>
                       color: const Color(0xFF7C4DFF).withOpacity(0.3),
                     ),
                   ),
-                  child: const Text(
-                    '💡 Hint',
-                    style: TextStyle(
+                  child: Text(
+                    'color_vision.hint'.tr(),
+                    style: const TextStyle(
                       fontSize: 12,
                       color: Color(0xFF7C4DFF),
                       fontWeight: FontWeight.w600,
@@ -515,9 +536,9 @@ class _ColorVisionTestState extends State<ColorVisionTest>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'What do you see?',
-            style: TextStyle(
+          Text(
+            'color_vision.question'.tr(),
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
               color: Colors.white,
@@ -529,7 +550,7 @@ class _ColorVisionTestState extends State<ColorVisionTest>
             onChanged: (value) => setState(() => answer = value),
             style: const TextStyle(color: Colors.white, fontSize: 16),
             decoration: InputDecoration(
-              hintText: 'Enter number or letter',
+              hintText: 'color_vision.input_placeholder'.tr(),
               hintStyle: const TextStyle(color: Color(0xFFAAAAAA)),
               filled: true,
               fillColor: const Color(0xFF333333),
@@ -611,7 +632,7 @@ class _ColorVisionTestState extends State<ColorVisionTest>
               Expanded(
                 child: _buildActionButton(
                   onPressed: handlePrevious,
-                  title: 'Previous',
+                  title: 'color_vision.buttons.previous'.tr(),
                   isPrimary: false,
                   icon: '←',
                 ),
@@ -620,7 +641,7 @@ class _ColorVisionTestState extends State<ColorVisionTest>
             Expanded(
               child: _buildActionButton(
                 onPressed: handleCheck,
-                title: 'Check Answer',
+                title: 'color_vision.buttons.check'.tr(),
                 isPrimary: true,
                 disabled: answer.trim().isEmpty,
                 icon: '✓',
@@ -632,7 +653,9 @@ class _ColorVisionTestState extends State<ColorVisionTest>
           const SizedBox(height: 16),
           _buildActionButton(
             onPressed: handleNext,
-            title: step < testImages.length - 1 ? 'Next Plate' : 'Finish Test',
+            title: step < testImages.length - 1
+                ? 'color_vision.buttons.next'.tr()
+                : 'color_vision.buttons.finish'.tr(),
             isPrimary: true,
             icon: step < testImages.length - 1 ? '→' : '✓',
           ),
@@ -729,9 +752,9 @@ class _ColorVisionTestState extends State<ColorVisionTest>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            '💡 Testing Tips',
-            style: TextStyle(
+          Text(
+            'color_vision.tips.title'.tr(),
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
               color: Colors.white,
@@ -739,15 +762,15 @@ class _ColorVisionTestState extends State<ColorVisionTest>
           ),
           const SizedBox(height: 16),
           ...[
-            '• Look for patterns formed by different colored dots',
-            '• Take your time - there\'s no rush',
-            '• If you can\'t see anything, that\'s also valid information',
-            '• Ensure good lighting conditions for accurate results',
+            'color_vision.tips.tip1',
+            'color_vision.tips.tip2',
+            'color_vision.tips.tip3',
+            'color_vision.tips.tip4',
           ].map(
-            (tip) => Padding(
+            (tipKey) => Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Text(
-                tip,
+                tipKey.tr(),
                 style: const TextStyle(
                   fontSize: 14,
                   color: Color(0xFFAAAAAA),

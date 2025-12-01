@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class VisionFieldTest extends StatefulWidget {
   const VisionFieldTest({Key? key}) : super(key: key);
@@ -36,7 +37,6 @@ class _VisionFieldTestState extends State<VisionFieldTest>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Safe to access MediaQuery here
     if (_movementPath.isEmpty) {
       _generateMovementPath();
     }
@@ -117,8 +117,7 @@ class _VisionFieldTestState extends State<VisionFieldTest>
     setState(() {
       testStarted = false;
       testPhase = 'complete';
-      testResult =
-          'Test completed. If you frequently lose sight of moving objects in your peripheral vision, consider consulting an eye care professional for a comprehensive visual field examination.';
+      testResult = 'vision_field.complete.result'.tr();
       feedbackVisible = true;
     });
 
@@ -179,13 +178,13 @@ class _VisionFieldTestState extends State<VisionFieldTest>
   }
 
   Widget _buildHeader() {
-    String subtitle = '';
+    String subtitleKey = '';
     if (testPhase == 'instructions') {
-      subtitle = 'Peripheral Vision Assessment';
+      subtitleKey = 'vision_field.header.subtitle_instructions';
     } else if (testPhase == 'testing') {
-      subtitle = 'Test in Progress';
+      subtitleKey = 'vision_field.header.subtitle_testing';
     } else if (testPhase == 'complete') {
-      subtitle = 'Test Completed';
+      subtitleKey = 'vision_field.header.subtitle_complete';
     }
 
     return Container(
@@ -215,9 +214,9 @@ class _VisionFieldTestState extends State<VisionFieldTest>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Visual Field Test',
-                  style: TextStyle(
+                Text(
+                  'vision_field.title'.tr(),
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
                     color: Colors.white,
@@ -225,7 +224,7 @@ class _VisionFieldTestState extends State<VisionFieldTest>
                   ),
                 ),
                 Text(
-                  subtitle,
+                  subtitleKey.tr(),
                   style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFFFF4081),
@@ -268,9 +267,9 @@ class _VisionFieldTestState extends State<VisionFieldTest>
           const SizedBox(height: 24),
           _buildActionButton(
             onPressed: _handleStartTest,
-            title: 'Start Visual Field Test',
+            title: 'vision_field.buttons.start'.tr(),
             isPrimary: true,
-            icon: '▶',
+            icon: '▶️',
           ),
           const SizedBox(height: 24),
           GestureDetector(
@@ -278,9 +277,9 @@ class _VisionFieldTestState extends State<VisionFieldTest>
             child: Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(vertical: 16),
-              child: const Text(
-                '🔗 Learn more about visual field tests',
-                style: TextStyle(
+              child: Text(
+                'vision_field.buttons.learn_more'.tr(),
+                style: const TextStyle(
                   fontSize: 14,
                   color: Color(0xFFFF4081),
                   fontWeight: FontWeight.w500,
@@ -317,22 +316,22 @@ class _VisionFieldTestState extends State<VisionFieldTest>
             ),
           ),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Test Instructions',
-                  style: TextStyle(
+                  'vision_field.instructions.title'.tr(),
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
-                  'This test evaluates your peripheral vision by tracking a moving object while focusing on a central point.',
-                  style: TextStyle(
+                  'vision_field.instructions.description'.tr(),
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFFAAAAAA),
                     height: 1.4,
@@ -357,29 +356,20 @@ class _VisionFieldTestState extends State<VisionFieldTest>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'How to Take the Test',
-            style: TextStyle(
+          Text(
+            'vision_field.steps.title'.tr(),
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
               color: Colors.white,
             ),
           ),
           const SizedBox(height: 16),
-          _buildStepItem(
-            '1',
-            'Keep your eyes focused on the center point at all times',
-          ),
+          _buildStepItem('1', 'vision_field.steps.step1'.tr()),
           const SizedBox(height: 16),
-          _buildStepItem(
-            '2',
-            'Use your peripheral vision to track the moving red dot',
-          ),
+          _buildStepItem('2', 'vision_field.steps.step2'.tr()),
           const SizedBox(height: 16),
-          _buildStepItem(
-            '3',
-            'Tap anywhere on screen when you lose sight of the moving object',
-          ),
+          _buildStepItem('3', 'vision_field.steps.step3'.tr()),
         ],
       ),
     );
@@ -448,22 +438,22 @@ class _VisionFieldTestState extends State<VisionFieldTest>
             ),
           ),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Important Notes',
-                  style: TextStyle(
+                  'vision_field.warning.title'.tr(),
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
-                  'This is a basic screening test. For comprehensive visual field assessment, please consult an eye care professional.',
-                  style: TextStyle(
+                  'vision_field.warning.message'.tr(),
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFFFFCCCB),
                     height: 1.4,
@@ -484,7 +474,6 @@ class _VisionFieldTestState extends State<VisionFieldTest>
         color: const Color(0xFF0A0A0A),
         child: Stack(
           children: [
-            // Center Focus Point
             Center(
               child: Container(
                 width: 12,
@@ -502,8 +491,6 @@ class _VisionFieldTestState extends State<VisionFieldTest>
                 ),
               ),
             ),
-
-            // Moving Object
             if (_movementPath.isNotEmpty)
               AnimatedBuilder(
                 animation: _positionAnimation,
@@ -532,8 +519,6 @@ class _VisionFieldTestState extends State<VisionFieldTest>
                   );
                 },
               ),
-
-            // Instruction Overlay
             Positioned(
               top: 100,
               left: 24,
@@ -544,9 +529,9 @@ class _VisionFieldTestState extends State<VisionFieldTest>
                   color: const Color(0xFF1A1A1A).withOpacity(0.9),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Text(
-                  'Focus on the center • Tap when object disappears',
-                  style: TextStyle(
+                child: Text(
+                  'vision_field.testing.instruction'.tr(),
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
@@ -555,8 +540,6 @@ class _VisionFieldTestState extends State<VisionFieldTest>
                 ),
               ),
             ),
-
-            // Stop Button
             Positioned(
               bottom: 100,
               left: 24,
@@ -570,7 +553,7 @@ class _VisionFieldTestState extends State<VisionFieldTest>
                   _movementController.stop();
                   _fadeController.reverse();
                 },
-                title: 'Stop Test',
+                title: 'vision_field.buttons.stop'.tr(),
                 isPrimary: false,
                 icon: '⏹️',
               ),
@@ -600,9 +583,9 @@ class _VisionFieldTestState extends State<VisionFieldTest>
                   style: TextStyle(fontSize: 48, color: Color(0xFF4CAF50)),
                 ),
                 const SizedBox(height: 16),
-                const Text(
-                  'Test Complete',
-                  style: TextStyle(
+                Text(
+                  'vision_field.complete.title'.tr(),
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
@@ -624,7 +607,7 @@ class _VisionFieldTestState extends State<VisionFieldTest>
           const SizedBox(height: 24),
           _buildActionButton(
             onPressed: _resetTest,
-            title: 'Take Test Again',
+            title: 'vision_field.buttons.retry'.tr(),
             isPrimary: true,
             icon: '🔄',
           ),

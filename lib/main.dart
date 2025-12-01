@@ -11,16 +11,34 @@ import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:easy_localization/easy_localization.dart'; // ADD THIS
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Initialize EasyLocalization BEFORE runApp
+  await EasyLocalization.ensureInitialized(); // ADD THIS
+
   // Initialize notifications
   await NotificationService().initialize();
 
-  // ... rest of your initialization code
-
-  runApp(MyApp());
+  // Run app wrapped with EasyLocalization
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [
+        Locale('en'),
+        Locale('es'),
+        Locale('fr'),
+        Locale('de'),
+        Locale('ar'),
+        Locale('zh'),
+      ],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      startLocale: const Locale('en'), // Default language
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -52,9 +70,7 @@ class _MyAppState extends State<MyApp> {
       final status =
           await AppTrackingTransparency.requestTrackingAuthorization();
     });
-    // ✅ Wait for UI to render before requesting ATT
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // Add delay to ensure splash screen is fully visible
       Future.delayed(Duration(milliseconds: 800), () {
         _initApp();
       });
@@ -63,18 +79,12 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> _initApp() async {
     print("=== App Initialization Started ===");
-
     await initRevenueCat();
     print("✅ RevenueCat initialized");
-
     await _getAppVersion();
     await _getPlatformVersion();
     print("✅ App Version: $_appVersion, Platform: $_platformVersion");
-
-    // Request ATT before AppsFlyer
-    // await _requestATT();
     print("✅ ATT request completed. Granted: $_attGranted");
-
     _initAppsFlyer();
     print("✅ AppsFlyer initialized");
     print("=== App Initialization Complete ===");
@@ -100,36 +110,25 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> _requestATT() async {
     print("=== Requesting ATT Permission ===");
-
     if (Platform.isIOS) {
       try {
         print("iOS detected. Checking ATT status...");
-
-        // Check if tracking is available at system level
         final status =
             await AppTrackingTransparency.trackingAuthorizationStatus;
         print("Current ATT status: $status");
-
-        // Check if we can even request (iOS 14.5+)
         final canRequest =
             await AppTrackingTransparency.getAdvertisingIdentifier();
         print("Advertising Identifier available: ${canRequest.isNotEmpty}");
-
         if (status == TrackingStatus.notDetermined) {
-          print("⚠️ Status is notDetermined. Requesting authorization...");
+          print("⏸️ Status is notDetermined. Requesting authorization...");
           print(
-            "⚠️ IMPORTANT: Check Settings → Privacy → Tracking is enabled!",
+            "⏸️ IMPORTANT: Check Settings → Privacy → Tracking is enabled!",
           );
-
           await Future.delayed(Duration(milliseconds: 300));
-
-          print("🎯 About to show ATT dialog...");
+          print("🚀 About to show ATT dialog...");
           final result =
               await AppTrackingTransparency.requestTrackingAuthorization();
-
-          print("📱 User responded with: $result");
-
-          // If still notDetermined after request, system-level tracking is OFF
+          print("👍 User responded with: $result");
           if (result == TrackingStatus.notDetermined) {
             print("❌ DIALOG DID NOT SHOW!");
             print("❌ This means device-level tracking is DISABLED");
@@ -137,7 +136,6 @@ class _MyAppState extends State<MyApp> {
               "❌ User must enable: Settings → Privacy & Security → Tracking",
             );
           }
-
           _attGranted = result == TrackingStatus.authorized;
         } else {
           _attGranted = status == TrackingStatus.authorized;
@@ -151,14 +149,12 @@ class _MyAppState extends State<MyApp> {
       _attGranted = true;
       print("Android platform - ATT not required");
     }
-
     print("Final ATT status - Granted: $_attGranted");
     setState(() {});
   }
 
   void _initAppsFlyer() {
     print("=== Initializing AppsFlyer ===");
-
     final options = AppsFlyerOptions(
       afDevKey: 'FjSERtDKGm29LmgGqGBpdn',
       appId: Platform.isIOS ? '6621183937' : "",
@@ -166,32 +162,26 @@ class _MyAppState extends State<MyApp> {
       timeToWaitForATTUserAuthorization: 60,
     );
     _appsflyerSdk = AppsflyerSdk(options);
-
     _appsflyerSdk.initSdk(
       registerConversionDataCallback: true,
       registerOnAppOpenAttributionCallback: true,
       registerOnDeepLinkingCallback: true,
     );
-
     _appsflyerSdk.getAppsFlyerUID().then((uid) {
       print("AppsFlyer UID obtained: $uid");
       setState(() {
         _appsflyerUID = uid;
       });
     });
-
     _appsflyerSdk.onInstallConversionData((data) async {
       print("=== Install Conversion Data ===");
       print(data);
-
       if (_hasProcessedAttribution) {
         print("Already processed attribution, skipping...");
         return;
       }
-
       _hasProcessedAttribution = true;
       final extracted = _extractOneLinkParams(data);
-
       if (data['data']?['is_first_launch'] == true) {
         print("First launch detected, sending webhook...");
         await _sendOneLinkDataToWebhook(
@@ -204,11 +194,9 @@ class _MyAppState extends State<MyApp> {
         });
       }
     });
-
     _appsflyerSdk.onDeepLinking((deepLinkResult) async {
       print("=== Deep Link Received ===");
       print(deepLinkResult.toJson());
-
       final extracted = _extractOneLinkParams(deepLinkResult.toJson());
       await _sendOneLinkDataToWebhook(
         extractedParams: extracted,
@@ -219,7 +207,6 @@ class _MyAppState extends State<MyApp> {
         _status = "Deep link sent!";
       });
     });
-
     print("=== AppsFlyer Setup Complete ===");
   }
 
@@ -227,7 +214,6 @@ class _MyAppState extends State<MyApp> {
     final d = data['data'] ?? {};
     String? decode(dynamic v) =>
         v == null ? null : Uri.decodeComponent(v.toString());
-
     String? clickId = decode(d['e_token']);
     if (clickId == '{Click_ID}' || clickId == '%7BClick_ID%7D') {
       clickId = 'placeholder_click_id_${DateTime.now().millisecondsSinceEpoch}';
@@ -244,7 +230,6 @@ class _MyAppState extends State<MyApp> {
     if (cn == '{cn}' || cn == '%7Bcn%7D') {
       cn = 'organic_campaign';
     }
-
     return {
       'cn': cn,
       'af_xp': decode(d['af_xp']),
@@ -308,9 +293,8 @@ class _MyAppState extends State<MyApp> {
       },
       "raw_appsflyer_data": rawAppsFlyerData,
     };
-
     try {
-      print("📤 Sending webhook to: $webhookUrl");
+      print("📧 Sending webhook to: $webhookUrl");
       final response = await http.post(
         Uri.parse(webhookUrl),
         headers: {
@@ -320,7 +304,7 @@ class _MyAppState extends State<MyApp> {
         },
         body: jsonEncode(payload),
       );
-      print("📥 Webhook response: ${response.statusCode}");
+      print("📨 Webhook response: ${response.statusCode}");
       if (response.statusCode == 200) {
         print("✅ Webhook sent successfully");
       } else {
@@ -335,7 +319,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'My Flutter App',
+      title: 'app_title'.tr(), // ADD localization
+      // ADD these for EasyLocalization support
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       home: SplashScreen(),
     );
   }

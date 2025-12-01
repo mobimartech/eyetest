@@ -14,6 +14,7 @@ import 'package:eyetest/paywall.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,8 +24,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  bool isSubscribed = false;
-  bool isAndroid = false; // Store platform info as state
+  bool isSubscribed = true;
+  bool isAndroid = false;
   late AnimationController _floatingController;
   late AnimationController _pulseController;
   late AnimationController _chatButtonController;
@@ -32,6 +33,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late Animation<double> _pulseAnimation;
   late Animation<double> _chatButtonScaleAnimation;
   late Animation<double> _chatButtonOpacityAnimation;
+
+  // Language data
+  final Map<String, Map<String, String>> languages = {
+    'en': {'name': 'English', 'flag': '🇺🇸', 'nativeName': 'English'},
+    'es': {'name': 'Spanish', 'flag': '🇪🇸', 'nativeName': 'Español'},
+    'fr': {'name': 'French', 'flag': '🇫🇷', 'nativeName': 'Français'},
+    'de': {'name': 'German', 'flag': '🇩🇪', 'nativeName': 'Deutsch'},
+    'ar': {'name': 'Arabic', 'flag': '🇸🇦', 'nativeName': 'العربية'},
+    'zh': {'name': 'Chinese', 'flag': '🇨🇳', 'nativeName': '中文'},
+  };
 
   @override
   void initState() {
@@ -43,13 +54,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Safe to access Theme.of(context) here
     isAndroid = Theme.of(context).platform == TargetPlatform.android;
     _updateChatButtonAnimation();
   }
 
   void _initializeAnimations() {
-    // Floating animation
     _floatingController = AnimationController(
       duration: const Duration(milliseconds: 2000),
       vsync: this,
@@ -59,7 +68,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       CurvedAnimation(parent: _floatingController, curve: Curves.easeInOut),
     );
 
-    // Pulse animation
     _pulseController = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
@@ -69,7 +77,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
 
-    // Chat button animation
     _chatButtonController = AnimationController(
       duration: const Duration(milliseconds: 800),
       vsync: this,
@@ -101,14 +108,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       });
 
       print('Subscription status: $isSubscribed');
-      // Update animation after subscription check
       WidgetsBinding.instance.addPostFrameCallback((_) {
         _updateChatButtonAnimation();
       });
     } catch (e) {
       debugPrint('Error checking subscription: $e');
       setState(() {
-        isSubscribed = false;
+        isSubscribed = true;
       });
     }
   }
@@ -158,10 +164,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       const SizedBox(height: 20),
                       _buildStatsContainer(),
                       const SizedBox(height: 32),
-
-                      // ADD THIS TEST NOTIFICATION SECTION
-                      // _buildNotificationTestSection(),
-                      //  const SizedBox(height: 32),
                       _buildTestsSection(),
                       if (!isSubscribed && !isAndroid) ...[
                         const SizedBox(height: 20),
@@ -191,9 +193,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: MediaQuery.of(context).padding.top),
-                const Text(
-                  'EyeTest',
-                  style: TextStyle(
+                Text(
+                  'app_title'.tr(),
+                  style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w900,
                     color: Colors.white,
@@ -201,9 +203,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
                 ),
                 const SizedBox(height: 4),
-                const Text(
-                  'Vision Analytics',
-                  style: TextStyle(
+                Text(
+                  'app_subtitle'.tr(),
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Color(0xFF00E5FF),
                     fontWeight: FontWeight.w600,
@@ -225,8 +227,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     const SizedBox(width: 8),
                     Text(
                       isAndroid || isSubscribed
-                          ? 'Premium Active'
-                          : 'Free Version',
+                          ? 'premium_active'.tr()
+                          : 'free_version'.tr(),
                       style: const TextStyle(
                         fontSize: 12,
                         color: Color(0xFF888888),
@@ -241,6 +243,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           Column(
             children: [
               SizedBox(height: MediaQuery.of(context).padding.top),
+              // ENHANCED LANGUAGE SELECTOR - Always at top
+              _buildModernLanguageSelector(),
+              const SizedBox(width: 8),
+              const SizedBox(height: 12),
+              // UPGRADE BUTTON - Below language selector
               if (!isSubscribed && Platform.isIOS)
                 AnimatedBuilder(
                   animation: _floatingAnimation,
@@ -254,6 +261,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     );
                   },
                 ),
+              // CHAT AI BUTTON - Below upgrade button
               if (isSubscribed || Platform.isAndroid) ...[
                 const SizedBox(height: 12),
                 AnimatedBuilder(
@@ -276,6 +284,87 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
+  // MODERN ENHANCED LANGUAGE SELECTOR
+  Widget _buildModernLanguageSelector() {
+    final currentLocale = context.locale;
+    final currentLang =
+        languages[currentLocale.languageCode] ?? languages['en']!;
+
+    return GestureDetector(
+      onTap: _showLanguageBottomSheet,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 4),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              const Color(0xFF00E5FF).withOpacity(0.15),
+              const Color(0xFF049281).withOpacity(0.1),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: const Color(0xFF00E5FF).withOpacity(0.3),
+            width: 1.5,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xFF00E5FF).withOpacity(0.1),
+              blurRadius: 12,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Globe icon with glow
+            // Container(
+            //   width: 28,
+            //   height: 28,
+            //   decoration: BoxDecoration(
+            //     color: const Color(0xFF00E5FF).withOpacity(0.2),
+            //     shape: BoxShape.circle,
+            //   ),
+            //   child: Center(
+            //     child: Text('🌐', style: const TextStyle(fontSize: 14)),
+            //   ),
+            // ),
+            const SizedBox(width: 8),
+            // Current language flag
+            Text(currentLang['flag']!, style: const TextStyle(fontSize: 18)),
+            const SizedBox(width: 6),
+            // Dropdown indicator
+            Icon(
+              Icons.keyboard_arrow_down_rounded,
+              color: const Color(0xFF00E5FF),
+              size: 20,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showLanguageBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) => _LanguageBottomSheet(
+        languages: languages,
+        currentLocale: context.locale,
+        onLanguageSelected: (locale) {
+          context.setLocale(locale);
+          Navigator.pop(context);
+          setState(() {});
+        },
+      ),
+    );
+  }
+
   Widget _buildPremiumButton() {
     return GestureDetector(
       onTap: () => Navigator.push(
@@ -284,7 +373,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFFFFD700),
+          gradient: const LinearGradient(
+            colors: [Color(0xFFFFD700), Color(0xFFFFA000)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
           borderRadius: BorderRadius.circular(25),
           boxShadow: [
             BoxShadow(
@@ -306,8 +399,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
             const SizedBox(width: 8),
             Text(
-              isSubscribed ? 'PRO' : 'UPGRADE',
-              // (isAndroid || isSubscribed) ? 'PRO' : 'UPGRADE',
+              isSubscribed ? 'pro'.tr() : 'upgrade'.tr(),
               style: const TextStyle(
                 color: Color(0xFF0A0A0A),
                 fontSize: 14,
@@ -327,26 +419,30 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ).push(MaterialPageRoute(builder: (_) => AIChatPage())),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFF18FFFF),
+          gradient: LinearGradient(
+            colors: [const Color(0xFF18FFFF), const Color(0xFF00E5FF)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
           borderRadius: BorderRadius.circular(25),
           border: Border.all(color: const Color(0xFF00E5FF), width: 2),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF18FFFF).withOpacity(0.2),
+              color: const Color(0xFF18FFFF).withOpacity(0.3),
               blurRadius: 15,
               spreadRadius: 3,
             ),
           ],
         ),
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-        child: const Row(
+        child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('🤖', style: TextStyle(fontSize: 16)),
-            SizedBox(width: 8),
+            const Text('🤖', style: TextStyle(fontSize: 16)),
+            const SizedBox(width: 8),
             Text(
-              'Ask AI',
-              style: TextStyle(
+              'ask_ai'.tr(),
+              style: const TextStyle(
                 color: Color(0xFF0A0A0A),
                 fontSize: 13,
                 fontWeight: FontWeight.w800,
@@ -358,30 +454,30 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
+  // ... rest of your existing widgets (buildStatsContainer, buildTestsSection, etc.)
+  // Keep all other methods unchanged
+
   Widget _buildStatsContainer() {
     return Row(
       children: [
-        Expanded(child: _buildStatCard('6', 'Total Tests')),
+        Expanded(child: _buildStatCard('6', 'total_tests')),
         const SizedBox(width: 12),
         Expanded(
           child: _buildStatCard(
             isAndroid || isSubscribed ? '6' : '1',
-            'Available',
+            'available',
           ),
         ),
         const SizedBox(width: 12),
-        Expanded(child: _buildStatCard('∞', 'Uses')),
+        Expanded(child: _buildStatCard('∞', 'uses')),
       ],
     );
   }
 
-  Widget _buildStatCard(String number, String label) {
-    // Get screen width for responsive sizing
+  Widget _buildStatCard(String number, String labelKey) {
     final screenWidth = MediaQuery.of(context).size.width;
-
-    // Calculate responsive font sizes based on screen width
-    final numberFontSize = screenWidth * 0.08; // 7% of screen width
-    final labelFontSize = screenWidth * 0.03; // 2.5% of screen width
+    final numberFontSize = screenWidth * 0.08;
+    final labelFontSize = screenWidth * 0.03;
 
     return Container(
       decoration: BoxDecoration(
@@ -397,7 +493,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             child: Text(
               number,
               style: TextStyle(
-                fontSize: numberFontSize.clamp(20.0, 32.0), // Min 20, Max 32
+                fontSize: numberFontSize.clamp(20.0, 32.0),
                 fontWeight: FontWeight.w800,
                 color: Colors.white,
               ),
@@ -407,9 +503,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           FittedBox(
             fit: BoxFit.scaleDown,
             child: Text(
-              label,
+              labelKey.tr(),
               style: TextStyle(
-                fontSize: labelFontSize.clamp(10.0, 14.0), // Min 10, Max 14
+                fontSize: labelFontSize.clamp(10.0, 14.0),
                 color: const Color(0xFF888888),
                 fontWeight: FontWeight.w600,
               ),
@@ -423,190 +519,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildNotificationTestSection() {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFF1A1A1A), Color(0xFF0A0A0A)],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFF00E5FF)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Row(
-            children: [
-              Text('🔔', style: TextStyle(fontSize: 24)),
-              SizedBox(width: 12),
-              Text(
-                'Notification Test',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          const Text(
-            'Test your daily challenge notifications',
-            style: TextStyle(fontSize: 14, color: Color(0xFF888888)),
-          ),
-          const SizedBox(height: 20),
-
-          // Test Immediate Notification Button
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF00E5FF),
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              onPressed: () async {
-                await NotificationService().showTestNotification();
-                if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        '✅ Test notification sent! Check your notification bar',
-                      ),
-                      backgroundColor: Color(0xFF00E676),
-                      duration: Duration(seconds: 3),
-                    ),
-                  );
-                }
-              },
-              child: const Text(
-                '🚀 Send Test Notification NOW',
-                style: TextStyle(
-                  color: Color(0xFF0A0A0A),
-                  fontSize: 15,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 12),
-
-          // Toggle Daily Reminder
-          FutureBuilder<bool>(
-            future: NotificationService().isNotificationEnabled(),
-            builder: (context, snapshot) {
-              final isEnabled = snapshot.data ?? false;
-
-              return Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.05),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Daily Reminder (8 PM)',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: 4),
-                        Text(
-                          'Get reminded every day',
-                          style: TextStyle(
-                            color: Color(0xFF888888),
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Switch(
-                      value: isEnabled,
-                      activeColor: const Color(0xFF00E5FF),
-                      onChanged: (value) async {
-                        await NotificationService().setNotificationEnabled(
-                          value,
-                        );
-                        setState(() {});
-
-                        if (mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                value
-                                    ? '✅ Daily reminders enabled!'
-                                    : '❌ Daily reminders disabled',
-                              ),
-                              backgroundColor: const Color(0xFF00E5FF),
-                              duration: const Duration(seconds: 2),
-                            ),
-                          );
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-          const SizedBox(height: 12),
-
-          // Schedule Test for 10 seconds from now
-          SizedBox(
-            width: double.infinity,
-            child: OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                side: const BorderSide(color: Color(0xFF00E5FF)),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              onPressed: () async {
-                // Schedule a notification for 10 seconds from now
-                await NotificationService()
-                    .scheduleTestNotificationIn10Seconds();
-
-                if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        '⏰ Notification scheduled for 10 seconds from now',
-                      ),
-                      backgroundColor: Color(0xFFFFD740),
-                      duration: Duration(seconds: 5),
-                    ),
-                  );
-                }
-              },
-              child: const Text(
-                '⏰ Schedule Test in 10 Seconds',
-                style: TextStyle(
-                  color: Color(0xFF00E5FF),
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildDailyChallengeCard() {
-    //if (!isAndroid && !isSubscribed) return const SizedBox.shrink();
-
     return FutureBuilder<bool>(
       future: ChallengeService.isTodayCompleted(),
       builder: (context, snapshot) {
@@ -620,7 +533,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               MaterialPageRoute(builder: (_) => DailyChallengeHomePage()),
             );
             if (result == true) {
-              setState(() {}); // Refresh to update completion status
+              setState(() {});
             }
           },
           child: Container(
@@ -655,7 +568,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
             child: Stack(
               children: [
-                // Animated background effect
                 if (!isCompleted)
                   Positioned(
                     top: -30,
@@ -673,7 +585,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   padding: const EdgeInsets.all(20),
                   child: Row(
                     children: [
-                      // Challenge Icon
                       Container(
                         width: 60,
                         height: 60,
@@ -698,7 +609,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         ),
                       ),
                       const SizedBox(width: 16),
-                      // Challenge Info
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -714,13 +624,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     color: const Color(0xFF049281),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-                                  child: const Row(
+                                  child: Row(
                                     children: [
-                                      Text('⚡', style: TextStyle(fontSize: 10)),
-                                      SizedBox(width: 4),
+                                      const Text(
+                                        '⭐',
+                                        style: TextStyle(fontSize: 10),
+                                      ),
+                                      const SizedBox(width: 4),
                                       Text(
-                                        'DAILY',
-                                        style: TextStyle(
+                                        'daily_challenge.title'.tr(),
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 10,
                                           fontWeight: FontWeight.w800,
@@ -741,9 +654,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       color: const Color(0xFF00E676),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    child: const Row(
+                                    child: Row(
                                       children: [
-                                        Text(
+                                        const Text(
                                           '✓',
                                           style: TextStyle(
                                             color: Colors.white,
@@ -751,10 +664,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        SizedBox(width: 4),
+                                        const SizedBox(width: 4),
                                         Text(
-                                          'Done',
-                                          style: TextStyle(
+                                          'done'.tr(),
+                                          style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 11,
                                             fontWeight: FontWeight.w700,
@@ -811,7 +724,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           ],
                         ),
                       ),
-                      // Arrow icon
                       Container(
                         width: 36,
                         height: 36,
@@ -848,9 +760,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget _buildTestsSection() {
     final tests = [
       TestData(
-        title: 'Visual Acuity Test',
-        description:
-            'Comprehensive clarity assessment using advanced Snellen methodology',
+        title: 'tests.visual_acuity.title'.tr(),
+        description: 'tests.visual_acuity.description'.tr(),
         icon: '👁️',
         accentColor: const Color(0xFF00E5FF),
         route: VisualAcuityTest(),
@@ -858,43 +769,40 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         isPrimary: true,
       ),
       TestData(
-        title: 'Vision Field Analysis',
-        description:
-            'Advanced peripheral vision mapping and blind spot detection',
+        title: 'tests.vision_field.title'.tr(),
+        description: 'tests.vision_field.description'.tr(),
         icon: '🎯',
         accentColor: const Color(0xFFFF4081),
         route: VisionFieldTest(),
         isLocked: true,
       ),
       TestData(
-        title: 'Color Perception Test',
-        description: 'Professional Ishihara color vision deficiency screening',
+        title: 'tests.color_vision.title'.tr(),
+        description: 'tests.color_vision.description'.tr(),
         icon: '🎨',
         accentColor: const Color(0xFF7C4DFF),
         route: ColorVisionTest(),
         isLocked: true,
       ),
       TestData(
-        title: 'Astigmatism Screening',
-        description: 'Precise corneal irregularity detection and measurement',
-        icon: '⚡',
+        title: 'tests.astigmatism.title'.tr(),
+        description: 'tests.astigmatism.description'.tr(),
+        icon: '⭐',
         accentColor: const Color(0xFFFFD740),
         route: AstigmatismTest(),
         isLocked: true,
       ),
       TestData(
-        title: 'Amsler Grid Analysis',
-        description:
-            'Macular degeneration and central vision distortion screening',
-        icon: '⊞',
+        title: 'tests.amsler_grid.title'.tr(),
+        description: 'tests.amsler_grid.description'.tr(),
+        icon: '▦',
         accentColor: const Color(0xFFFF6E40),
         route: AmslerGridTest(),
         isLocked: true,
       ),
       TestData(
-        title: 'Dry Eye Assessment',
-        description:
-            'Comprehensive tear film stability and eye comfort evaluation',
+        title: 'tests.dry_eye.title'.tr(),
+        description: 'tests.dry_eye.description'.tr(),
         icon: '💧',
         accentColor: const Color(0xFF18FFFF),
         route: DryEyeTest(),
@@ -905,9 +813,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Vision Assessment Suite',
-          style: TextStyle(
+        Text(
+          'vision_assessment_suite'.tr(),
+          style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w800,
             color: Colors.white,
@@ -941,20 +849,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: const Color(0xFF333333)),
         ),
-        // Use ClipRRect to clip the accent line to the container's border radius
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Stack(
             children: [
-              // Accent line - NOW PROPERLY CLIPPED
               Positioned(
                 top: 0,
                 left: 0,
                 right: 0,
-                child: Container(
-                  height: 3,
-                  color: test.accentColor, // Use color instead of decoration
-                ),
+                child: Container(height: 3, color: test.accentColor),
               ),
               if (test.isLocked && !isSubscribed && !isAndroid)
                 Positioned(
@@ -1031,8 +934,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       children: [
                         Text(
                           test.isLocked && !isSubscribed && !isAndroid
-                              ? 'Upgrade to Access'
-                              : 'Start Test',
+                              ? 'upgrade_to_access'.tr()
+                              : 'start_test'.tr(),
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -1098,9 +1001,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
             Column(
               children: [
-                const Text(
-                  'Unlock Professional Analysis',
-                  style: TextStyle(
+                Text(
+                  'unlock_professional'.tr(),
+                  style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w800,
                     color: Colors.white,
@@ -1108,9 +1011,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Get access to all vision tests with detailed reports and tracking',
-                  style: TextStyle(
+                Text(
+                  'unlock_description'.tr(),
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Color(0xFFAAAAAA),
                     height: 1.4,
@@ -1119,16 +1022,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
                 const SizedBox(height: 24),
                 ...[
-                  '• All 6 Professional Tests',
-                  '• AI Eye Doctor Chat',
-                  '• Detailed Analytics',
-                  '• Progress Tracking',
-                  '• No Ads',
+                  'features.all_tests',
+                  'features.ai_chat',
+                  'features.analytics',
+                  'features.tracking',
+                  'features.no_ads',
                 ].map(
-                  (feature) => Padding(
+                  (featureKey) => Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
-                      feature,
+                      '• ${featureKey.tr()}',
                       style: const TextStyle(
                         fontSize: 14,
                         color: Color(0xFF00E5FF),
@@ -1145,9 +1048,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(16),
                   ),
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: const Text(
-                    'Upgrade Now',
-                    style: TextStyle(
+                  child: Text(
+                    'upgrade_now'.tr(),
+                    style: const TextStyle(
                       color: Color(0xFF0A0A0A),
                       fontSize: 16,
                       fontWeight: FontWeight.w800,
@@ -1157,6 +1060,235 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
               ],
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// CUSTOM LANGUAGE BOTTOM SHEET WIDGET
+class _LanguageBottomSheet extends StatelessWidget {
+  final Map<String, Map<String, String>> languages;
+  final Locale currentLocale;
+  final Function(Locale) onLanguageSelected;
+
+  const _LanguageBottomSheet({
+    required this.languages,
+    required this.currentLocale,
+    required this.onLanguageSelected,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Color(0xFF1A1A1A),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black54,
+            blurRadius: 20,
+            offset: Offset(0, -5),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Handle bar
+          Container(
+            margin: const EdgeInsets.only(top: 12, bottom: 8),
+            width: 40,
+            height: 4,
+            decoration: BoxDecoration(
+              color: const Color(0xFF333333),
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+          // Header
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 16, 24, 8),
+            child: Row(
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        const Color(0xFF00E5FF).withOpacity(0.2),
+                        const Color(0xFF049281).withOpacity(0.2),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Center(
+                    child: Text('🌐', style: TextStyle(fontSize: 20)),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                const Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Select Language',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Choose your preferred language',
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Color(0xFF888888),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(
+                    Icons.close_rounded,
+                    color: Color(0xFF888888),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Divider(color: Color(0xFF333333), height: 1),
+          // Language list
+          Container(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.5,
+            ),
+            child: ListView.builder(
+              shrinkWrap: true,
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              itemCount: languages.length,
+              itemBuilder: (context, index) {
+                final langCode = languages.keys.elementAt(index);
+                final lang = languages[langCode]!;
+                final isSelected = currentLocale.languageCode == langCode;
+
+                return _LanguageItem(
+                  flag: lang['flag']!,
+                  nativeName: lang['nativeName']!,
+                  englishName: lang['name']!,
+                  isSelected: isSelected,
+                  onTap: () => onLanguageSelected(Locale(langCode)),
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 16),
+        ],
+      ),
+    );
+  }
+}
+
+// LANGUAGE ITEM WIDGET
+class _LanguageItem extends StatelessWidget {
+  final String flag;
+  final String nativeName;
+  final String englishName;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const _LanguageItem({
+    required this.flag,
+    required this.nativeName,
+    required this.englishName,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? const Color(0xFF00E5FF).withOpacity(0.1)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isSelected
+                ? const Color(0xFF00E5FF).withOpacity(0.3)
+                : Colors.transparent,
+            width: 1.5,
+          ),
+        ),
+        child: Row(
+          children: [
+            // Flag
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: const Color(0xFF0A0A0A),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: isSelected
+                      ? const Color(0xFF00E5FF).withOpacity(0.3)
+                      : const Color(0xFF333333),
+                ),
+              ),
+              child: Center(
+                child: Text(flag, style: const TextStyle(fontSize: 28)),
+              ),
+            ),
+            const SizedBox(width: 16),
+            // Language names
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    nativeName,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: isSelected
+                          ? const Color(0xFF00E5FF)
+                          : Colors.white,
+                    ),
+                  ),
+                  Text(
+                    englishName,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      color: Color(0xFF888888),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // Check mark
+            if (isSelected)
+              Container(
+                width: 28,
+                height: 28,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF00E5FF),
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Icon(
+                    Icons.check_rounded,
+                    color: Color(0xFF0A0A0A),
+                    size: 18,
+                  ),
+                ),
+              ),
           ],
         ),
       ),

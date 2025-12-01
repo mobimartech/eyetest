@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AmslerGridTest extends StatefulWidget {
   const AmslerGridTest({Key? key}) : super(key: key);
@@ -56,7 +57,6 @@ class _AmslerGridTestState extends State<AmslerGridTest>
       end: 1.0,
     ).animate(_scaleController);
 
-    // Completion animation
     _scaleAnimation = Tween<double>(
       begin: 0.95,
       end: 1.0,
@@ -112,7 +112,7 @@ class _AmslerGridTestState extends State<AmslerGridTest>
                         const SizedBox(height: 24),
                         _buildActionButton(
                           onPressed: _resetTest,
-                          title: 'Take Test Again',
+                          title: 'amsler_grid.buttons.retry'.tr(),
                           isOutlined: true,
                           icon: '🔄',
                         ),
@@ -157,9 +157,9 @@ class _AmslerGridTestState extends State<AmslerGridTest>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Amsler Grid Test',
-                  style: TextStyle(
+                Text(
+                  'amsler_grid.title'.tr(),
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
                     color: Colors.white,
@@ -167,7 +167,9 @@ class _AmslerGridTestState extends State<AmslerGridTest>
                   ),
                 ),
                 Text(
-                  testCompleted ? 'Test Completed' : 'Visual Field Assessment',
+                  testCompleted
+                      ? 'amsler_grid.header.subtitle_complete'.tr()
+                      : 'amsler_grid.header.subtitle_testing'.tr(),
                   style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFFFF6E40),
@@ -226,7 +228,9 @@ class _AmslerGridTestState extends State<AmslerGridTest>
           ),
           const SizedBox(height: 8),
           Text(
-            testCompleted ? '100% Complete' : '50% Complete',
+            testCompleted
+                ? 'amsler_grid.progress.complete'.tr()
+                : 'amsler_grid.progress.half'.tr(),
             style: const TextStyle(
               fontSize: 12,
               color: Color(0xFFAAAAAA),
@@ -261,22 +265,22 @@ class _AmslerGridTestState extends State<AmslerGridTest>
             ),
           ),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Test Instructions',
-                  style: TextStyle(
+                  'amsler_grid.instructions.title'.tr(),
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
-                  'Focus on the central dot in the grid below. Observe if any lines appear wavy, distorted, missing, or blurred while keeping your focus on the center.',
-                  style: TextStyle(
+                  'amsler_grid.instructions.description'.tr(),
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFFAAAAAA),
                     height: 1.4,
@@ -308,9 +312,9 @@ class _AmslerGridTestState extends State<AmslerGridTest>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Amsler Grid',
-                      style: TextStyle(
+                    Text(
+                      'amsler_grid.chart_title'.tr(),
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
@@ -330,9 +334,9 @@ class _AmslerGridTestState extends State<AmslerGridTest>
                             color: const Color(0xFFFF6E40).withOpacity(0.3),
                           ),
                         ),
-                        child: const Text(
-                          '💡 Hint',
-                          style: TextStyle(
+                        child: Text(
+                          'amsler_grid.hint'.tr(),
+                          style: const TextStyle(
                             fontSize: 12,
                             color: Color(0xFFFF6E40),
                             fontWeight: FontWeight.w600,
@@ -372,21 +376,21 @@ class _AmslerGridTestState extends State<AmslerGridTest>
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: const Color(0xFF333333)),
       ),
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'What do you observe?',
-            style: TextStyle(
+            'amsler_grid.question.title'.tr(),
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
               color: Colors.white,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
-            'While focusing on the central dot, do any of the lines appear wavy, distorted, or missing?',
-            style: TextStyle(
+            'amsler_grid.question.description'.tr(),
+            style: const TextStyle(
               fontSize: 14,
               color: Color(0xFFAAAAAA),
               height: 1.4,
@@ -402,14 +406,14 @@ class _AmslerGridTestState extends State<AmslerGridTest>
       children: [
         _buildActionButton(
           onPressed: () => _handleAnswer('Yes'),
-          title: 'Yes, I see distortions',
+          title: 'amsler_grid.answers.yes'.tr(),
           isPrimary: true,
           icon: '⚠️',
         ),
         const SizedBox(height: 16),
         _buildActionButton(
           onPressed: () => _handleAnswer('No'),
-          title: 'No, grid appears normal',
+          title: 'amsler_grid.answers.no'.tr(),
           isOutlined: true,
           icon: '✓',
         ),
@@ -442,8 +446,8 @@ class _AmslerGridTestState extends State<AmslerGridTest>
               Expanded(
                 child: Text(
                   isPositive
-                      ? 'Visual Disturbances Detected'
-                      : 'No Visual Disturbances Detected',
+                      ? 'amsler_grid.result.positive.title'.tr()
+                      : 'amsler_grid.result.negative.title'.tr(),
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
@@ -456,8 +460,8 @@ class _AmslerGridTestState extends State<AmslerGridTest>
           const SizedBox(height: 16),
           Text(
             isPositive
-                ? "You've reported seeing distortions in the Amsler grid. This could indicate potential vision issues that may affect your central vision, such as macular problems or other retinal conditions."
-                : 'Excellent! If the grid appeared normal with straight, undistorted lines, your central vision screening appears normal. However, this is just a basic screening test.',
+                ? 'amsler_grid.result.positive.description'.tr()
+                : 'amsler_grid.result.negative.description'.tr(),
             style: const TextStyle(
               fontSize: 14,
               color: Color(0xFFCCCCCC),
@@ -465,9 +469,9 @@ class _AmslerGridTestState extends State<AmslerGridTest>
             ),
           ),
           const SizedBox(height: 16),
-          const Text(
-            'Recommendations:',
-            style: TextStyle(
+          Text(
+            'amsler_grid.result.recommendations_title'.tr(),
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
               color: Colors.white,
@@ -476,8 +480,8 @@ class _AmslerGridTestState extends State<AmslerGridTest>
           const SizedBox(height: 8),
           Text(
             isPositive
-                ? 'We strongly recommend scheduling a comprehensive eye examination with an eye care professional for proper diagnosis and evaluation of your central vision.'
-                : 'Continue with regular eye exams as recommended by eye care professionals to maintain optimal eye health and monitor any changes over time.',
+                ? 'amsler_grid.result.positive.recommendation'.tr()
+                : 'amsler_grid.result.negative.recommendation'.tr(),
             style: const TextStyle(
               fontSize: 14,
               color: Color(0xFFAAAAAA),
@@ -498,9 +502,9 @@ class _AmslerGridTestState extends State<AmslerGridTest>
                   color: const Color(0xFFFF6E40).withOpacity(0.3),
                 ),
               ),
-              child: const Text(
-                '🔗 Learn More',
-                style: TextStyle(
+              child: Text(
+                'amsler_grid.buttons.learn_more'.tr(),
+                style: const TextStyle(
                   fontSize: 14,
                   color: Color(0xFFFF6E40),
                   fontWeight: FontWeight.w600,
@@ -524,9 +528,9 @@ class _AmslerGridTestState extends State<AmslerGridTest>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            '💡 Testing Tips',
-            style: TextStyle(
+          Text(
+            'amsler_grid.tips.title'.tr(),
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
               color: Colors.white,
@@ -534,15 +538,15 @@ class _AmslerGridTestState extends State<AmslerGridTest>
           ),
           const SizedBox(height: 16),
           ...[
-            '• Keep your eyes focused on the center dot at all times',
-            '• Test each eye separately if possible',
-            '• View from your normal reading distance (12-14 inches)',
-            '• Look for wavy, missing, or distorted grid lines',
+            'amsler_grid.tips.tip1',
+            'amsler_grid.tips.tip2',
+            'amsler_grid.tips.tip3',
+            'amsler_grid.tips.tip4',
           ].map(
-            (tip) => Padding(
+            (tipKey) => Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Text(
-                tip,
+                tipKey.tr(),
                 style: const TextStyle(
                   fontSize: 14,
                   color: Color(0xFFAAAAAA),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:easy_localization/easy_localization.dart';
 
 class AIChatPage extends StatefulWidget {
   const AIChatPage({Key? key}) : super(key: key);
@@ -25,10 +26,10 @@ class _AIChatPageState extends State<AIChatPage>
   static const String apiUrl = 'https://eyeshealthtest.com/chat.php';
 
   final List<QuickResponse> _quickResponses = [
-    QuickResponse(text: 'I have dry eyes, what can I do?', icon: '💧'),
-    QuickResponse(text: 'Tell me about astigmatism', icon: 'ℹ️'),
-    QuickResponse(text: 'Eye care tips for screen time', icon: '💻'),
-    QuickResponse(text: 'When should I see an eye doctor?', icon: '👨'),
+    QuickResponse(text: 'ai_chat.quick_1'.tr(), icon: '💧'),
+    QuickResponse(text: 'ai_chat.quick_2'.tr(), icon: '👁️'),
+    QuickResponse(text: 'ai_chat.quick_3'.tr(), icon: '💻'),
+    QuickResponse(text: 'ai_chat.quick_4'.tr(), icon: '👨‍⚕️'),
   ];
 
   @override
@@ -53,8 +54,7 @@ class _AIChatPageState extends State<AIChatPage>
     _messages.add(
       ChatMessage(
         id: DateTime.now().millisecondsSinceEpoch,
-        text:
-            "I'm an AI assistant, not a real doctor. This is educational information only, not medical advice. Please see a real eye doctor for actual diagnosis or treatment.",
+        text: 'ai_chat.disclaimer'.tr(),
         isUser: false,
         timestamp: DateTime.now(),
       ),
@@ -257,8 +257,8 @@ class _AIChatPageState extends State<AIChatPage>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'AI Assistant',
+                Text(
+                  'ai_chat.title'.tr(),
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
@@ -267,7 +267,7 @@ class _AIChatPageState extends State<AIChatPage>
                   ),
                 ),
                 Text(
-                  _isTyping ? 'AI typing...' : 'Online • Eye Care Specialist',
+                  _isTyping ? 'ai_chat.typing'.tr() : 'ai_chat.online'.tr(),
                   style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFF18FFFF),
@@ -403,8 +403,8 @@ class _AIChatPageState extends State<AIChatPage>
               child: TextField(
                 controller: _textController,
                 style: const TextStyle(color: Colors.white, fontSize: 16),
-                decoration: const InputDecoration(
-                  hintText: 'Ask about your eye health...',
+                decoration: InputDecoration(
+                  hintText: 'ai_chat.input_placeholder'.tr(),
                   hintStyle: TextStyle(color: Color(0xFF666666)),
                   border: InputBorder.none,
                   isDense: true,

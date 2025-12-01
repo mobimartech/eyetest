@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'vision_challenge.dart';
 import 'challenge_service.dart';
 import 'dart:ui';
+import 'package:easy_localization/easy_localization.dart';
 
 class ChallengePlayPage extends StatefulWidget {
   final VisionChallenge challenge;
@@ -93,76 +94,74 @@ class _ChallengePlayPageState extends State<ChallengePlayPage> {
         _generateColorChallenge();
     }
   }
-void _generateColorChallenge() {
-  final random = Random();
-  
-  // Handle different color variants
-  Map<String, Color> selectedColors;
-  
-  switch (widget.challenge.variant) {
-    case 'warm':
-      // Warm color families
-      selectedColors = {
-        'base': Color(0xFFFF6B6B + random.nextInt(0x440000)),
-        'diff': Color(0xFFFFD93D + random.nextInt(0x440000)),
-      };
-      break;
-      
-    case 'cool':
-      // Cool color families
-      selectedColors = {
-        'base': Color(0xFF4ECDC4 + random.nextInt(0x003344)),
-        'diff': Color(0xFF6C5CE7 + random.nextInt(0x330044)),
-      };
-      break;
-      
-    case 'contrast':
-      // High contrast complementary colors
-      final colorPairs = [
-        {'base': const Color(0xFF2196F3), 'diff': const Color(0xFFFF5722)},
-        {'base': const Color(0xFF4CAF50), 'diff': const Color(0xFFE91E63)},
-        {'base': const Color(0xFF9C27B0), 'diff': const Color(0xFFCDDC39)},
-      ];
-      selectedColors = colorPairs[random.nextInt(colorPairs.length)];
-      break;
-      
-    default:
-      // Default random colors
-      selectedColors = {
-        'base': Color(0xFF2196F3),
-        'diff': Color(0xFFFF5722),
-      };
-  }
-  
-  final baseColor = selectedColors['base']!;
-  final diffColor = selectedColors['diff']!;
-  
-  final difficulty = min(_currentRound * 0.15, 0.8);
-  
-  _colors = List.generate(9, (index) {
-    if (index == _differentIndex) {
-      return Color.lerp(baseColor, diffColor, 1 - difficulty)!;
-    } else {
-      return Color.fromRGBO(
-        (baseColor.red + random.nextInt(20) - 10).clamp(0, 255),
-        (baseColor.green + random.nextInt(20) - 10).clamp(0, 255),
-        (baseColor.blue + random.nextInt(20) - 10).clamp(0, 255),
-        1.0,
-      );
-    }
-  });
-}
 
-void _generateSharpnessChallenge() {
-  _blurLevels = List.generate(9, (index) {
-    if (index == _differentIndex) {
-      return 0.0;
-    } else {
-      final difficulty = min(_currentRound * 0.2, 0.9);
-      return 5.0 + (difficulty * 15.0);
+  void _generateColorChallenge() {
+    final random = Random();
+
+    // Handle different color variants
+    Map<String, Color> selectedColors;
+
+    switch (widget.challenge.variant) {
+      case 'warm':
+        // Warm color families
+        selectedColors = {
+          'base': Color(0xFFFF6B6B + random.nextInt(0x440000)),
+          'diff': Color(0xFFFFD93D + random.nextInt(0x440000)),
+        };
+        break;
+
+      case 'cool':
+        // Cool color families
+        selectedColors = {
+          'base': Color(0xFF4ECDC4 + random.nextInt(0x003344)),
+          'diff': Color(0xFF6C5CE7 + random.nextInt(0x330044)),
+        };
+        break;
+
+      case 'contrast':
+        // High contrast complementary colors
+        final colorPairs = [
+          {'base': const Color(0xFF2196F3), 'diff': const Color(0xFFFF5722)},
+          {'base': const Color(0xFF4CAF50), 'diff': const Color(0xFFE91E63)},
+          {'base': const Color(0xFF9C27B0), 'diff': const Color(0xFFCDDC39)},
+        ];
+        selectedColors = colorPairs[random.nextInt(colorPairs.length)];
+        break;
+
+      default:
+        // Default random colors
+        selectedColors = {'base': Color(0xFF2196F3), 'diff': Color(0xFFFF5722)};
     }
-  });
-}
+
+    final baseColor = selectedColors['base']!;
+    final diffColor = selectedColors['diff']!;
+
+    final difficulty = min(_currentRound * 0.15, 0.8);
+
+    _colors = List.generate(9, (index) {
+      if (index == _differentIndex) {
+        return Color.lerp(baseColor, diffColor, 1 - difficulty)!;
+      } else {
+        return Color.fromRGBO(
+          (baseColor.red + random.nextInt(20) - 10).clamp(0, 255),
+          (baseColor.green + random.nextInt(20) - 10).clamp(0, 255),
+          (baseColor.blue + random.nextInt(20) - 10).clamp(0, 255),
+          1.0,
+        );
+      }
+    });
+  }
+
+  void _generateSharpnessChallenge() {
+    _blurLevels = List.generate(9, (index) {
+      if (index == _differentIndex) {
+        return 0.0;
+      } else {
+        final difficulty = min(_currentRound * 0.2, 0.9);
+        return 5.0 + (difficulty * 15.0);
+      }
+    });
+  }
 
   void _generateContrastChallenge() {
     // Generate visible contrast differences
@@ -256,25 +255,24 @@ void _generateSharpnessChallenge() {
   }
 
   void _showResultsDialog(int score) {
-    // Determine grade
-    String grade;
+    String gradeKey;
     String emoji;
     Color gradeColor;
 
     if (score >= 90) {
-      grade = 'EXCELLENT';
+      gradeKey = 'challenge_play.grades.excellent';
       emoji = '🌟';
       gradeColor = const Color(0xFF00E676);
     } else if (score >= 75) {
-      grade = 'GREAT';
+      gradeKey = 'challenge_play.grades.great';
       emoji = '✨';
       gradeColor = const Color(0xFF00E5FF);
     } else if (score >= 60) {
-      grade = 'GOOD';
+      gradeKey = 'challenge_play.grades.good';
       emoji = '👍';
       gradeColor = const Color(0xFFFFD740);
     } else {
-      grade = 'KEEP TRYING';
+      gradeKey = 'challenge_play.grades.keep_trying';
       emoji = '💪';
       gradeColor = const Color(0xFFFF9100);
     }
@@ -303,7 +301,7 @@ void _generateSharpnessChallenge() {
               Text(emoji, style: const TextStyle(fontSize: 60)),
               const SizedBox(height: 16),
               Text(
-                'Challenge Complete!',
+                'challenge_play.complete_title'.tr(),
                 style: TextStyle(
                   color: gradeColor,
                   fontSize: 24,
@@ -311,8 +309,6 @@ void _generateSharpnessChallenge() {
                 ),
               ),
               const SizedBox(height: 24),
-
-              // Score circle
               Container(
                 width: 120,
                 height: 120,
@@ -333,7 +329,7 @@ void _generateSharpnessChallenge() {
                         ),
                       ),
                       Text(
-                        grade,
+                        gradeKey.tr(),
                         style: TextStyle(
                           color: gradeColor,
                           fontSize: 12,
@@ -345,8 +341,6 @@ void _generateSharpnessChallenge() {
                 ),
               ),
               const SizedBox(height: 24),
-
-              // Statistics
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -356,21 +350,25 @@ void _generateSharpnessChallenge() {
                 child: Column(
                   children: [
                     _buildStatRow(
-                      'Accuracy',
+                      'challenge_play.stats.accuracy'.tr(),
                       '$_correctAnswers/$_maxRounds',
                       gradeColor,
                     ),
                     const SizedBox(height: 8),
-                    _buildStatRow('Best Streak', '$_maxStreak', gradeColor),
+                    _buildStatRow(
+                      'challenge_play.stats.best_streak'.tr(),
+                      '$_maxStreak',
+                      gradeColor,
+                    ),
                     const SizedBox(height: 8),
                     _buildStatRow(
-                      'Avg Speed',
+                      'challenge_play.stats.avg_speed'.tr(),
                       '${(_responseTimes.isEmpty ? 0 : _responseTimes.reduce((a, b) => a + b) / _responseTimes.length / 1000).toStringAsFixed(1)}s',
                       gradeColor,
                     ),
                     const SizedBox(height: 8),
                     _buildStatRow(
-                      'XP Earned',
+                      'challenge_play.stats.xp_earned'.tr(),
                       '+${widget.challenge.xpReward}',
                       gradeColor,
                     ),
@@ -378,7 +376,6 @@ void _generateSharpnessChallenge() {
                 ),
               ),
               const SizedBox(height: 24),
-
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -393,9 +390,9 @@ void _generateSharpnessChallenge() {
                     Navigator.of(context).pop();
                     Navigator.of(context).pop(true);
                   },
-                  child: const Text(
-                    'Done',
-                    style: TextStyle(
+                  child: Text(
+                    'challenge_play.done'.tr(),
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -498,7 +495,12 @@ void _generateSharpnessChallenge() {
               ),
               const SizedBox(height: 4),
               Text(
-                'Round $_currentRound / $_maxRounds',
+                'challenge_play.round_counter'.tr(
+                  namedArgs: {
+                    'current': '$_currentRound',
+                    'total': '$_maxRounds',
+                  },
+                ),
                 style: const TextStyle(color: Color(0xFF049281), fontSize: 14),
               ),
             ],

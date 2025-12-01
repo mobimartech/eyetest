@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'vision_challenge.dart';
 import 'challenge_service.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DailyChallengeHomePage extends StatefulWidget {
   const DailyChallengeHomePage({Key? key}) : super(key: key);
@@ -72,7 +73,6 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Header
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -80,7 +80,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Daily Challenge',
+                          'daily_challenge.title'.tr(),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 28,
@@ -103,24 +103,14 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                   ],
                 ),
                 SizedBox(height: 24),
-
-                // Streak Card
                 _buildStreakCard(),
                 SizedBox(height: 20),
-
-                // Level Progress Card
                 _buildLevelCard(),
                 SizedBox(height: 20),
-
-                // Today's Challenge Card
                 if (dailyChallenge != null) _buildChallengeCard(),
                 SizedBox(height: 20),
-
-                // Achievements Section
                 _buildAchievementsSection(),
                 SizedBox(height: 20),
-
-                // Calendar View
                 _buildCalendarSection(),
               ],
             ),
@@ -130,6 +120,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
     );
   }
 
+  // Update _buildStreakCard:
   Widget _buildStreakCard() {
     return Container(
       padding: EdgeInsets.all(20),
@@ -155,7 +146,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Current Streak',
+                'daily_challenge.current_streak'.tr(),
                 style: TextStyle(
                   color: Colors.white70,
                   fontSize: 14,
@@ -178,7 +169,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                   ),
                   SizedBox(width: 8),
                   Text(
-                    'days',
+                    'daily_challenge.days'.tr(),
                     style: TextStyle(
                       color: Colors.white70,
                       fontSize: 20,
@@ -198,7 +189,9 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  isTodayCompleted ? '✓ Completed' : 'Pending',
+                  isTodayCompleted
+                      ? 'daily_challenge.completed'.tr()
+                      : 'daily_challenge.pending'.tr(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 12,
@@ -213,6 +206,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
     );
   }
 
+  // Update _buildLevelCard:
   Widget _buildLevelCard() {
     return Container(
       padding: EdgeInsets.all(20),
@@ -231,7 +225,9 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Level $userLevel',
+                    'daily_challenge.level'.tr(
+                      namedArgs: {'level': '$userLevel'},
+                    ),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -239,7 +235,9 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                     ),
                   ),
                   Text(
-                    '$totalXP XP',
+                    'daily_challenge.xp_count'.tr(
+                      namedArgs: {'xp': '$totalXP'},
+                    ),
                     style: TextStyle(
                       color: Color(0xFF049281),
                       fontSize: 14,
@@ -263,7 +261,12 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
           ),
           SizedBox(height: 8),
           Text(
-            '${(xpProgress * 500).toInt()} / 500 XP to Level ${userLevel + 1}',
+            'daily_challenge.xp_to_next'.tr(
+              namedArgs: {
+                'current': '${(xpProgress * 500).toInt()}',
+                'next': '${userLevel + 1}',
+              },
+            ),
             style: TextStyle(color: Colors.white60, fontSize: 12),
           ),
         ],
@@ -507,7 +510,9 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
               ),
               child: Center(
                 child: Text(
-                  isTodayCompleted ? '✓ Completed Today' : 'Start Challenge',
+                  isTodayCompleted
+                      ? 'daily_challenge.completed_today'.tr()
+                      : 'daily_challenge.start_challenge'.tr(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -521,101 +526,100 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
       ),
     );
   }
-Widget _buildAchievementsSection() {
-  final achievements = ChallengeService.allAchievements.take(4).toList();
 
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Text(
-            'Achievements',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              // Navigate to Achievements Page
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const AchievementsPage(),
-                ),
-              );
-            },
-            child: const Text(
-              'View All',
+  Widget _buildAchievementsSection() {
+    final achievements = ChallengeService.allAchievements.take(4).toList();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'daily_challenge.achievements'.tr(),
               style: TextStyle(
-                color: Color(0xFF049281),
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
-          ),
-        ],
-      ),
-      const SizedBox(height: 12),
-      GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-          childAspectRatio: 1.5,
+            TextButton(
+              onPressed: () {
+                // Navigate to Achievements Page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const AchievementsPage()),
+                );
+              },
+              child: Text(
+                'daily_challenge.view_all'.tr(),
+                style: TextStyle(
+                  color: Color(0xFF049281),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ],
         ),
-        itemCount: achievements.length,
-        itemBuilder: (context, index) {
-          final achievement = achievements[index];
-          final isUnlocked = unlockedBadges.contains(achievement.id);
+        const SizedBox(height: 12),
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
+            childAspectRatio: 1.5,
+          ),
+          itemCount: achievements.length,
+          itemBuilder: (context, index) {
+            final achievement = achievements[index];
+            final isUnlocked = unlockedBadges.contains(achievement.id);
 
-          return Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: isUnlocked
-                  ? const Color(0xFF049281).withOpacity(0.2)
-                  : Colors.white.withOpacity(0.05),
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
+            return Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
                 color: isUnlocked
-                    ? const Color(0xFF049281)
-                    : Colors.white.withOpacity(0.1),
-                width: 1,
+                    ? const Color(0xFF049281).withOpacity(0.2)
+                    : Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: isUnlocked
+                      ? const Color(0xFF049281)
+                      : Colors.white.withOpacity(0.1),
+                  width: 1,
+                ),
               ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  achievement.emoji,
-                  style: TextStyle(
-                    fontSize: 32,
-                    color: isUnlocked ? null : Colors.white.withOpacity(0.3),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    achievement.emoji,
+                    style: TextStyle(
+                      fontSize: 32,
+                      color: isUnlocked ? null : Colors.white.withOpacity(0.3),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  achievement.title,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: isUnlocked ? Colors.white : Colors.white54,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                  const SizedBox(height: 8),
+                  Text(
+                    achievement.title,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: isUnlocked ? Colors.white : Colors.white54,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
-    ],
-  );
-}
+                ],
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
 
   Widget _buildCalendarSection() {
     return FutureBuilder<Map<DateTime, bool>>(
@@ -634,7 +638,7 @@ Widget _buildAchievementsSection() {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Last 7 Days',
+              'daily_challenge.last_7_days'.tr(),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,

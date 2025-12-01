@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class VisualAcuityTest extends StatefulWidget {
   const VisualAcuityTest({Key? key}) : super(key: key);
@@ -85,18 +86,24 @@ class _VisualAcuityTestState extends State<VisualAcuityTest>
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: const Color(0xFF1A1A1A),
-        title: const Text(
-          'Test Complete!',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+        title: Text(
+          'visual_acuity.dialog.title'.tr(),
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+          ),
         ),
-        content: const Text(
-          'You have completed the visual acuity test. Please consult an eye care professional for a comprehensive evaluation.',
-          style: TextStyle(color: Color(0xFFAAAAAA)),
+        content: Text(
+          'visual_acuity.dialog.message'.tr(),
+          style: const TextStyle(color: Color(0xFFAAAAAA)),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('OK', style: TextStyle(color: Color(0xFF00E5FF))),
+            child: Text(
+              'visual_acuity.dialog.ok'.tr(),
+              style: const TextStyle(color: Color(0xFF00E5FF)),
+            ),
           ),
         ],
       ),
@@ -167,9 +174,9 @@ class _VisualAcuityTestState extends State<VisualAcuityTest>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Visual Acuity Test',
-                  style: TextStyle(
+                Text(
+                  'visual_acuity.title'.tr(),
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
                     color: Colors.white,
@@ -177,7 +184,12 @@ class _VisualAcuityTestState extends State<VisualAcuityTest>
                   ),
                 ),
                 Text(
-                  'Step ${step + 1} of ${images.length}',
+                  'visual_acuity.step_counter'.tr(
+                    namedArgs: {
+                      'current': '${step + 1}',
+                      'total': '${images.length}',
+                    },
+                  ),
                   style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFF00E5FF),
@@ -236,7 +248,11 @@ class _VisualAcuityTestState extends State<VisualAcuityTest>
           ),
           const SizedBox(height: 8),
           Text(
-            '${((step + 1) / images.length * 100).round()}% Complete',
+            'visual_acuity.progress'.tr(
+              namedArgs: {
+                'percent': '${((step + 1) / images.length * 100).round()}',
+              },
+            ),
             style: const TextStyle(
               fontSize: 12,
               color: Color(0xFFAAAAAA),
@@ -271,22 +287,22 @@ class _VisualAcuityTestState extends State<VisualAcuityTest>
             ),
           ),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Instructions',
-                  style: TextStyle(
+                  'visual_acuity.instructions.title'.tr(),
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
-                  'Read the smallest line you can see clearly, or identify the direction of the opening in each symbol. Test from the appropriate distance and cover one eye at a time if needed.',
-                  style: TextStyle(
+                  'visual_acuity.instructions.description'.tr(),
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFFAAAAAA),
                     height: 1.4,
@@ -333,7 +349,7 @@ class _VisualAcuityTestState extends State<VisualAcuityTest>
           ),
           const SizedBox(height: 16),
           Text(
-            'Snellen Chart ${step + 1}',
+            'visual_acuity.chart.name'.tr(namedArgs: {'number': '${step + 1}'}),
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
@@ -344,14 +360,20 @@ class _VisualAcuityTestState extends State<VisualAcuityTest>
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _buildMetaItem('Distance', '20 ft'),
+              _buildMetaItem(
+                'visual_acuity.chart.distance'.tr(),
+                'visual_acuity.chart.distance_value'.tr(),
+              ),
               Container(
                 width: 1,
                 height: 30,
                 color: const Color(0xFF333333),
                 margin: const EdgeInsets.symmetric(horizontal: 24),
               ),
-              _buildMetaItem('Type', 'Standard'),
+              _buildMetaItem(
+                'visual_acuity.chart.type'.tr(),
+                'visual_acuity.chart.type_value'.tr(),
+              ),
             ],
           ),
         ],
@@ -392,7 +414,7 @@ class _VisualAcuityTestState extends State<VisualAcuityTest>
               Expanded(
                 child: _buildActionButton(
                   onPressed: handlePrevious,
-                  title: 'Previous',
+                  title: 'visual_acuity.buttons.previous'.tr(),
                   isPrimary: false,
                 ),
               ),
@@ -400,7 +422,9 @@ class _VisualAcuityTestState extends State<VisualAcuityTest>
             Expanded(
               child: _buildActionButton(
                 onPressed: handleNext,
-                title: step < images.length - 1 ? 'Next' : 'Finish',
+                title: step < images.length - 1
+                    ? 'visual_acuity.buttons.next'.tr()
+                    : 'visual_acuity.buttons.finish'.tr(),
                 isPrimary: true,
               ),
             ),
@@ -468,9 +492,9 @@ class _VisualAcuityTestState extends State<VisualAcuityTest>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            '💡 Testing Tips',
-            style: TextStyle(
+          Text(
+            'visual_acuity.tips.title'.tr(),
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
               color: Colors.white,
@@ -478,15 +502,15 @@ class _VisualAcuityTestState extends State<VisualAcuityTest>
           ),
           const SizedBox(height: 16),
           ...[
-            '• Ensure good lighting conditions',
-            '• Keep device at arm\'s length',
-            '• Test each eye separately',
-            '• Take breaks if eyes feel strained',
+            'visual_acuity.tips.tip1',
+            'visual_acuity.tips.tip2',
+            'visual_acuity.tips.tip3',
+            'visual_acuity.tips.tip4',
           ].map(
-            (tip) => Padding(
+            (tipKey) => Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Text(
-                tip,
+                tipKey.tr(),
                 style: const TextStyle(
                   fontSize: 14,
                   color: Color(0xFFAAAAAA),

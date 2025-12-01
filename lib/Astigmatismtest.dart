@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AstigmatismTest extends StatefulWidget {
   const AstigmatismTest({Key? key}) : super(key: key);
@@ -45,7 +46,6 @@ class _AstigmatismTestState extends State<AstigmatismTest>
       showFeedbackDialog = true;
     });
 
-    // Completion animation
     _scaleAnimation = Tween<double>(
       begin: 0.95,
       end: 1.0,
@@ -100,7 +100,7 @@ class _AstigmatismTestState extends State<AstigmatismTest>
                         const SizedBox(height: 24),
                         _buildActionButton(
                           onPressed: _resetTest,
-                          title: 'Take Test Again',
+                          title: 'astigmatism.buttons.retry'.tr(),
                           isOutlined: true,
                           icon: '🔄',
                         ),
@@ -145,9 +145,9 @@ class _AstigmatismTestState extends State<AstigmatismTest>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Astigmatism Test',
-                  style: TextStyle(
+                Text(
+                  'astigmatism.title'.tr(),
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
                     color: Colors.white,
@@ -155,7 +155,9 @@ class _AstigmatismTestState extends State<AstigmatismTest>
                   ),
                 ),
                 Text(
-                  testCompleted ? 'Test Completed' : 'Line Clarity Assessment',
+                  testCompleted
+                      ? 'astigmatism.header.subtitle_complete'.tr()
+                      : 'astigmatism.header.subtitle_testing'.tr(),
                   style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFFFFD740),
@@ -207,22 +209,22 @@ class _AstigmatismTestState extends State<AstigmatismTest>
             ),
           ),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Test Instructions',
-                  style: TextStyle(
+                  'astigmatism.instructions.title'.tr(),
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
-                  'Look carefully at the lines in the image below. Observe if any lines appear blurry, wavy, distorted, or less clear than others.',
-                  style: TextStyle(
+                  'astigmatism.instructions.description'.tr(),
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFFAAAAAA),
                     height: 1.4,
@@ -254,9 +256,9 @@ class _AstigmatismTestState extends State<AstigmatismTest>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Astigmatism Chart',
-                      style: TextStyle(
+                    Text(
+                      'astigmatism.chart_title'.tr(),
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
@@ -276,9 +278,9 @@ class _AstigmatismTestState extends State<AstigmatismTest>
                             color: const Color(0xFFFFD740).withOpacity(0.3),
                           ),
                         ),
-                        child: const Text(
-                          '💡 Hint',
-                          style: TextStyle(
+                        child: Text(
+                          'astigmatism.hint'.tr(),
+                          style: const TextStyle(
                             fontSize: 12,
                             color: Color(0xFFFFD740),
                             fontWeight: FontWeight.w600,
@@ -303,9 +305,9 @@ class _AstigmatismTestState extends State<AstigmatismTest>
                   ),
                 ),
                 const SizedBox(height: 12),
-                const Text(
-                  'Focus on each set of lines and compare their clarity',
-                  style: TextStyle(
+                Text(
+                  'astigmatism.chart_note'.tr(),
+                  style: const TextStyle(
                     fontSize: 12,
                     color: Color(0xFF888888),
                     fontStyle: FontStyle.italic,
@@ -328,21 +330,21 @@ class _AstigmatismTestState extends State<AstigmatismTest>
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: const Color(0xFF333333)),
       ),
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'What do you observe?',
-            style: TextStyle(
+            'astigmatism.question.title'.tr(),
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
               color: Colors.white,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
-            'Do any of the lines appear blurry, wavy, or distorted compared to others?',
-            style: TextStyle(
+            'astigmatism.question.description'.tr(),
+            style: const TextStyle(
               fontSize: 14,
               color: Color(0xFFAAAAAA),
               height: 1.4,
@@ -358,14 +360,14 @@ class _AstigmatismTestState extends State<AstigmatismTest>
       children: [
         _buildActionButton(
           onPressed: () => _handleAnswer('Yes'),
-          title: 'Yes, some lines appear distorted',
+          title: 'astigmatism.answers.yes'.tr(),
           isPrimary: true,
           icon: '⚠️',
         ),
         const SizedBox(height: 16),
         _buildActionButton(
           onPressed: () => _handleAnswer('No'),
-          title: 'No, all lines appear clear',
+          title: 'astigmatism.answers.no'.tr(),
           isOutlined: true,
           icon: '✓',
         ),
@@ -398,8 +400,8 @@ class _AstigmatismTestState extends State<AstigmatismTest>
               Expanded(
                 child: Text(
                   isPositive
-                      ? 'Possible Astigmatism Detected'
-                      : 'No Astigmatism Detected',
+                      ? 'astigmatism.result.positive.title'.tr()
+                      : 'astigmatism.result.negative.title'.tr(),
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
@@ -412,8 +414,8 @@ class _AstigmatismTestState extends State<AstigmatismTest>
           const SizedBox(height: 16),
           Text(
             isPositive
-                ? 'Based on your response, you may have astigmatism. This is a common refractive error that causes blurred or distorted vision due to an irregularly shaped cornea or lens.'
-                : 'Great! If all lines appeared clear and straight, you likely don\'t have significant astigmatism symptoms. However, this is just a basic screening test.',
+                ? 'astigmatism.result.positive.description'.tr()
+                : 'astigmatism.result.negative.description'.tr(),
             style: const TextStyle(
               fontSize: 14,
               color: Color(0xFFCCCCCC),
@@ -421,9 +423,9 @@ class _AstigmatismTestState extends State<AstigmatismTest>
             ),
           ),
           const SizedBox(height: 16),
-          const Text(
-            'Recommendations:',
-            style: TextStyle(
+          Text(
+            'astigmatism.result.recommendations_title'.tr(),
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
               color: Colors.white,
@@ -432,8 +434,8 @@ class _AstigmatismTestState extends State<AstigmatismTest>
           const SizedBox(height: 8),
           Text(
             isPositive
-                ? 'Consider scheduling a comprehensive eye examination with an eye care professional for proper diagnosis and treatment options, which may include corrective lenses or other treatments.'
-                : 'Continue with regular eye exams as recommended by eye care professionals to maintain optimal eye health and catch any changes early.',
+                ? 'astigmatism.result.positive.recommendation'.tr()
+                : 'astigmatism.result.negative.recommendation'.tr(),
             style: const TextStyle(
               fontSize: 14,
               color: Color(0xFFAAAAAA),
@@ -454,9 +456,9 @@ class _AstigmatismTestState extends State<AstigmatismTest>
                   color: const Color(0xFFFFD740).withOpacity(0.3),
                 ),
               ),
-              child: const Text(
-                '🔗 Learn More',
-                style: TextStyle(
+              child: Text(
+                'astigmatism.buttons.learn_more'.tr(),
+                style: const TextStyle(
                   fontSize: 14,
                   color: Color(0xFFFFD740),
                   fontWeight: FontWeight.w600,
@@ -480,9 +482,9 @@ class _AstigmatismTestState extends State<AstigmatismTest>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            '💡 Testing Tips',
-            style: TextStyle(
+          Text(
+            'astigmatism.tips.title'.tr(),
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
               color: Colors.white,
@@ -490,15 +492,15 @@ class _AstigmatismTestState extends State<AstigmatismTest>
           ),
           const SizedBox(height: 16),
           ...[
-            '• View the image from your normal reading distance',
-            '• Ensure you have good lighting conditions',
-            '• Test each eye separately if possible',
-            '• Take your time to carefully observe all lines',
+            'astigmatism.tips.tip1',
+            'astigmatism.tips.tip2',
+            'astigmatism.tips.tip3',
+            'astigmatism.tips.tip4',
           ].map(
-            (tip) => Padding(
+            (tipKey) => Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Text(
-                tip,
+                tipKey.tr(),
                 style: const TextStyle(
                   fontSize: 14,
                   color: Color(0xFFAAAAAA),

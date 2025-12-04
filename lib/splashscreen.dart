@@ -1,5 +1,8 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
+import 'package:eyetest/login.dart';
+import 'package:http/http.dart' as http;
 import 'package:eyetest/Onboarding.dart';
 import 'package:eyetest/home.dart';
 import 'package:eyetest/paywall.dart';
@@ -16,13 +19,25 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
-  late AnimationController logoCtrl;
-  late AnimationController pulseCtrl;
   late AnimationController glowCtrl;
-  late AnimationController titleCtrl;
-  late AnimationController subtitleCtrl;
-  late AnimationController particleCtrl;
   bool isSubscribed = false;
+  late AnimationController logoCtrl;
+  late AnimationController particleCtrl;
+  late AnimationController pulseCtrl;
+  late AnimationController subtitleCtrl;
+  late AnimationController titleCtrl;
+
+  @override
+  void dispose() {
+    logoCtrl.dispose();
+    pulseCtrl.dispose();
+    glowCtrl.dispose();
+    titleCtrl.dispose();
+    subtitleCtrl.dispose();
+    particleCtrl.dispose();
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -75,6 +90,7 @@ class _SplashScreenState extends State<SplashScreen>
     // --- NEW LOGIC STARTS HERE ---
     final prefs = await SharedPreferences.getInstance();
     final hasViewedOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
+    final isloggedin = prefs.getBool('isLoggedIn') ?? false;
 
     // Replace this with your actual subscription check logic
     final hasActiveSubscription = await checkUserSubscription();
@@ -83,11 +99,33 @@ class _SplashScreenState extends State<SplashScreen>
     if (!hasViewedOnboarding) {
       nextPage = OnboardingScreen();
     } else if (Platform.isAndroid) {
-      nextPage = HomePage();
-    } else if (!hasActiveSubscription) {
-      nextPage = PaywallScreen();
+      bool x = await getdiscforvas();
+      print(x);
+      if (x) {
+        nextPage = PhoneLoginPage();
+      } else {
+        if (!hasActiveSubscription) {
+          nextPage = PaywallScreen();
+        } else {
+          nextPage = HomePage();
+        }
+      }
     } else {
-      nextPage = HomePage();
+      bool x = await getdiscforvas();
+
+      if (x) {
+        if (isloggedin) {
+          nextPage = HomePage();
+        } else {
+          nextPage = PhoneLoginPage();
+        }
+      } else {
+        if (!hasActiveSubscription) {
+          nextPage = PaywallScreen();
+        } else {
+          nextPage = HomePage();
+        }
+      }
     }
 
     Navigator.of(
@@ -95,7 +133,31 @@ class _SplashScreenState extends State<SplashScreen>
     ).pushReplacement(MaterialPageRoute(builder: (_) => nextPage));
   }
 
-  // Dummy async function for subscription check
+  Future<bool> getdiscforvas() async {
+    print("getdiscforvas called");
+    final response = await http.get(
+      Uri.parse('https://eyeshealthtest.com/he/sa/android/getdisc.php'),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    print("getdiscforvas called11");
+
+    if (response.statusCode == 200) {
+      String disc = response.body;
+      var typesof = jsonDecode(response.body);
+      print("Discriminator: ${typesof['type']}");
+      print("Discriminator: ${typesof['disclaimer']}");
+      if (typesof['type'].toString().trim() == "vas") {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      print(response.statusCode);
+      return false;
+    }
+  } // Dummy async function for subscription check
+
   Future<bool> checkUserSubscription() async {
     try {
       final customerInfo = await Purchases.getCustomerInfo();
@@ -118,15 +180,49 @@ class _SplashScreenState extends State<SplashScreen>
     }
   }
 
-  @override
-  void dispose() {
-    logoCtrl.dispose();
-    pulseCtrl.dispose();
-    glowCtrl.dispose();
-    titleCtrl.dispose();
-    subtitleCtrl.dispose();
-    particleCtrl.dispose();
-    super.dispose();
+  Widget _buildParticles(Size size, double t) {
+    // 6 particles, animated with appearance and scale
+    final List<Offset> positions = [
+      Offset(size.width * 0.10, size.height * 0.15),
+      Offset(size.width * 0.25, size.height * 0.30),
+      Offset(size.width * 0.40, size.height * 0.45),
+      Offset(size.width * 0.65, size.height * 0.60),
+      Offset(size.width * 0.80, size.height * 0.75),
+      Offset(size.width * 0.60, size.height * 0.20),
+    ];
+    return IgnorePointer(
+      child: Opacity(
+        opacity: t,
+        child: Stack(
+          children: List.generate(6, (i) {
+            final scale = 0.8 + 0.4 * sin(t * pi + i);
+            return Positioned(
+              left: positions[i].dx,
+              top: positions[i].dy + 10 * sin(t * pi * (i + 1)),
+              child: Transform.scale(
+                scale: scale,
+                child: Container(
+                  width: 4,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(4, 146, 129, 0.6),
+                    borderRadius: BorderRadius.circular(2),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFF049281).withOpacity(0.8),
+                        blurRadius: 4,
+                        spreadRadius: 0,
+                        offset: Offset.zero,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }),
+        ),
+      ),
+    );
   }
 
   @override
@@ -412,51 +508,6 @@ class _SplashScreenState extends State<SplashScreen>
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildParticles(Size size, double t) {
-    // 6 particles, animated with appearance and scale
-    final List<Offset> positions = [
-      Offset(size.width * 0.10, size.height * 0.15),
-      Offset(size.width * 0.25, size.height * 0.30),
-      Offset(size.width * 0.40, size.height * 0.45),
-      Offset(size.width * 0.65, size.height * 0.60),
-      Offset(size.width * 0.80, size.height * 0.75),
-      Offset(size.width * 0.60, size.height * 0.20),
-    ];
-    return IgnorePointer(
-      child: Opacity(
-        opacity: t,
-        child: Stack(
-          children: List.generate(6, (i) {
-            final scale = 0.8 + 0.4 * sin(t * pi + i);
-            return Positioned(
-              left: positions[i].dx,
-              top: positions[i].dy + 10 * sin(t * pi * (i + 1)),
-              child: Transform.scale(
-                scale: scale,
-                child: Container(
-                  width: 4,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(4, 146, 129, 0.6),
-                    borderRadius: BorderRadius.circular(2),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(0xFF049281).withOpacity(0.8),
-                        blurRadius: 4,
-                        spreadRadius: 0,
-                        offset: Offset.zero,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          }),
-        ),
       ),
     );
   }

@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -25,7 +26,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   bool isSubscribed = true;
-  bool isAndroid = false;
+  // bool isAndroid = false;
+  bool isloggedin = false;
   late AnimationController _floatingController;
   late AnimationController _pulseController;
   late AnimationController _chatButtonController;
@@ -54,7 +56,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    isAndroid = Theme.of(context).platform == TargetPlatform.android;
+    // isAndroid = Theme.of(context).platform == TargetPlatform.android;
     _updateChatButtonAnimation();
   }
 
@@ -92,7 +94,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   void _updateChatButtonAnimation() {
-    if (isAndroid || isSubscribed) {
+    if (isloggedin || isSubscribed) {
       _chatButtonController.forward();
     } else {
       _chatButtonController.reverse();
@@ -100,6 +102,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   Future<void> _checkSubscriptionStatus() async {
+    await handleisloggedin();
     try {
       final customerInfo = await Purchases.getCustomerInfo();
       final activeEntitlement = customerInfo.entitlements.active['pro'];
@@ -119,8 +122,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     }
   }
 
-  void _handleTestAccess(Widget destination) {
-    if (isSubscribed || isAndroid) {
+  handleisloggedin() async {
+    final prefs = await SharedPreferences.getInstance();
+    final legged = prefs.getBool('isLoggedIn') ?? false;
+    setState(() {
+      isloggedin = legged;
+    });
+  }
+
+  Future<void> _handleTestAccess(Widget destination) async {
+    final prefs = await SharedPreferences.getInstance();
+    final isloggedin = prefs.getBool('isLoggedIn') ?? false;
+    if (isSubscribed || isloggedin) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => destination),
@@ -165,7 +178,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       _buildStatsContainer(),
                       const SizedBox(height: 32),
                       _buildTestsSection(),
-                      if (!isSubscribed && !isAndroid) ...[
+                      if (!isSubscribed && !isloggedin) ...[
                         const SizedBox(height: 20),
                         _buildPremiumCTA(),
                       ],
@@ -218,7 +231,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       width: 8,
                       height: 8,
                       decoration: BoxDecoration(
-                        color: isAndroid || isSubscribed
+                        color: isloggedin || isSubscribed
                             ? const Color(0xFF00E676)
                             : const Color(0xFFFF4081),
                         shape: BoxShape.circle,
@@ -226,7 +239,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      isAndroid || isSubscribed
+                      isloggedin || isSubscribed
                           ? 'premium_active'.tr()
                           : 'free_version'.tr(),
                       style: const TextStyle(
@@ -248,7 +261,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               const SizedBox(width: 8),
               const SizedBox(height: 12),
               // UPGRADE BUTTON - Below language selector
-              if (!isSubscribed && Platform.isIOS)
+              if (!isSubscribed)
                 AnimatedBuilder(
                   animation: _floatingAnimation,
                   builder: (context, child) {
@@ -262,7 +275,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   },
                 ),
               // CHAT AI BUTTON - Below upgrade button
-              if (isSubscribed || Platform.isAndroid) ...[
+              if (isSubscribed || isloggedin) ...[
                 const SizedBox(height: 12),
                 AnimatedBuilder(
                   animation: _chatButtonController,
@@ -464,7 +477,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         const SizedBox(width: 12),
         Expanded(
           child: _buildStatCard(
-            isAndroid || isSubscribed ? '6' : '1',
+            isloggedin || isSubscribed ? '6' : '1',
             'available',
           ),
         ),
@@ -859,7 +872,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 right: 0,
                 child: Container(height: 3, color: test.accentColor),
               ),
-              if (test.isLocked && !isSubscribed && !isAndroid)
+              if (test.isLocked && !isSubscribed && !isloggedin)
                 Positioned(
                   top: 16,
                   right: 16,
@@ -933,7 +946,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          test.isLocked && !isSubscribed && !isAndroid
+                          test.isLocked && !isSubscribed && !isloggedin
                               ? 'upgrade_to_access'.tr()
                               : 'start_test'.tr(),
                           style: TextStyle(

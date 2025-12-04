@@ -144,7 +144,13 @@ class _PaywallScreenState extends State<PaywallScreen>
   String getPackageDescription(Package pkg) {
     if (pkg.packageType == PackageType.weekly ||
         pkg.identifier.toLowerCase().contains('weekly')) {
-      return 'Get Started Now!';
+      if (hasFreeTrial(pkg)) {
+        // isFreeTrial = true;
+
+        return 'then \$4.99/week';
+      } else {
+        return 'Get Started Now!';
+      }
     }
     return 'Best Deal!';
   }
@@ -274,11 +280,11 @@ class _PaywallScreenState extends State<PaywallScreen>
         ).pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
       }
     } on PurchasesErrorCode catch (e) {
-      if (e != PurchasesErrorCode.purchaseCancelledError) {
-        _showAlert('Error', 'Unable to complete purchase. Please try again.');
-      }
+      // if (e != PurchasesErrorCode.purchaseCancelledError) {
+      //   _showAlert('Error', 'Unable to complete purchase. Please try again.');
+      // }
     } catch (e) {
-      _showAlert('Error', 'Unable to complete purchase. Please try again.');
+      // _showAlert('Error', 'Unable to complete purchase. Please try again.');
     }
     setState(() => purchasing = false);
   }
@@ -298,7 +304,7 @@ class _PaywallScreenState extends State<PaywallScreen>
         );
       }
     } catch (e) {
-      _showAlert('Error', 'Unable to restore purchases. Please try again.');
+      //_showAlert('Error', 'Unable to restore purchases. Please try again.');
     }
     setState(() => purchasing = false);
   }
@@ -462,7 +468,7 @@ class _PaywallScreenState extends State<PaywallScreen>
                 ),
               ],
             ),
-            child: Icon(icon, color: Colors.white, size: 14),
+            child: Icon(icon, color: Colors.white, size: 12),
           ),
           SizedBox(width: 8),
           Expanded(
@@ -470,7 +476,7 @@ class _PaywallScreenState extends State<PaywallScreen>
               text,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 12,
+                fontSize: 11,
                 fontWeight: FontWeight.w500,
                 letterSpacing: 0.2,
               ),
@@ -509,51 +515,12 @@ class _PaywallScreenState extends State<PaywallScreen>
                   child: Column(
                     children: [
                       // Close button
-                      if (showCloseButton)
-                        FadeTransition(
-                          opacity: _closeBtnOpacity,
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                top: 20,
-                                left: 20,
-                                bottom: 10,
-                              ),
-                              child: InkWell(
-                                onTap: () =>
-                                    Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(
-                                        builder: (_) => HomePage(),
-                                      ),
-                                    ),
-                                child: Container(
-                                  width: 30,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black54,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      '×',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 24,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
                       Expanded(
                         child: SingleChildScrollView(
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: Column(
                             children: [
+                              SizedBox(height: 10),
                               // Logo
                               Center(
                                 child: Image.asset(
@@ -568,7 +535,7 @@ class _PaywallScreenState extends State<PaywallScreen>
                                 'Test & Improve Your Vision',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontSize: 28,
+                                  fontSize: 22,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                   height: 1.2,
@@ -580,7 +547,7 @@ class _PaywallScreenState extends State<PaywallScreen>
                                 '🎯 Track vision progress',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: Color(0xFF049281),
                                   letterSpacing: 0.3,
@@ -691,19 +658,35 @@ class _PaywallScreenState extends State<PaywallScreen>
                               ),
                               SizedBox(height: 24),
                               isFreeTrial
-                                  ? Text(
-                                      'No Payment Now \n🎁 3 Days Free Trial🎁',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.shield_outlined,
+                                          color: Color.fromARGB(
+                                            255,
+                                            5,
+                                            244,
+                                            216,
+                                          ),
+                                          size: 17,
+                                        ),
+                                        Text(
+                                          'Enjoy 3 Days Free, then ${getDisplayPrice(selectedPackage!)}',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
                                     )
                                   : SizedBox.shrink(),
                               // Pricing options
                               isFreeTrial
-                                  ? SizedBox(height: 24)
+                                  ? SizedBox(height: 10)
                                   : SizedBox.shrink(),
                               LayoutBuilder(
                                 builder: (context, constraints) {
@@ -793,7 +776,7 @@ class _PaywallScreenState extends State<PaywallScreen>
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
                                                       getPackageLabel(pkg),
@@ -805,14 +788,41 @@ class _PaywallScreenState extends State<PaywallScreen>
                                                       ),
                                                     ),
                                                     SizedBox(height: 8),
-                                                    Text(
-                                                      getDisplayPrice(pkg),
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 24,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          getDisplayPrice(pkg),
+                                                          style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        (pkg.packageType ==
+                                                                PackageType
+                                                                    .annual)
+                                                            ? Text(
+                                                                "  \$59.99",
+                                                                style: TextStyle(
+                                                                  color:
+                                                                      const Color.fromARGB(
+                                                                        255,
+                                                                        249,
+                                                                        33,
+                                                                        29,
+                                                                      ),
+                                                                  fontSize: 11,
+                                                                  // fontWeight:
+                                                                  //     FontWeight
+                                                                  //         .bold,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .lineThrough,
+                                                                ),
+                                                              )
+                                                            : SizedBox.shrink(),
+                                                      ],
                                                     ),
                                                     SizedBox(height: 6),
                                                     Text(
@@ -843,8 +853,8 @@ class _PaywallScreenState extends State<PaywallScreen>
                               ),
 
                               SizedBox(height: 20),
-                              // Discount code section
-                              buildDiscountSection(),
+                              // // Discount code section
+                              // buildDiscountSection(),
                               // Purchase button
                               SizedBox(
                                 width: double.infinity,
@@ -935,6 +945,42 @@ class _PaywallScreenState extends State<PaywallScreen>
                     ],
                   ),
                 ),
+                if (showCloseButton)
+                  SafeArea(
+                    child: FadeTransition(
+                      opacity: _closeBtnOpacity,
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            top: 20,
+                            left: 20,
+                            bottom: 10,
+                          ),
+                          child: InkWell(
+                            onTap: () => Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(builder: (_) => HomePage()),
+                            ),
+                            child: Container(
+                              width: 30,
+                              height: 30,
+
+                              child: Center(
+                                child: Text(
+                                  '×',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 24,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
               ],
             ),
     );

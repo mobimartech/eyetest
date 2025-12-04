@@ -49,7 +49,9 @@ dependencies:
   flutter_local_notifications: ^19.5.0
   timezone: ^0.10.1
   device_frame: ^1.4.0
+
   easy_localization: ^3.0.8
+  intl_phone_field: ^3.2.0
 
 dev_dependencies:
   flutter_test:

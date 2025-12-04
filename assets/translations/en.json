@@ -464,5 +464,30 @@
     "quick_3": "Eye care tips for screen time",
     "quick_4": "When should I see an eye doctor?",
     "input_placeholder": "Ask about your eye health..."
+  },
+  "phone_login": {
+    "welcome": "Welcome Back",
+    "subtitle": "Enter your phone number to continue",
+    "phone_number": "Phone Number",
+    "search_country": "Search Country",
+    "login_button": "Continue",
+    "error_empty": "Phone number is required",
+    "error_invalid": "Please enter a valid phone number",
+    "disclaimer_title": "Important Notice",
+    "disclaimer_text": "By continuing, you agree to receive a verification code via SMS. Standard message rates may apply.",
+    "terms_prefix": "By signing in, you agree to our",
+    "terms_link": "Terms & Conditions",
+    "verification_sent": "Verification code sent successfully!",
+    "error_failed": "Login failed. Please try again.",
+    "error_empty_response": "Invalid server response",
+    "error_invalid_number": "Invalid phone number",
+    "error_not_found": "Service not available",
+    "error_server": "Server error. Please try again later.",
+    "error_unknown": "An error occurred. Please try again.",
+    "error_network": "Network error. Check your connection.",
+    "error_invalid_response": "Invalid response from server",
+    "error_timeout": "Request timeout. Please try again.",
+    "error_general": "Something went wrong. Please try again.",
+    "successfully": "Logged in successfully"
   }
 }

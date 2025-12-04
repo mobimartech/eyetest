@@ -156,7 +156,7 @@ class _MyAppState extends State<MyApp> {
   void _initAppsFlyer() {
     print("=== Initializing AppsFlyer ===");
     final options = AppsFlyerOptions(
-      afDevKey: 'FjSERtDKGm29LmgGqGBpdn',
+      afDevKey: Platform.isIOS ?'FjSERtDKGm29LmgGqGBpdn': "kea9rcdAoPshWf9oAdryw",
       appId: Platform.isIOS ? '6621183937' : "",
       showDebug: true,
       timeToWaitForATTUserAuthorization: 60,

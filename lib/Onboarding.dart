@@ -1,11 +1,15 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:eyetest/home.dart';
+import 'package:eyetest/login.dart';
 import 'package:eyetest/paywall.dart';
 import 'package:flutter/material.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:device_frame/device_frame.dart';
+import 'package:http/http.dart' as http;
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -64,21 +68,101 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         curve: Curves.ease,
       );
     } else {
+      Widget nextPage;
+      final hasActiveSubscription = await checkUserSubscription();
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('hasSeenOnboarding', true);
       if (Platform.isAndroid) {
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setBool('hasSeenOnboarding', true);
-        Navigator.of(
-          context,
-        ).pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+        bool x = await getdiscforvas();
+        print(x);
+        if (x) {
+          nextPage = PhoneLoginPage();
+        } else {
+          if (!hasActiveSubscription) {
+            nextPage = PaywallScreen();
+          } else {
+            nextPage = HomePage();
+          }
+        }
       } else {
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setBool('hasSeenOnboarding', true);
-        Navigator.of(
-          context,
-        ).pushReplacement(MaterialPageRoute(builder: (_) => PaywallScreen()));
+        bool x = await getdiscforvas();
+
+        if (x) {
+          nextPage = PhoneLoginPage();
+        } else {
+          if (!hasActiveSubscription) {
+            nextPage = PaywallScreen();
+          } else {
+            nextPage = HomePage();
+          }
+        }
       }
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (_) => nextPage));
+      // if (Platform.isAndroid) {
+      //   final prefs = await SharedPreferences.getInstance();
+      //   await prefs.setBool('hasSeenOnboarding', true);
+      //   Navigator.of(
+      //     context,
+      //   ).pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+      // } else {
+      //   final prefs = await SharedPreferences.getInstance();
+      //   await prefs.setBool('hasSeenOnboarding', true);
+      //   Navigator.of(
+      //     context,
+      //   ).pushReplacement(MaterialPageRoute(builder: (_) => PaywallScreen()));
+      // }
     }
   }
+
+  Future<bool> checkUserSubscription() async {
+    bool isSubscribed = false;
+    try {
+      final customerInfo = await Purchases.getCustomerInfo();
+      final activeEntitlement = customerInfo.entitlements.active['pro'];
+
+      // setState(() {
+      if (activeEntitlement != null) {
+        isSubscribed = activeEntitlement.isActive;
+        return isSubscribed;
+      } // });
+      else {
+        return false;
+      }
+    } catch (e) {
+      debugPrint('Error checking subscription: $e');
+      // setState(() {
+      isSubscribed = false;
+      // });
+      return isSubscribed;
+    }
+  }
+
+  Future<bool> getdiscforvas() async {
+    print("getdiscforvas called");
+    final response = await http.get(
+      Uri.parse('https://eyeshealthtest.com/he/sa/android/getdisc.php'),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    print("getdiscforvas called11");
+
+    if (response.statusCode == 200) {
+      String disc = response.body;
+      var typesof = jsonDecode(response.body);
+      print("Discriminator: ${typesof['type']}");
+      print("Discriminator: ${typesof['disclaimer']}");
+      if (typesof['type'].toString().trim() == "vas") {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      print(response.statusCode);
+      return false;
+    }
+  } // Dummy async function for subscription check
 
   Widget _buildDots() {
     return Padding(

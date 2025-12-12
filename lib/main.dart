@@ -59,7 +59,11 @@ class _MyAppState extends State<MyApp> {
   Future<void> initRevenueCat() async {
     await Purchases.setLogLevel(LogLevel.debug);
     await Purchases.configure(
-      PurchasesConfiguration("appl_HLNlRmifZJLrajFZwzSWgBNvflh"),
+      PurchasesConfiguration(
+        Platform.isIOS
+            ? "appl_HLNlRmifZJLrajFZwzSWgBNvflh"
+            : "goog_zTGrNazGxFcAfwDvOpCZRqlmcEm",
+      ),
     );
   }
 
@@ -78,6 +82,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _initApp() async {
+    await AppTrackingTransparency.requestTrackingAuthorization();
     print("=== App Initialization Started ===");
     await initRevenueCat();
     print("✅ RevenueCat initialized");
@@ -156,7 +161,9 @@ class _MyAppState extends State<MyApp> {
   void _initAppsFlyer() {
     print("=== Initializing AppsFlyer ===");
     final options = AppsFlyerOptions(
-      afDevKey: Platform.isIOS ?'FjSERtDKGm29LmgGqGBpdn': "kea9rcdAoPshWf9oAdryw",
+      afDevKey: Platform.isIOS
+          ? 'FjSERtDKGm29LmgGqGBpdn'
+          : "kea9rcdAoPshWf9oAdryw",
       appId: Platform.isIOS ? '6621183937' : "",
       showDebug: true,
       timeToWaitForATTUserAuthorization: 60,

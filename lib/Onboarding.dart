@@ -23,7 +23,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   int _currentIndex = 0;
   final InAppReview inAppReview = InAppReview.instance;
   bool _hasRequestedReview = false;
-
+  bool x = false;
   final List<Map<String, dynamic>> onboardingData = [
     {
       'title': 'Test your vision\nanytime, anywhere!',
@@ -53,6 +53,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       'backgroundColor': Colors.white,
     },
   ];
+  @override
+  void initState() {
+    super.initState();
+    getValues();
+  }
+
+  getValues() async {
+    x = await getdiscforvas();
+  }
 
   Future<void> _requestReview() async {
     if (!_hasRequestedReview && await inAppReview.isAvailable()) {
@@ -73,8 +82,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setBool('hasSeenOnboarding', true);
       if (Platform.isAndroid) {
-        bool x = await getdiscforvas();
-        print(x);
+        // print(x);
         if (x) {
           nextPage = PhoneLoginPage();
         } else {
@@ -85,7 +93,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           }
         }
       } else {
-        bool x = await getdiscforvas();
+        //  bool x = await getdiscforvas();
 
         if (x) {
           nextPage = PhoneLoginPage();

@@ -57,7 +57,7 @@ class _PaywallScreenState extends State<PaywallScreen>
 
   Widget buildSubscriptionDisclaimer() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      // padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
       child: Text(
         !isFreeTrial
             ? 'Once you subscribe, the subscription will commence immediately. You have the option to cancel at any time. Subscriptions will be automatically renewed unless you disable auto-renewal at least 24 hours prior to the end of the current period.'
@@ -66,7 +66,7 @@ class _PaywallScreenState extends State<PaywallScreen>
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.white.withOpacity(0.5),
-          fontSize: 11,
+          fontSize: 9,
           fontWeight: FontWeight.w400,
           height: 1.4,
           letterSpacing: 0.1,
@@ -698,7 +698,7 @@ class _PaywallScreenState extends State<PaywallScreen>
                                           selectedPackage?.identifier ==
                                           pkg.identifier;
                                       return Container(
-                                        width: cardWidth,
+                                        // width: cardWidth,
                                         margin: EdgeInsets.symmetric(
                                           horizontal: 6,
                                         ),
@@ -794,16 +794,17 @@ class _PaywallScreenState extends State<PaywallScreen>
                                                           getDisplayPrice(pkg),
                                                           style: TextStyle(
                                                             color: Colors.white,
-                                                            fontSize: 20,
+                                                            fontSize: 18,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
+                                                        SizedBox(width: 2),
                                                         (pkg.packageType ==
                                                                 PackageType
                                                                     .annual)
                                                             ? Text(
-                                                                "  \$59.99",
+                                                                "\$59.99",
                                                                 style: TextStyle(
                                                                   color:
                                                                       const Color.fromARGB(
@@ -812,7 +813,7 @@ class _PaywallScreenState extends State<PaywallScreen>
                                                                         33,
                                                                         29,
                                                                       ),
-                                                                  fontSize: 11,
+                                                                  fontSize: 10,
                                                                   // fontWeight:
                                                                   //     FontWeight
                                                                   //         .bold,
@@ -890,9 +891,10 @@ class _PaywallScreenState extends State<PaywallScreen>
                                 ),
                               ),
                               // SizedBox(height: 24),
+                              SizedBox(height: 5),
                               buildSubscriptionDisclaimer(),
                               // Footer links
-                              // SizedBox(height: 24),
+                              // SizedBox(height: 5),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,

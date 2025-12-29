@@ -98,12 +98,10 @@ class _ChallengePlayPageState extends State<ChallengePlayPage> {
   void _generateColorChallenge() {
     final random = Random();
 
-    // Handle different color variants
     Map<String, Color> selectedColors;
 
     switch (widget.challenge.variant) {
       case 'warm':
-        // Warm color families
         selectedColors = {
           'base': Color(0xFFFF6B6B + random.nextInt(0x440000)),
           'diff': Color(0xFFFFD93D + random.nextInt(0x440000)),
@@ -111,7 +109,6 @@ class _ChallengePlayPageState extends State<ChallengePlayPage> {
         break;
 
       case 'cool':
-        // Cool color families
         selectedColors = {
           'base': Color(0xFF4ECDC4 + random.nextInt(0x003344)),
           'diff': Color(0xFF6C5CE7 + random.nextInt(0x330044)),
@@ -119,7 +116,6 @@ class _ChallengePlayPageState extends State<ChallengePlayPage> {
         break;
 
       case 'contrast':
-        // High contrast complementary colors
         final colorPairs = [
           {'base': const Color(0xFF2196F3), 'diff': const Color(0xFFFF5722)},
           {'base': const Color(0xFF4CAF50), 'diff': const Color(0xFFE91E63)},
@@ -129,8 +125,10 @@ class _ChallengePlayPageState extends State<ChallengePlayPage> {
         break;
 
       default:
-        // Default random colors
-        selectedColors = {'base': Color(0xFF2196F3), 'diff': Color(0xFFFF5722)};
+        selectedColors = {
+          'base': const Color(0xFF2196F3),
+          'diff': const Color(0xFFFF5722),
+        };
     }
 
     final baseColor = selectedColors['base']!;
@@ -164,34 +162,30 @@ class _ChallengePlayPageState extends State<ChallengePlayPage> {
   }
 
   void _generateContrastChallenge() {
-    // Generate visible contrast differences
     final difficulty = min(_currentRound * 0.15, 0.8);
 
     _contrastLevels = List.generate(9, (index) {
       if (index == _differentIndex) {
-        return 1.0; // Full contrast
+        return 1.0;
       } else {
-        return 0.3 + (difficulty * 0.5); // Low to medium contrast
+        return 0.3 + (difficulty * 0.5);
       }
     });
   }
 
   void _generateFocusChallenge() {
-    // Similar to color but with size variations for focus
     _generateColorChallenge();
   }
 
   void _onSquareTap(int index) {
     if (!_isPlaying || _isComplete) return;
 
-    // Calculate response time
     final responseTime = DateTime.now()
         .difference(_roundStartTime!)
         .inMilliseconds;
     _responseTimes.add(responseTime);
 
     if (index == _differentIndex) {
-      // Correct answer
       setState(() {
         _correctAnswers++;
         _streak++;
@@ -205,7 +199,6 @@ class _ChallengePlayPageState extends State<ChallengePlayPage> {
         }
       });
     } else {
-      // Wrong answer
       setState(() {
         _wrongAnswers++;
         _streak = 0;
@@ -220,32 +213,23 @@ class _ChallengePlayPageState extends State<ChallengePlayPage> {
       _isComplete = true;
     });
 
-    // Calculate precise score
     final score = _calculatePreciseScore();
-
-    // Save results
     ChallengeService.completeChallenge(widget.challenge, score);
 
-    // Show results
     if (!mounted) return;
     _showResultsDialog(score);
   }
 
   int _calculatePreciseScore() {
-    // Base accuracy score (0-40 points)
     final accuracyScore = (_correctAnswers / _maxRounds * 40).round();
 
-    // Speed bonus (0-30 points)
     final avgResponseTime = _responseTimes.isEmpty
         ? 3000
         : _responseTimes.reduce((a, b) => a + b) / _responseTimes.length;
     final speedScore = ((3000 - avgResponseTime.clamp(0, 3000)) / 3000 * 30)
         .round();
 
-    // Streak bonus (0-20 points)
     final streakScore = (_maxStreak / _maxRounds * 20).round();
-
-    // Perfect round bonus (10 points)
     final perfectBonus = _wrongAnswers == 0 ? 10 : 0;
 
     return (accuracyScore + speedScore + streakScore + perfectBonus).clamp(
@@ -432,15 +416,15 @@ class _ChallengePlayPageState extends State<ChallengePlayPage> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              const Color(0xFF049281),
-              const Color(0x33000000),
-              const Color(0xFF121212),
+              Color(0xFF049281),
+              Color(0x33000000),
+              Color(0xFF121212),
               Colors.black,
             ],
-            stops: const [0, 0.4, 0.7, 1],
+            stops: [0, 0.4, 0.7, 1],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -455,7 +439,7 @@ class _ChallengePlayPageState extends State<ChallengePlayPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        widget.challenge.description,
+                        widget.challenge.description.tr(),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -486,7 +470,7 @@ class _ChallengePlayPageState extends State<ChallengePlayPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.challenge.title,
+                widget.challenge.title.tr(),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -542,16 +526,20 @@ class _ChallengePlayPageState extends State<ChallengePlayPage> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _buildScoreItem(
-            '✓',
+            'challenge_play.score_icons.correct'.tr(),
             _correctAnswers.toString(),
             const Color(0xFF00E676),
           ),
           _buildScoreItem(
-            '✗',
+            'challenge_play.score_icons.wrong'.tr(),
             _wrongAnswers.toString(),
             const Color(0xFFFF1744),
           ),
-          _buildScoreItem('🔥', _streak.toString(), const Color(0xFFFFD740)),
+          _buildScoreItem(
+            'challenge_play.score_icons.streak'.tr(),
+            _streak.toString(),
+            const Color(0xFFFFD740),
+          ),
         ],
       ),
     );

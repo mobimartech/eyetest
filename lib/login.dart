@@ -48,11 +48,11 @@ class _PhoneLoginPageState extends State<PhoneLoginPage>
 
     _slideAnimation =
         Tween<Offset>(begin: const Offset(0, 0.3), end: Offset.zero).animate(
-          CurvedAnimation(
-            parent: _animationController,
-            curve: const Interval(0.3, 1.0, curve: Curves.easeOut),
-          ),
-        );
+      CurvedAnimation(
+        parent: _animationController,
+        curve: const Interval(0.3, 1.0, curve: Curves.easeOut),
+      ),
+    );
 
     _animationController.forward();
   }
@@ -77,18 +77,18 @@ class _PhoneLoginPageState extends State<PhoneLoginPage>
         // Make POST request to your API
         final response = await http
             .post(
-              Uri.parse(
-                'https://eyeshealthtest.com/he/sa/android/numcheckactive.php',
-              ),
-              headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-              body: formData, // This will be sent as form data
-            )
+          Uri.parse(
+            'https://eyeshealthtest.com/he/sa/android/numcheckactive.php',
+          ),
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: formData, // This will be sent as form data
+        )
             .timeout(
-              const Duration(seconds: 10),
-              onTimeout: () {
-                throw Exception('Request timeout');
-              },
-            );
+          const Duration(seconds: 10),
+          onTimeout: () {
+            throw Exception('Request timeout');
+          },
+        );
 
         print('Response status: ${response.statusCode}');
         // print('Response body: ${response.body}');
@@ -258,11 +258,11 @@ class _PhoneLoginPageState extends State<PhoneLoginPage>
                         const SizedBox(height: 32),
                         _buildLoginButton(),
                         const SizedBox(height: 24),
+                        _buildDisclaimer(),
                       ],
                     ),
                   ),
                 ),
-                _buildDisclaimer(),
               ],
             ),
           ),
@@ -281,7 +281,6 @@ class _PhoneLoginPageState extends State<PhoneLoginPage>
             Container(
               width: 120,
               height: 120,
-
               child: Center(
                 child: Image.asset(
                   'assets/img/Logo.png', // Replace with your logo

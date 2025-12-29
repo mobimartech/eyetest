@@ -3,48 +3,48 @@
   "app_subtitle": "Sehanalyse",
   "premium_active": "Premium Aktiv",
   "free_version": "Kostenlose Version",
-  "upgrade": "UPGRADE",
+  "upgrade": "UPGRADEN",
   "pro": "PRO",
-  "ask_ai": "KI Fragen",
+  "ask_ai": "KI fragen",
   "total_tests": "Gesamte Tests",
   "available": "Verfügbar",
-  "uses": "Verwendungen",
-  "vision_assessment_suite": "Sehbewertungssuite",
-  "start_test": "Test Starten",
-  "upgrade_to_access": "Upgrade für Zugriff",
-  "unlock_professional": "Professionelle Analyse Freischalten",
-  "unlock_description": "Erhalten Sie Zugang zu allen Sehtests mit detaillierten Berichten und Tracking",
-  "upgrade_now": "Jetzt Upgraden",
-  "done": "Erledigt",
+  "uses": "Nutzungen",
+  "vision_assessment_suite": "Sehtest-Suite",
+  "start_test": "Test starten",
+  "upgrade_to_access": "Upgraden für Zugriff",
+  "unlock_professional": "Professionelle Analyse freischalten",
+  "unlock_description": "Erhalten Sie Zugriff auf alle Sehtests mit detaillierten Berichten und Tracking",
+  "upgrade_now": "Jetzt upgraden",
+  "done": "Fertig",
   "tests": {
     "visual_acuity": {
       "title": "Sehschärfetest",
-      "description": "Umfassende Klarheitsbewertung mit fortgeschrittener Snellen-Methodik"
+      "description": "Umfassende Klarheitsbewertung mit fortschrittlicher Snellen-Methodik"
     },
     "vision_field": {
       "title": "Gesichtsfeldanalyse",
-      "description": "Fortgeschrittene periphere Sehkartierung und Blindfleckerkennung"
+      "description": "Erweiterte periphere Sichtkartierung und Erkennung blinder Flecken"
     },
     "color_vision": {
       "title": "Farbwahrnehmungstest",
-      "description": "Professionelles Ishihara-Farbsehdefizit-Screening"
+      "description": "Professionelles Ishihara-Screening auf Farbsehschwäche"
     },
     "astigmatism": {
       "title": "Astigmatismus-Screening",
-      "description": "Präzise Hornhautirregularitätserkennung und -messung"
+      "description": "Präzise Erkennung und Messung von Hornhautunregelmäßigkeiten"
     },
     "amsler_grid": {
       "title": "Amsler-Gitter-Analyse",
-      "description": "Makuladegeneration und zentrale Sehverzerrung-Screening"
+      "description": "Screening auf Makuladegeneration und zentrale Sehverzerrung"
     },
     "dry_eye": {
-      "title": "Trockenes Auge Bewertung",
+      "title": "Trockene-Augen-Bewertung",
       "description": "Umfassende Tränenfilmstabilität und Augenkomfort-Bewertung"
     }
   },
   "features": {
-    "all_tests": "Alle 6 Professionellen Tests",
-    "ai_chat": "KI Augenarzt Chat",
+    "all_tests": "Alle 6 professionellen Tests",
+    "ai_chat": "KI-Augenarzt-Chat",
     "analytics": "Detaillierte Analysen",
     "tracking": "Fortschrittsverfolgung",
     "no_ads": "Keine Werbung"
@@ -52,15 +52,15 @@
   "visual_acuity": {
     "title": "Sehschärfetest",
     "step_counter": "Schritt {current} von {total}",
-    "progress": "{percent}% Abgeschlossen",
+    "progress": "{percent}% abgeschlossen",
     "dialog": {
-      "title": "Test Abgeschlossen!",
-      "message": "Sie haben den Sehschärfetest abgeschlossen. Bitte konsultieren Sie einen Augenpflegespezialisten für eine umfassende Bewertung.",
+      "title": "Test abgeschlossen!",
+      "message": "Sie haben den Sehschärfetest abgeschlossen. Bitte konsultieren Sie einen Augenarzt für eine umfassende Bewertung.",
       "ok": "OK"
     },
     "instructions": {
       "title": "Anweisungen",
-      "description": "Lesen Sie die kleinste Zeile, die Sie klar sehen können, oder identifizieren Sie die Richtung der Öffnung in jedem Symbol. Testen Sie aus der richtigen Entfernung und bedecken Sie ein Auge nach dem anderen, falls erforderlich."
+      "description": "Lesen Sie die kleinste Zeile, die Sie klar sehen können, oder identifizieren Sie die Richtung der Öffnung in jedem Symbol. Testen Sie aus der entsprechenden Entfernung und decken Sie bei Bedarf jeweils ein Auge ab."
     },
     "chart": {
       "name": "Snellen-Tafel {number}",
@@ -78,110 +78,110 @@
       "title": "💡 Test-Tipps",
       "tip1": "• Sorgen Sie für gute Lichtverhältnisse",
       "tip2": "• Halten Sie das Gerät auf Armlänge",
-      "tip3": "• Testen Sie jedes Auge einzeln",
-      "tip4": "• Machen Sie Pausen, wenn die Augen angespannt sind"
+      "tip3": "• Testen Sie jedes Auge separat",
+      "tip4": "• Machen Sie Pausen, wenn die Augen ermüden"
     }
   },
   "vision_field": {
     "title": "Gesichtsfeldtest",
     "header": {
       "subtitle_instructions": "Periphere Sehbewertung",
-      "subtitle_testing": "Test Läuft",
-      "subtitle_complete": "Test Abgeschlossen"
+      "subtitle_testing": "Test läuft",
+      "subtitle_complete": "Test abgeschlossen"
     },
     "instructions": {
       "title": "Testanweisungen",
-      "description": "Dieser Test bewertet Ihr peripheres Sehen, indem er ein sich bewegendes Objekt verfolgt, während Sie sich auf einen zentralen Punkt konzentrieren."
+      "description": "Dieser Test bewertet Ihre periphere Sicht, indem er ein sich bewegendes Objekt verfolgt, während Sie sich auf einen zentralen Punkt konzentrieren."
     },
     "steps": {
-      "title": "So Führen Sie den Test Durch",
-      "step1": "Halten Sie Ihre Augen jederzeit auf den Mittelpunkt konzentriert",
-      "step2": "Verwenden Sie Ihr peripheres Sehen, um den sich bewegenden roten Punkt zu verfolgen",
+      "title": "So führen Sie den Test durch",
+      "step1": "Halten Sie Ihre Augen die ganze Zeit auf den Mittelpunkt fokussiert",
+      "step2": "Verwenden Sie Ihre periphere Sicht, um den sich bewegenden roten Punkt zu verfolgen",
       "step3": "Tippen Sie irgendwo auf den Bildschirm, wenn Sie das sich bewegende Objekt aus den Augen verlieren"
     },
     "warning": {
       "title": "Wichtige Hinweise",
-      "message": "Dies ist ein grundlegender Screening-Test. Für eine umfassende Gesichtsfeldbewertung konsultieren Sie bitte einen Augenpflegespezialisten."
+      "message": "Dies ist ein grundlegender Screening-Test. Für eine umfassende Gesichtsfelduntersuchung konsultieren Sie bitte einen Augenarzt."
     },
     "testing": {
-      "instruction": "Konzentrieren Sie sich auf die Mitte • Tippen Sie, wenn das Objekt verschwindet"
+      "instruction": "Fokussieren Sie die Mitte • Tippen Sie, wenn das Objekt verschwindet"
     },
     "complete": {
-      "title": "Test Abgeschlossen",
-      "result": "Test abgeschlossen. Wenn Sie häufig sich bewegende Objekte in Ihrem peripheren Sehen aus den Augen verlieren, sollten Sie einen Augenpflegespezialisten für eine umfassende Gesichtsfelduntersuchung konsultieren."
+      "title": "Test abgeschlossen",
+      "result": "Test abgeschlossen. Wenn Sie häufig sich bewegende Objekte in Ihrer peripheren Sicht verlieren, konsultieren Sie einen Augenarzt für eine umfassende Gesichtsfelduntersuchung."
     },
     "buttons": {
-      "start": "Gesichtsfeldtest Starten",
-      "stop": "Test Stoppen",
-      "retry": "Test Wiederholen",
-      "learn_more": "🔗 Mehr über Gesichtsfeldtests erfahren"
+      "start": "Gesichtsfeldtest starten",
+      "stop": "Test stoppen",
+      "retry": "Test wiederholen",
+      "learn_more": "📚 Mehr über Gesichtsfeldtests erfahren"
     }
   },
   "amsler_grid": {
     "title": "Amsler-Gitter-Test",
     "header": {
       "subtitle_testing": "Gesichtsfeldbewertung",
-      "subtitle_complete": "Test Abgeschlossen"
+      "subtitle_complete": "Test abgeschlossen"
     },
     "progress": {
-      "half": "50% Abgeschlossen",
-      "complete": "100% Abgeschlossen"
+      "half": "50% abgeschlossen",
+      "complete": "100% abgeschlossen"
     },
     "instructions": {
       "title": "Testanweisungen",
-      "description": "Konzentrieren Sie sich auf den zentralen Punkt im Gitter unten. Beobachten Sie, ob Linien wellig, verzerrt, fehlend oder verschwommen erscheinen, während Sie Ihren Fokus auf der Mitte behalten."
+      "description": "Fokussieren Sie den mittleren Punkt im Gitter unten. Beobachten Sie, ob Linien wellig, verzerrt, fehlend oder verschwommen erscheinen, während Sie Ihren Fokus auf die Mitte beibehalten."
     },
     "chart_title": "Amsler-Gitter",
     "hint": "💡 Hinweis",
     "question": {
       "title": "Was beobachten Sie?",
-      "description": "Während Sie sich auf den Mittelpunkt konzentrieren, erscheinen einige der Linien wellig, verzerrt oder fehlend?"
+      "description": "Erscheinen während der Fokussierung auf den Mittelpunkt Linien wellig, verzerrt oder fehlend?"
     },
     "answers": {
       "yes": "Ja, ich sehe Verzerrungen",
-      "no": "Nein, Gitter erscheint normal"
+      "no": "Nein, das Gitter erscheint normal"
     },
     "result": {
       "positive": {
-        "title": "Sehstörungen Erkannt",
-        "description": "Sie haben Verzerrungen im Amsler-Gitter gemeldet. Dies könnte auf mögliche Sehprobleme hinweisen, die Ihr zentrales Sehen beeinträchtigen können, wie Makulaprobleme oder andere Netzhauterkrankungen.",
-        "recommendation": "Wir empfehlen dringend, eine umfassende Augenuntersuchung bei einem Augenpflegespezialisten zu vereinbaren, um Ihr zentrales Sehen ordnungsgemäß zu diagnostizieren und zu bewerten."
+        "title": "Sehstörungen erkannt",
+        "description": "Sie haben Verzerrungen im Amsler-Gitter gemeldet. Dies könnte auf potenzielle Sehprobleme hinweisen, die Ihre zentrale Sicht beeinträchtigen können, wie Makulaprobleme oder andere Netzhauterkrankungen.",
+        "recommendation": "Wir empfehlen dringend, eine umfassende Augenuntersuchung bei einem Augenarzt zu vereinbaren, um eine ordnungsgemäße Diagnose und Bewertung Ihrer zentralen Sicht zu erhalten."
       },
       "negative": {
-        "title": "Keine Sehstörungen Erkannt",
-        "description": "Ausgezeichnet! Wenn das Gitter mit geraden, unverzerrten Linien normal erschien, scheint Ihr zentrales Seh-Screening normal zu sein. Dies ist jedoch nur ein grundlegender Screening-Test.",
-        "recommendation": "Fahren Sie mit regelmäßigen Augenuntersuchungen fort, wie von Augenpflegespezialisten empfohlen, um optimale Augengesundheit zu erhalten und Veränderungen im Laufe der Zeit zu überwachen."
+        "title": "Keine Sehstörungen erkannt",
+        "description": "Ausgezeichnet! Wenn das Gitter normal mit geraden, unverzerrten Linien erschien, scheint Ihr zentrales Seh-Screening normal zu sein. Dies ist jedoch nur ein grundlegender Screening-Test.",
+        "recommendation": "Setzen Sie regelmäßige Augenuntersuchungen fort, wie von Augenärzten empfohlen, um optimale Augengesundheit zu erhalten und Veränderungen im Laufe der Zeit zu überwachen."
       },
       "recommendations_title": "Empfehlungen:"
     },
     "tips": {
       "title": "💡 Test-Tipps",
-      "tip1": "• Halten Sie Ihre Augen jederzeit auf den Mittelpunkt konzentriert",
+      "tip1": "• Halten Sie Ihre Augen die ganze Zeit auf den Mittelpunkt fokussiert",
       "tip2": "• Testen Sie jedes Auge separat, wenn möglich",
       "tip3": "• Betrachten Sie aus Ihrer normalen Leseentfernung (30-35 cm)",
-      "tip4": "• Suchen Sie nach welligen, fehlenden oder verzerrten Gitterlinien"
+      "tip4": "• Achten Sie auf wellige, fehlende oder verzerrte Gitterlinien"
     },
     "buttons": {
-      "retry": "Test Wiederholen",
-      "learn_more": "🔗 Mehr Erfahren"
+      "retry": "Test wiederholen",
+      "learn_more": "📚 Mehr erfahren"
     }
   },
   "astigmatism": {
     "title": "Astigmatismus-Test",
     "header": {
       "subtitle_testing": "Linienklarheitsbewertung",
-      "subtitle_complete": "Test Abgeschlossen"
+      "subtitle_complete": "Test abgeschlossen"
     },
     "instructions": {
       "title": "Testanweisungen",
-      "description": "Schauen Sie sich die Linien im Bild unten genau an. Beobachten Sie, ob Linien verschwommen, wellig, verzerrt oder weniger klar als andere erscheinen."
+      "description": "Betrachten Sie die Linien im Bild unten sorgfältig. Beobachten Sie, ob Linien verschwommen, wellig, verzerrt oder weniger klar als andere erscheinen."
     },
     "chart_title": "Astigmatismus-Tafel",
-    "chart_note": "Konzentrieren Sie sich auf jeden Liniensatz und vergleichen Sie deren Klarheit",
+    "chart_note": "Fokussieren Sie jeden Liniensatz und vergleichen Sie deren Klarheit",
     "hint": "💡 Hinweis",
     "question": {
       "title": "Was beobachten Sie?",
-      "description": "Erscheinen einige der Linien verschwommen, wellig oder verzerrt im Vergleich zu anderen?"
+      "description": "Erscheinen Linien verschwommen, wellig oder verzerrt im Vergleich zu anderen?"
     },
     "answers": {
       "yes": "Ja, einige Linien erscheinen verzerrt",
@@ -189,222 +189,142 @@
     },
     "result": {
       "positive": {
-        "title": "Möglicher Astigmatismus Erkannt",
-        "description": "Basierend auf Ihrer Antwort haben Sie möglicherweise Astigmatismus. Dies ist ein häufiger Brechungsfehler, der verschwommenes oder verzerrtes Sehen aufgrund einer unregelmäßig geformten Hornhaut oder Linse verursacht.",
-        "recommendation": "Erwägen Sie, eine umfassende Augenuntersuchung bei einem Augenpflegespezialisten zu vereinbaren, um eine ordnungsgemäße Diagnose und Behandlungsoptionen zu erhalten, die korrigierende Linsen oder andere Behandlungen umfassen können."
+        "title": "Möglicher Astigmatismus erkannt",
+        "description": "Basierend auf Ihrer Antwort haben Sie möglicherweise Astigmatismus. Dies ist ein häufiger Refraktionsfehler, der verschwommenes oder verzerrtes Sehen aufgrund einer unregelmäßig geformten Hornhaut oder Linse verursacht.",
+        "recommendation": "Erwägen Sie, eine umfassende Augenuntersuchung bei einem Augenarzt zu vereinbaren, um eine ordnungsgemäße Diagnose und Behandlungsoptionen zu erhalten, die korrigierende Linsen oder andere Behandlungen umfassen können."
       },
       "negative": {
-        "title": "Kein Astigmatismus Erkannt",
+        "title": "Kein Astigmatismus erkannt",
         "description": "Großartig! Wenn alle Linien klar und gerade erschienen, haben Sie wahrscheinlich keine signifikanten Astigmatismus-Symptome. Dies ist jedoch nur ein grundlegender Screening-Test.",
-        "recommendation": "Fahren Sie mit regelmäßigen Augenuntersuchungen fort, wie von Augenpflegespezialisten empfohlen, um optimale Augengesundheit zu erhalten und Veränderungen frühzeitig zu erkennen."
+        "recommendation": "Setzen Sie regelmäßige Augenuntersuchungen fort, wie von Augenärzten empfohlen, um optimale Augengesundheit zu erhalten und Veränderungen frühzeitig zu erkennen."
       },
       "recommendations_title": "Empfehlungen:"
     },
     "tips": {
       "title": "💡 Test-Tipps",
       "tip1": "• Betrachten Sie das Bild aus Ihrer normalen Leseentfernung",
-      "tip2": "• Stellen Sie gute Lichtverhältnisse sicher",
+      "tip2": "• Sorgen Sie für gute Lichtverhältnisse",
       "tip3": "• Testen Sie jedes Auge separat, wenn möglich",
       "tip4": "• Nehmen Sie sich Zeit, alle Linien sorgfältig zu beobachten"
     },
     "buttons": {
-      "retry": "Test Wiederholen",
-      "learn_more": "🔗 Mehr Erfahren"
+      "retry": "Test wiederholen",
+      "learn_more": "📚 Mehr erfahren"
     }
   },
   "color_vision": {
     "title": "Farbsehtest",
     "plate_counter": "Tafel {current} von {total}",
     "plate_name": "Tafel {number}",
-    "progress": "{percent}% Abgeschlossen",
+    "progress": "{percent}% abgeschlossen",
     "instructions": {
       "title": "Testanweisungen",
-      "description": "Schauen Sie sich die farbigen Punkte unten an und identifizieren Sie jede Zahl oder jeden Buchstaben, die/den Sie im Muster versteckt sehen können."
+      "description": "Betrachten Sie die farbigen Punkte unten und identifizieren Sie jede Zahl oder jeden Buchstaben, die Sie im Muster versteckt sehen können."
     },
     "hint": "💡 Hinweis",
     "hint_dialog": {
       "title": "💡 Hilfreicher Hinweis",
-      "message": "Konzentrieren Sie sich auf die verschiedenen Farben und Schattierungen im Punktmuster. Zahlen oder Buchstaben werden durch Punkte ähnlicher Farben gebildet, die sich gruppieren. Wenn Sie Schwierigkeiten haben, ein Muster zu sehen, ist diese Information auch wertvoll für die Bewertung.",
+      "message": "Fokussieren Sie auf die verschiedenen Farben und Schattierungen im Punktmuster. Zahlen oder Buchstaben werden durch Punkte ähnlicher Farben gebildet, die sich zusammenfügen. Wenn Sie Schwierigkeiten haben, ein Muster zu sehen, ist diese Information auch wertvoll für die Bewertung.",
       "got_it": "Verstanden!"
     },
     "question": "Was sehen Sie?",
-    "input_placeholder": "Zahl oder Buchstaben eingeben",
+    "input_placeholder": "Zahl oder Buchstabe eingeben",
     "feedback": {
       "correct": "Richtig! Gut gemacht.",
       "incorrect": "Falsch. Die richtige Antwort ist: {answer}"
     },
     "result": {
       "title": "Testergebnisse",
-      "score": "Test Abgeschlossen!\n\nErgebnis: {correct}/{total} ({percentage}%)\n\n",
+      "score": "Test abgeschlossen!\n\nPunktzahl: {correct}/{total} ({percentage}%)\n\n",
       "excellent": "Ausgezeichnet! Ihr Farbsehen scheint normal zu sein.",
-      "good": "Gute Ergebnisse, aber erwägen Sie, einen Augenpflegespezialisten für eine umfassende Untersuchung zu konsultieren.",
-      "consult": "Erwägen Sie, einen Augenpflegespezialisten für eine gründliche Farbsehbewertung zu konsultieren.",
+      "good": "Gute Ergebnisse, aber erwägen Sie, einen Augenarzt für eine umfassende Untersuchung zu konsultieren.",
+      "consult": "Erwägen Sie, einen Augenarzt für eine gründliche Farbsehbewertung zu konsultieren.",
       "ok": "OK"
     },
     "tips": {
       "title": "💡 Test-Tipps",
       "tip1": "• Suchen Sie nach Mustern, die durch unterschiedlich farbige Punkte gebildet werden",
       "tip2": "• Nehmen Sie sich Zeit - es gibt keine Eile",
-      "tip3": "• Wenn Sie nichts sehen können, ist das auch gültige Information",
-      "tip4": "• Stellen Sie gute Lichtverhältnisse für genaue Ergebnisse sicher"
+      "tip3": "• Wenn Sie nichts sehen können, ist das auch eine gültige Information",
+      "tip4": "• Sorgen Sie für gute Lichtverhältnisse für genaue Ergebnisse"
     },
     "buttons": {
       "previous": "Zurück",
-      "check": "Antwort Überprüfen",
+      "check": "Antwort prüfen",
       "next": "Nächste Tafel",
-      "finish": "Test Beenden"
+      "finish": "Test beenden"
     }
   },
   "dry_eye": {
-    "title": "Trockenes Auge Test",
+    "title": "Trockene-Augen-Test",
     "header": {
       "subtitle_testing": "Symptombewertung",
-      "subtitle_complete": "Test Abgeschlossen"
+      "subtitle_complete": "Test abgeschlossen"
     },
     "instructions": {
       "title": "Symptom-Checkliste",
-      "description": "Wählen Sie alle Symptome aus, die Sie in den letzten Tagen erlebt haben. Dies hilft bei der Beurteilung Ihres trockenen Augenzustands."
+      "description": "Wählen Sie alle Symptome aus, die Sie in den letzten Tagen erlebt haben. Dies hilft bei der Bewertung Ihres Trockene-Augen-Zustands."
     },
     "select_symptoms": "Wählen Sie Ihre Symptome",
     "symptoms": {
-      "dryness": "Trockenheit oder kratziges Gefühl",
-      "irritation": "Reizung oder brennendes Gefühl",
-      "redness": "Rötung der Augen",
-      "foreign_body": "Gefühl, als ob etwas im Auge ist",
+      "dryness": "Trockenheit oder kratzendes Gefühl",
+      "irritation": "Reizung oder Brennen",
+      "redness": "Rötung in den Augen",
+      "foreign_body": "Gefühl, als ob etwas in Ihrem Auge ist",
       "sensitivity": "Lichtempfindlichkeit"
     },
     "buttons": {
-      "analyze": "{count} Symptome Analysieren",
-      "complete": "Bewertung Abschließen",
-      "retry": "Test Wiederholen",
-      "learn_more": "🔗 Mehr Erfahren"
+      "analyze": "{count} Symptome analysieren",
+      "complete": "Bewertung abschließen",
+      "retry": "Test wiederholen",
+      "learn_more": "📚 Mehr erfahren"
     },
     "results": {
       "recommendations_title": "Empfehlungen:",
       "single": {
         "dryness": {
-          "title": "Leichte Symptome Trockener Augen",
+          "title": "Leichte Trockene-Augen-Symptome",
           "description": "Sie erleben Trockenheit. Dies ist ein häufiges Zeichen für trockene Augen.",
-          "recommendation": "Erwägen Sie die Verwendung von künstlichen Tränen und überwachen Sie Ihre Symptome. Machen Sie regelmäßige Pausen von der Bildschirmzeit und sorgen Sie für ausreichende Flüssigkeitszufuhr."
+          "recommendation": "Erwägen Sie die Verwendung künstlicher Tränen und überwachen Sie Ihre Symptome. Machen Sie regelmäßige Pausen von der Bildschirmzeit und sorgen Sie für ausreichende Flüssigkeitszufuhr."
         },
         "irritation": {
-          "title": "Leichte Reizung Erkannt",
+          "title": "Leichte Reizung erkannt",
           "description": "Reizung oder Brennen könnte mit trockenen Augen oder Umweltfaktoren zusammenhängen.",
-          "recommendation": "Erwägen Sie die Verwendung von Augentropfen zur Befeuchtung und machen Sie Pausen von Bildschirmen. Vermeiden Sie trockene Umgebungen, wenn möglich."
+          "recommendation": "Erwägen Sie die Verwendung befeuchtender Augentropfen und machen Sie Pausen von Bildschirmen. Vermeiden Sie trockene Umgebungen, wenn möglich."
         },
         "redness": {
-          "title": "Augenrötung Erkannt",
-          "description": "Rötung könnte ein Zeichen für trockene Augen oder andere Zustände sein.",
-          "recommendation": "Erwägen Sie die Konsultation eines Augenpflegespezialisten, wenn die Rötung anhält. Verwenden Sie künstliche Tränen und vermeiden Sie das Reiben der Augen."
+          "title": "Augenrötung erkannt",
+          "description": "Rötung könnte ein Zeichen für trockene Augen oder andere Erkrankungen sein.",
+          "recommendation": "Erwägen Sie, einen Augenarzt zu konsultieren, wenn die Rötung anhält. Verwenden Sie künstliche Tränen und vermeiden Sie Augenreiben."
         },
         "foreign_body": {
           "title": "Fremdkörpergefühl",
-          "description": "Das Gefühl, etwas im Auge zu haben, könnte auf trockene Augen oder einen anderen Zustand hinweisen.",
-          "recommendation": "Verwenden Sie Augentropfen zur Befeuchtung und konsultieren Sie einen Fachmann, wenn das Gefühl anhält. Vermeiden Sie es, Ihre Augen zu berühren oder zu reiben."
+          "description": "Das Gefühl, dass etwas in Ihrem Auge ist, könnte auf trockene Augen oder eine andere Erkrankung hinweisen.",
+          "recommendation": "Verwenden Sie befeuchtende Augentropfen und konsultieren Sie einen Fachmann, wenn das Gefühl anhält. Vermeiden Sie das Berühren oder Reiben Ihrer Augen."
         },
         "sensitivity": {
-          "title": "Lichtempfindlichkeit Erkannt",
+          "title": "Lichtempfindlichkeit erkannt",
           "description": "Lichtempfindlichkeit kann mit trockenen Augen oder anderen Problemen verbunden sein.",
-          "recommendation": "Tragen Sie im Freien eine Sonnenbrille und erwägen Sie die Konsultation eines Augenpflegespezialisten, wenn die Empfindlichkeit anhält."
+          "recommendation": "Tragen Sie im Freien eine Sonnenbrille und erwägen Sie, einen Augenarzt zu konsultieren, wenn die Empfindlichkeit anhält."
         }
       },
       "multiple": {
-        "title": "Mehrere Symptome Erkannt",
-        "description": "Sie haben mehrere Symptome ausgewählt, die auf ein mittelschweres bis schweres Syndrom des trockenen Auges hinweisen können.",
-        "recommendation": "Es wird empfohlen, einen Augenpflegespezialisten für eine umfassende Bewertung und einen personalisierten Behandlungsplan zu konsultieren."
+        "title": "Mehrere Symptome erkannt",
+        "description": "Sie haben mehrere Symptome ausgewählt, die auf ein mäßiges bis schweres Trockene-Augen-Syndrom hinweisen können.",
+        "recommendation": "Es wird empfohlen, einen Augenarzt für eine umfassende Bewertung und einen personalisierten Behandlungsplan zu konsultieren."
       },
       "none": {
-        "title": "Keine Symptome Trockener Augen",
+        "title": "Keine Trockene-Augen-Symptome",
         "description": "Sie scheinen derzeit keine Symptome trockener Augen zu haben.",
-        "recommendation": "Fahren Sie mit regelmäßigen Augenuntersuchungen fort, um eine gute Augengesundheit zu erhalten. Praktizieren Sie gute Augenhygiene und machen Sie Bildschirmpausen."
+        "recommendation": "Setzen Sie regelmäßige Augenuntersuchungen fort, um eine gute Augengesundheit zu erhalten. Praktizieren Sie gute Augenhygiene und machen Sie Bildschirmpausen."
       }
     },
     "tips": {
-      "title": "💡 Bewertungstipps",
+      "title": "💡 Bewertungs-Tipps",
       "tip1": "• Berücksichtigen Sie Symptome der letzten 2-3 Tage",
       "tip2": "• Seien Sie ehrlich über Häufigkeit und Schweregrad",
-      "tip3": "• Denken Sie an Symptome bei verschiedenen Aktivitäten",
+      "tip3": "• Denken Sie an Symptome während verschiedener Aktivitäten",
       "tip4": "• Berücksichtigen Sie Umweltfaktoren, die Sie beeinflussen können"
-    }
-  },
-  "challenges": {
-    "color_diff_warm": {
-      "title": "Warme Farben Detektiv",
-      "description": "Erkenne das unterschiedliche warme Quadrat"
-    },
-    "color_diff_cool": {
-      "title": "Kühle Farben Detektiv",
-      "description": "Finde das unterschiedliche kühle Quadrat"
-    },
-    "color_diff_contrast": {
-      "title": "Farbkontrast Meister",
-      "description": "Erkenne die kontrastierende Farbe"
-    },
-    "sharpness_letters": {
-      "title": "Buchstabenklarheit",
-      "description": "Finde den schärfsten Buchstaben"
-    },
-    "sharpness_shapes": {
-      "title": "Formenschärfe",
-      "description": "Identifiziere die klarste Form"
-    },
-    "contrast_grayscale": {
-      "title": "Graustufen-Kontrast",
-      "description": "Finde das Grau mit dem höchsten Kontrast"
-    },
-    "contrast_color": {
-      "title": "Farbkontrast",
-      "description": "Erkenne die lebendigste Farbe"
-    },
-    "speed_fast": {
-      "title": "Blitzgeschwindigkeit",
-      "description": "Schnell! Tippe auf das Andere"
-    },
-    "speed_pattern": {
-      "title": "Mustererkennung",
-      "description": "Finde schnell den Musterbrecher"
-    },
-    "peripheral": {
-      "title": "Peripheres Sehen",
-      "description": "Erkenne die Randanomalie"
-    }
-  },
-  "achievements": {
-    "first_challenge": {
-      "title": "Erste Schritte",
-      "description": "Schließe deine erste Herausforderung ab"
-    },
-    "streak_3": {
-      "title": "Konstant Werden",
-      "description": "Halte eine 3-Tage-Serie aufrecht"
-    },
-    "streak_7": {
-      "title": "Wochen-Krieger",
-      "description": "Schließe 7 Tage lang Herausforderungen ab"
-    },
-    "streak_30": {
-      "title": "Seh-Champion",
-      "description": "Unaufhaltsame 30-Tage-Serie!"
-    },
-    "challenges_10": {
-      "title": "Engagierter Auszubildender",
-      "description": "Schließe 10 Herausforderungen ab"
-    },
-    "challenges_50": {
-      "title": "Seh-Experte",
-      "description": "Schließe 50 Herausforderungen ab"
-    },
-    "perfect_score": {
-      "title": "Perfektionist",
-      "description": "Erziele eine perfekte Punktzahl bei jeder Herausforderung"
-    },
-    "color_master": {
-      "title": "Farben-Meister",
-      "description": "Schließe 10 Farb-Herausforderungen ab"
-    },
-    "speed_demon": {
-      "title": "Geschwindigkeits-Dämon",
-      "description": "Schließe 10 Geschwindigkeits-Herausforderungen ab"
     }
   },
   "achievements_page": {
@@ -412,18 +332,22 @@
     "level": "Level {level}",
     "overall_progress": "Gesamtfortschritt",
     "keep_collecting": "Weiter sammeln!",
-    "unlocked_count": "{unlocked} / {total} Errungenschaften Freigeschaltet",
-    "streak_master": "Serien-Meister",
-    "challenge_collector": "Herausforderungs-Sammler",
-    "perfect_vision": "Perfekte Sicht",
-    "special_achievements": "Spezielle Errungenschaften",
+    "unlocked_count": "{unlocked} / {total} Errungenschaften freigeschaltet",
+    "streak_master": "🔥 Serien-Meister",
+    "challenge_collector": "🏆 Herausforderungs-Sammler",
+    "perfect_vision": "👁️ Perfekte Sicht",
+    "special_achievements": "✨ Besondere Errungenschaften",
     "progress": "Fortschritt",
     "unlocked": "✓ FREIGESCHALTET",
-    "close": "Schließen"
+    "close": "Schließen",
+    "view_details": "Tippen für Details",
+    "completed_badge": "✓",
+    "progress_label": "Fortschritt: {current} / {required}"
   },
   "challenge_play": {
-    "complete_title": "Herausforderung Abgeschlossen!",
-    "round_counter": "Runde {current} / {total}",
+    "round_counter": "Runde {current} von {total}",
+    "complete_title": "Herausforderung abgeschlossen!",
+    "done": "Weiter",
     "grades": {
       "excellent": "AUSGEZEICHNET",
       "great": "GROSSARTIG",
@@ -433,35 +357,152 @@
     "stats": {
       "accuracy": "Genauigkeit",
       "best_streak": "Beste Serie",
-      "avg_speed": "Durchschn. Geschw.",
-      "xp_earned": "XP Verdient"
+      "avg_speed": "Durchschn. Geschwindigkeit",
+      "xp_earned": "XP verdient"
     },
-    "done": "Fertig"
+    "score_icons": {
+      "correct": "✓",
+      "wrong": "✗",
+      "streak": "🔥"
+    }
+  },
+  "challenges": {
+    "color_diff_warm": {
+      "title": "Warme Farben",
+      "description": "Finden Sie den anderen Farbton"
+    },
+    "color_diff_cool": {
+      "title": "Kühle Farben",
+      "description": "Entdecken Sie die ungerade Farbe"
+    },
+    "color_diff_contrast": {
+      "title": "Hoher Kontrast",
+      "description": "Identifizieren Sie die kontrastierende Farbe"
+    },
+    "sharpness_letters": {
+      "title": "Scharfe Buchstaben",
+      "description": "Finden Sie den klarsten Buchstaben"
+    },
+    "sharpness_shapes": {
+      "title": "Scharfe Formen",
+      "description": "Entdecken Sie die schärfste Form"
+    },
+    "contrast_grayscale": {
+      "title": "Graukontrast",
+      "description": "Finden Sie den höchsten Kontrast"
+    },
+    "contrast_color": {
+      "title": "Farbkontrast",
+      "description": "Entdecken Sie die hellste Farbe"
+    },
+    "speed_fast": {
+      "title": "Geschwindigkeitstest",
+      "description": "Reagieren Sie so schnell wie möglich"
+    },
+    "speed_pattern": {
+      "title": "Muster-Geschwindigkeit",
+      "description": "Identifizieren Sie das Muster schnell"
+    },
+    "peripheral": {
+      "title": "Randsicht",
+      "description": "Nutzen Sie Ihre periphere Sicht"
+    }
+  },
+  "achievements": {
+    "first_challenge": {
+      "title": "Erste Schritte",
+      "description": "Schließen Sie Ihre erste Herausforderung ab"
+    },
+    "streak_3": {
+      "title": "3-Tage-Serie",
+      "description": "Schließen Sie Herausforderungen 3 Tage hintereinander ab"
+    },
+    "streak_7": {
+      "title": "Wochen-Krieger",
+      "description": "Schließen Sie Herausforderungen 7 Tage hintereinander ab"
+    },
+    "streak_30": {
+      "title": "Monats-Meister",
+      "description": "Schließen Sie Herausforderungen 30 Tage hintereinander ab"
+    },
+    "challenges_10": {
+      "title": "Herausforderer",
+      "description": "Schließen Sie 10 Herausforderungen ab"
+    },
+    "challenges_50": {
+      "title": "Experte",
+      "description": "Schließen Sie 50 Herausforderungen ab"
+    },
+    "perfect_score": {
+      "title": "Perfektionist",
+      "description": "Erreichen Sie 95 Punkte oder mehr"
+    },
+    "color_master": {
+      "title": "Farb-Meister",
+      "description": "Schließen Sie 10 Farbherausforderungen ab"
+    },
+    "speed_demon": {
+      "title": "Geschwindigkeits-Dämon",
+      "description": "Schließen Sie 10 Geschwindigkeitsherausforderungen ab"
+    }
   },
   "daily_challenge": {
     "title": "Tägliche Herausforderung",
     "current_streak": "Aktuelle Serie",
     "days": "Tage",
-    "completed": "✓ Abgeschlossen",
+    "completed": "✓ Erledigt",
     "pending": "Ausstehend",
     "level": "Level {level}",
-    "xp_count": "{xp} XP",
-    "xp_to_next": "{current} / 500 XP zu Level {next}",
-    "start_challenge": "Herausforderung Starten",
-    "completed_today": "✓ Heute Abgeschlossen",
+    "xp_count": "{xp} Gesamt-XP",
+    "xp_to_next": "{current}/500 XP bis Level {next}",
+    "completed_today": "✓ Heute abgeschlossen",
+    "start_challenge": "Herausforderung starten",
     "achievements": "Errungenschaften",
-    "view_all": "Alle Anzeigen",
-    "last_7_days": "Letzte 7 Tage"
+    "view_all": "Alle anzeigen",
+    "last_7_days": "Letzte 7 Tage",
+    "notifications": {
+      "daily_reminder": "Tägliche Erinnerung",
+      "notify_time": "Benachrichtigung um 20:00 Uhr erhalten",
+      "test_sent": "Testbenachrichtigung gesendet!",
+      "send_test": "Testbenachrichtigung senden"
+    },
+    "duration_seconds": "{seconds}s",
+    "xp_reward": "+{xp} XP"
   },
   "ai_chat": {
     "title": "KI-Assistent",
     "typing": "KI tippt...",
     "online": "Online • Augenpflege-Spezialist",
-    "disclaimer": "Ich bin ein KI-Assistent, kein echter Arzt. Dies sind nur Bildungsinformationen, keine medizinische Beratung. Bitte konsultieren Sie einen echten Augenarzt für tatsächliche Diagnose oder Behandlung.",
+    "disclaimer": "Ich bin ein KI-Assistent, kein echter Arzt. Dies sind nur Bildungsinformationen, keine medizinische Beratung. Bitte suchen Sie einen echten Augenarzt für tatsächliche Diagnose oder Behandlung auf.",
     "quick_1": "Ich habe trockene Augen, was kann ich tun?",
     "quick_2": "Erzählen Sie mir über Astigmatismus",
     "quick_3": "Augenpflege-Tipps für Bildschirmzeit",
     "quick_4": "Wann sollte ich einen Augenarzt aufsuchen?",
     "input_placeholder": "Fragen Sie nach Ihrer Augengesundheit..."
+  },
+  "phone_login": {
+    "welcome": "Willkommen zurück",
+    "subtitle": "Geben Sie Ihre Telefonnummer ein, um fortzufahren",
+    "phone_number": "Telefonnummer",
+    "search_country": "Land suchen",
+    "login_button": "Weiter",
+    "error_empty": "Telefonnummer ist erforderlich",
+    "error_invalid": "Bitte geben Sie eine gültige Telefonnummer ein",
+    "disclaimer_title": "Wichtiger Hinweis",
+    "disclaimer_text": "Indem Sie fortfahren, stimmen Sie zu, einen Bestätigungscode per SMS zu erhalten. Es können Standard-SMS-Gebühren anfallen.",
+    "terms_prefix": "Mit der Anmeldung stimmen Sie unseren",
+    "terms_link": "Geschäftsbedingungen zu",
+    "verification_sent": "Bestätigungscode erfolgreich gesendet!",
+    "error_failed": "Anmeldung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "error_empty_response": "Ungültige Serverantwort",
+    "error_invalid_number": "Ungültige Telefonnummer",
+    "error_not_found": "Dienst nicht verfügbar",
+    "error_server": "Serverfehler. Bitte versuchen Sie es später erneut.",
+    "error_unknown": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "error_network": "Netzwerkfehler. Überprüfen Sie Ihre Verbindung.",
+    "error_invalid_response": "Ungültige Antwort vom Server",
+    "error_timeout": "Zeitüberschreitung der Anfrage. Bitte versuchen Sie es erneut.",
+    "error_general": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut.",
+    "successfully": "Erfolgreich angemeldet"
   }
 }

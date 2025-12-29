@@ -54,7 +54,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
               Color(0xFF049281),
@@ -69,7 +69,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
         ),
         child: SafeArea(
           child: SingleChildScrollView(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -81,7 +81,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                       children: [
                         Text(
                           'daily_challenge.title'.tr(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
@@ -89,7 +89,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                         ),
                         Text(
                           DateFormat('EEEE, MMM d').format(DateTime.now()),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color(0xFF049281),
                             fontSize: 14,
                           ),
@@ -98,19 +98,21 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                     ),
                     IconButton(
                       onPressed: () => Navigator.pop(context),
-                      icon: Icon(Icons.close, color: Colors.white),
+                      icon: const Icon(Icons.close, color: Colors.white),
                     ),
                   ],
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 _buildStreakCard(),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 _buildLevelCard(),
-                SizedBox(height: 20),
+                // const SizedBox(height: 20),
+                // _buildNotificationSettings(),
+                const SizedBox(height: 20),
                 if (dailyChallenge != null) _buildChallengeCard(),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 _buildAchievementsSection(),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 _buildCalendarSection(),
               ],
             ),
@@ -120,18 +122,17 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
     );
   }
 
-  // Update _buildStreakCard:
   Widget _buildStreakCard() {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [Color(0xFF049281), Color(0xFF037268)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color(0x60049281),
             blurRadius: 20,
@@ -147,30 +148,30 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
             children: [
               Text(
                 'daily_challenge.current_streak'.tr(),
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white70,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Row(
                 children: [
-                  Text('🔥', style: TextStyle(fontSize: 32)),
-                  SizedBox(width: 12),
+                  const Text('🔥', style: TextStyle(fontSize: 32)),
+                  const SizedBox(width: 12),
                   Text(
                     '$currentStreak',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 48,
                       fontWeight: FontWeight.bold,
                       height: 1,
                     ),
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   Text(
                     'daily_challenge.days'.tr(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white70,
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -183,7 +184,10 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
           Column(
             children: [
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(20),
@@ -192,7 +196,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                   isTodayCompleted
                       ? 'daily_challenge.completed'.tr()
                       : 'daily_challenge.pending'.tr(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
@@ -206,14 +210,16 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
     );
   }
 
-  // Update _buildLevelCard:
   Widget _buildLevelCard() {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.05),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Color(0xFF049281).withOpacity(0.3), width: 1),
+        border: Border.all(
+          color: const Color(0xFF049281).withOpacity(0.3),
+          width: 1,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -228,7 +234,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                     'daily_challenge.level'.tr(
                       namedArgs: {'level': '$userLevel'},
                     ),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -238,7 +244,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                     'daily_challenge.xp_count'.tr(
                       namedArgs: {'xp': '$totalXP'},
                     ),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color(0xFF049281),
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -246,20 +252,22 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                   ),
                 ],
               ),
-              Text('⭐', style: TextStyle(fontSize: 40)),
+              const Text('⭐', style: TextStyle(fontSize: 40)),
             ],
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: LinearProgressIndicator(
               value: xpProgress,
               backgroundColor: Colors.white.withOpacity(0.1),
-              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF049281)),
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                Color(0xFF049281),
+              ),
               minHeight: 12,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             'daily_challenge.xp_to_next'.tr(
               namedArgs: {
@@ -267,7 +275,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                 'next': '${userLevel + 1}',
               },
             ),
-            style: TextStyle(color: Colors.white60, fontSize: 12),
+            style: const TextStyle(color: Colors.white60, fontSize: 12),
           ),
         ],
       ),
@@ -296,29 +304,29 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Row(
+                  Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.notifications_active_outlined,
                         color: Color(0xFF049281),
                         size: 24,
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Daily Reminder',
-                            style: TextStyle(
+                            'daily_challenge.notifications.daily_reminder'.tr(),
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          SizedBox(height: 4),
+                          const SizedBox(height: 4),
                           Text(
-                            'Get notified at 8:00 PM',
-                            style: TextStyle(
+                            'daily_challenge.notifications.notify_time'.tr(),
+                            style: const TextStyle(
                               color: Colors.white54,
                               fontSize: 12,
                             ),
@@ -342,11 +350,14 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                 TextButton.icon(
                   onPressed: () async {
                     await NotificationService().showTestNotification();
+                    if (!mounted) return;
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Test notification sent!'),
-                        backgroundColor: Color(0xFF049281),
-                        duration: Duration(seconds: 2),
+                      SnackBar(
+                        content: Text(
+                          'daily_challenge.notifications.test_sent'.tr(),
+                        ),
+                        backgroundColor: const Color(0xFF049281),
+                        duration: const Duration(seconds: 2),
                       ),
                     );
                   },
@@ -355,9 +366,9 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                     color: Color(0xFF049281),
                     size: 18,
                   ),
-                  label: const Text(
-                    'Send Test Notification',
-                    style: TextStyle(
+                  label: Text(
+                    'daily_challenge.notifications.send_test'.tr(),
+                    style: const TextStyle(
                       color: Color(0xFF049281),
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -373,6 +384,10 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
   }
 
   Widget _buildChallengeCard() {
+    // Get translated title and description
+    final translatedTitle = dailyChallenge!.title.tr();
+    final translatedDescription = dailyChallenge!.description.tr();
+
     return GestureDetector(
       onTap: isTodayCompleted
           ? null
@@ -388,23 +403,25 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
               }
             },
       child: Container(
-        padding: EdgeInsets.all(24),
+        padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: isTodayCompleted
                 ? [Colors.grey[800]!, Colors.grey[900]!]
-                : [Color(0xFF1a1a1a), Color(0xFF0d0d0d)],
+                : [const Color(0xFF1a1a1a), const Color(0xFF0d0d0d)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: isTodayCompleted ? Colors.grey[700]! : Color(0xFF049281),
+            color: isTodayCompleted
+                ? Colors.grey[700]!
+                : const Color(0xFF049281),
             width: 2,
           ),
           boxShadow: [
             if (!isTodayCompleted)
-              BoxShadow(
+              const BoxShadow(
                 color: Color(0x40049281),
                 blurRadius: 20,
                 offset: Offset(0, 10),
@@ -420,7 +437,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                   width: 60,
                   height: 60,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       colors: [Color(0xFF049281), Color(0xFF037268)],
                     ),
                     borderRadius: BorderRadius.circular(15),
@@ -428,63 +445,72 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                   child: Center(
                     child: Text(
                       dailyChallenge!.emoji,
-                      style: TextStyle(fontSize: 32),
+                      style: const TextStyle(fontSize: 32),
                     ),
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        dailyChallenge!.title,
-                        style: TextStyle(
+                        translatedTitle,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
-                        dailyChallenge!.description,
-                        style: TextStyle(color: Colors.white60, fontSize: 13),
+                        translatedDescription,
+                        style: const TextStyle(
+                          color: Colors.white60,
+                          fontSize: 13,
+                        ),
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.timer_outlined,
                       color: Color(0xFF049281),
                       size: 20,
                     ),
-                    SizedBox(width: 6),
+                    const SizedBox(width: 6),
                     Text(
-                      '${dailyChallenge!.duration.inSeconds}s',
-                      style: TextStyle(
+                      'daily_challenge.duration_seconds'.tr(
+                        namedArgs: {
+                          'seconds': '${dailyChallenge!.duration.inSeconds}',
+                        },
+                      ),
+                      style: const TextStyle(
                         color: Color(0xFF049281),
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(width: 20),
-                    Icon(
+                    const SizedBox(width: 20),
+                    const Icon(
                       Icons.stars_rounded,
                       color: Color(0xFF049281),
                       size: 20,
                     ),
-                    SizedBox(width: 6),
+                    const SizedBox(width: 6),
                     Text(
-                      '+${dailyChallenge!.xpReward} XP',
-                      style: TextStyle(
+                      'daily_challenge.xp_reward'.tr(
+                        namedArgs: {'xp': '${dailyChallenge!.xpReward}'},
+                      ),
+                      style: const TextStyle(
                         color: Color(0xFF049281),
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -494,16 +520,16 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 16),
+              padding: const EdgeInsets.symmetric(vertical: 16),
               decoration: BoxDecoration(
                 gradient: isTodayCompleted
                     ? LinearGradient(
                         colors: [Colors.grey[700]!, Colors.grey[600]!],
                       )
-                    : LinearGradient(
+                    : const LinearGradient(
                         colors: [Color(0xFF049281), Color(0xFF037268)],
                       ),
                 borderRadius: BorderRadius.circular(12),
@@ -513,7 +539,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                   isTodayCompleted
                       ? 'daily_challenge.completed_today'.tr()
                       : 'daily_challenge.start_challenge'.tr(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -538,7 +564,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
           children: [
             Text(
               'daily_challenge.achievements'.tr(),
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -546,7 +572,6 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
             ),
             TextButton(
               onPressed: () {
-                // Navigate to Achievements Page
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (_) => const AchievementsPage()),
@@ -554,7 +579,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
               },
               child: Text(
                 'daily_challenge.view_all'.tr(),
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color(0xFF049281),
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -571,12 +596,15 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
             crossAxisCount: 2,
             crossAxisSpacing: 12,
             mainAxisSpacing: 12,
-            childAspectRatio: 1.5,
+            childAspectRatio: 1,
           ),
           itemCount: achievements.length,
           itemBuilder: (context, index) {
             final achievement = achievements[index];
             final isUnlocked = unlockedBadges.contains(achievement.id);
+
+            // Get translated title
+            final translatedTitle = achievement.title.tr();
 
             return Container(
               padding: const EdgeInsets.all(16),
@@ -604,7 +632,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    achievement.title,
+                    translatedTitle,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: isUnlocked ? Colors.white : Colors.white54,
@@ -626,7 +654,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
       future: ChallengeService.getCalendarData(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return SizedBox();
+          return const SizedBox();
         }
 
         final calendar = snapshot.data!;
@@ -639,13 +667,13 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
           children: [
             Text(
               'daily_challenge.last_7_days'.tr(),
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: last7Days.map((date) {
@@ -659,19 +687,19 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                   children: [
                     Text(
                       DateFormat('E').format(date).substring(0, 1),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white60,
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Container(
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
                         color: isCompleted
-                            ? Color(0xFF049281)
+                            ? const Color(0xFF049281)
                             : Colors.white.withOpacity(0.1),
                         shape: BoxShape.circle,
                         border: isToday
@@ -681,7 +709,7 @@ class _DailyChallengeHomePageState extends State<DailyChallengeHomePage> {
                       child: Center(
                         child: Text(
                           isCompleted ? '✓' : date.day.toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 14,
                             fontWeight: FontWeight.bold,

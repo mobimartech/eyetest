@@ -1,6 +1,6 @@
 {
   "app_title": "EyeTest",
-  "app_subtitle": "视觉分析",
+  "app_subtitle": "视力分析",
   "premium_active": "高级版已激活",
   "free_version": "免费版",
   "upgrade": "升级",
@@ -9,37 +9,37 @@
   "total_tests": "总测试数",
   "available": "可用",
   "uses": "使用次数",
-  "vision_assessment_suite": "视觉评估套件",
+  "vision_assessment_suite": "视力评估套件",
   "start_test": "开始测试",
   "upgrade_to_access": "升级以访问",
   "unlock_professional": "解锁专业分析",
-  "unlock_description": "获取所有视力测试的访问权限，包括详细报告和跟踪",
+  "unlock_description": "获取所有视力测试的访问权限，包含详细报告和跟踪功能",
   "upgrade_now": "立即升级",
   "done": "完成",
   "tests": {
     "visual_acuity": {
       "title": "视力敏锐度测试",
-      "description": "使用先进的斯内伦方法进行全面的清晰度评估"
+      "description": "使用先进Snellen方法进行全面清晰度评估"
     },
     "vision_field": {
       "title": "视野分析",
-      "description": "先进的周边视觉映射和盲点检测"
+      "description": "高级周边视力映射和盲点检测"
     },
     "color_vision": {
-      "title": "色觉测试",
-      "description": "专业的石原色觉缺陷筛查"
+      "title": "色彩感知测试",
+      "description": "专业Ishihara色觉缺陷筛查"
     },
     "astigmatism": {
       "title": "散光筛查",
-      "description": "精确的角膜不规则检测和测量"
+      "description": "精确角膜不规则检测和测量"
     },
     "amsler_grid": {
-      "title": "阿姆斯勒方格分析",
-      "description": "黄斑变性和中心视觉扭曲筛查"
+      "title": "Amsler网格分析",
+      "description": "黄斑变性和中心视力扭曲筛查"
     },
     "dry_eye": {
       "title": "干眼评估",
-      "description": "全面的泪膜稳定性和眼部舒适度评估"
+      "description": "全面泪膜稳定性和眼部舒适度评估"
     }
   },
   "features": {
@@ -51,19 +51,19 @@
   },
   "visual_acuity": {
     "title": "视力敏锐度测试",
-    "step_counter": "步骤 {current}/{total}",
-    "progress": "完成 {percent}%",
+    "step_counter": "第{current}步，共{total}步",
+    "progress": "完成{percent}%",
     "dialog": {
       "title": "测试完成！",
-      "message": "您已完成视力敏锐度测试。请咨询眼科护理专业人士进行全面评估。",
+      "message": "您已完成视力敏锐度测试。请咨询眼科护理专业人员进行全面评估。",
       "ok": "确定"
     },
     "instructions": {
       "title": "说明",
-      "description": "阅读您能清楚看到的最小行，或识别每个符号中开口的方向。从适当的距离进行测试，必要时一次遮盖一只眼睛。"
+      "description": "阅读您能清楚看到的最小行，或识别每个符号中开口的方向。从适当距离进行测试，如需要请逐个遮盖眼睛。"
     },
     "chart": {
-      "name": "斯内伦图表 {number}",
+      "name": "Snellen视力表{number}",
       "distance": "距离",
       "distance_value": "6米",
       "type": "类型",
@@ -85,85 +85,85 @@
   "vision_field": {
     "title": "视野测试",
     "header": {
-      "subtitle_instructions": "周边视觉评估",
+      "subtitle_instructions": "周边视力评估",
       "subtitle_testing": "测试进行中",
       "subtitle_complete": "测试完成"
     },
     "instructions": {
       "title": "测试说明",
-      "description": "此测试通过在聚焦中心点的同时跟踪移动物体来评估您的周边视觉。"
+      "description": "此测试通过在注视中心点的同时跟踪移动物体来评估您的周边视力。"
     },
     "steps": {
       "title": "如何进行测试",
-      "step1": "始终将眼睛聚焦在中心点",
-      "step2": "使用周边视觉跟踪移动的红点",
-      "step3": "当失去移动物体的视线时，点击屏幕任何位置"
+      "step1": "始终保持眼睛注视中心点",
+      "step2": "使用您的周边视力跟踪移动的红点",
+      "step3": "当您看不见移动物体时，点击屏幕任意位置"
     },
     "warning": {
       "title": "重要提示",
-      "message": "这是一个基本筛查测试。要进行全面的视野评估，请咨询眼科护理专业人士。"
+      "message": "这是一个基本筛查测试。如需全面视野评估，请咨询眼科护理专业人员。"
     },
     "testing": {
-      "instruction": "聚焦中心 • 物体消失时点击"
+      "instruction": "注视中心 • 物体消失时点击"
     },
     "complete": {
       "title": "测试完成",
-      "result": "测试已完成。如果您经常在周边视觉中失去移动物体的视线，请考虑咨询眼科护理专业人士进行全面的视野检查。"
+      "result": "测试完成。如果您经常在周边视力中看不见移动物体，请考虑咨询眼科护理专业人员进行全面视野检查。"
     },
     "buttons": {
       "start": "开始视野测试",
       "stop": "停止测试",
       "retry": "重新测试",
-      "learn_more": "🔗 了解更多关于视野测试的信息"
+      "learn_more": "📚 了解更多关于视野测试"
     }
   },
   "amsler_grid": {
-    "title": "阿姆斯勒方格测试",
+    "title": "Amsler网格测试",
     "header": {
       "subtitle_testing": "视野评估",
       "subtitle_complete": "测试完成"
     },
     "progress": {
-      "half": "完成 50%",
-      "complete": "完成 100%"
+      "half": "完成50%",
+      "complete": "完成100%"
     },
     "instructions": {
       "title": "测试说明",
-      "description": "聚焦下方方格中的中心点。观察在保持注视中心的同时，是否有任何线条看起来波浪状、扭曲、缺失或模糊。"
+      "description": "注视下方网格中的中心点。观察在保持注视中心的同时，是否有任何线条出现波浪状、扭曲、缺失或模糊。"
     },
-    "chart_title": "阿姆斯勒方格",
+    "chart_title": "Amsler网格",
     "hint": "💡 提示",
     "question": {
       "title": "您观察到什么？",
-      "description": "在聚焦中心点时，是否有任何线条看起来波浪状、扭曲或缺失？"
+      "description": "在注视中心点时，是否有任何线条出现波浪状、扭曲或缺失？"
     },
     "answers": {
       "yes": "是的，我看到扭曲",
-      "no": "没有，方格看起来正常"
+      "no": "否，网格看起来正常"
     },
     "result": {
       "positive": {
         "title": "检测到视觉障碍",
-        "description": "您报告在阿姆斯勒方格中看到扭曲。这可能表明潜在的视力问题，可能影响您的中心视力，如黄斑问题或其他视网膜疾病。",
-        "recommendation": "我们强烈建议预约眼科护理专业人员进行全面的眼科检查，以正确诊断和评估您的中心视力。"
+        "description": "您报告在Amsler网格中看到扭曲。这可能表明潜在的视力问题，可能影响您的中心视力，例如黄斑问题或其他视网膜疾病。",
+        "recommendation": "我们强烈建议您预约眼科护理专业人员进行全面眼科检查，以获得正确诊断和中心视力评估。"
       },
       "negative": {
         "title": "未检测到视觉障碍",
-        "description": "很好！如果方格看起来正常，线条笔直且未扭曲，您的中心视力筛查似乎正常。但是，这只是一个基本筛查测试。",
-        "recommendation": "按照眼科护理专业人员的建议继续定期眼科检查，以保持最佳眼睛健康并监测任何变化。"
+        "description": "很好！如果网格看起来正常，线条笔直且未扭曲，您的中心视力筛查似乎正常。但是，这只是一个基本筛查测试。",
+        "recommendation": "按照眼科护理专业人员的建议继续进行定期眼科检查，以保持最佳眼部健康并监测任何变化。"
       },
       "recommendations_title": "建议："
     },
     "tips": {
       "title": "💡 测试提示",
-      "tip1": "• 始终将眼睛聚焦在中心点",
+      "tip1": "• 始终保持眼睛注视中心点",
       "tip2": "• 如果可能，分别测试每只眼睛",
-      "tip3": "• 从正常阅读距离（30-35厘米）观看",
-      "tip4": "• 寻找波浪状、缺失或扭曲的方格线"
+      "tip3": "• 从正常阅读距离观察（30-35厘米）",
+      "tip4": "• 寻找波浪状、缺失或扭曲的网格线"
     },
     "buttons": {
       "retry": "重新测试",
-      "learn_more": "🔗 了解更多"
+      "learn_more": "📚 了解更多"
     }
   },
   "astigmatism": {
@@ -174,57 +174,57 @@
     },
     "instructions": {
       "title": "测试说明",
-      "description": "仔细观察下图中的线条。观察是否有任何线条看起来模糊、波浪状、扭曲或不如其他线条清晰。"
+      "description": "仔细查看下图中的线条。观察是否有任何线条看起来模糊、波浪状、扭曲或比其他线条不清晰。"
     },
     "chart_title": "散光图表",
-    "chart_note": "聚焦每组线条并比较它们的清晰度",
+    "chart_note": "注视每组线条并比较它们的清晰度",
     "hint": "💡 提示",
     "question": {
       "title": "您观察到什么？",
-      "description": "与其他线条相比，是否有任何线条看起来模糊、波浪状或扭曲？"
+      "description": "是否有任何线条与其他线条相比看起来模糊、波浪状或扭曲？"
     },
     "answers": {
       "yes": "是的，有些线条看起来扭曲",
-      "no": "没有，所有线条看起来都很清晰"
+      "no": "否，所有线条看起来都很清晰"
     },
     "result": {
       "positive": {
         "title": "检测到可能的散光",
-        "description": "根据您的回答，您可能患有散光。这是一种常见的屈光不正，由于角膜或晶状体形状不规则而导致视力模糊或扭曲。",
-        "recommendation": "考虑预约眼科护理专业人员进行全面的眼科检查，以获得正确的诊断和治疗选择，可能包括矫正镜片或其他治疗。"
+        "description": "根据您的回答，您可能有散光。这是一种常见的屈光不正，由于角膜或晶状体形状不规则而导致视力模糊或扭曲。",
+        "recommendation": "考虑预约眼科护理专业人员进行全面眼科检查，以获得正确诊断和治疗方案，可能包括矫正镜片或其他治疗。"
       },
       "negative": {
         "title": "未检测到散光",
-        "description": "很好！如果所有线条看起来清晰笔直，您可能没有明显的散光症状。但是，这只是一个基本筛查测试。",
-        "recommendation": "按照眼科护理专业人员的建议继续定期眼科检查，以保持最佳眼睛健康并及早发现任何变化。"
+        "description": "很好！如果所有线条看起来都清晰笔直，您可能没有明显的散光症状。但是，这只是一个基本筛查测试。",
+        "recommendation": "按照眼科护理专业人员的建议继续进行定期眼科检查，以保持最佳眼部健康并及早发现任何变化。"
       },
       "recommendations_title": "建议："
     },
     "tips": {
       "title": "💡 测试提示",
-      "tip1": "• 从正常阅读距离观看图像",
-      "tip2": "• 确保有良好的照明条件",
+      "tip1": "• 从正常阅读距离观察图像",
+      "tip2": "• 确保良好的照明条件",
       "tip3": "• 如果可能，分别测试每只眼睛",
       "tip4": "• 花时间仔细观察所有线条"
     },
     "buttons": {
       "retry": "重新测试",
-      "learn_more": "🔗 了解更多"
+      "learn_more": "📚 了解更多"
     }
   },
   "color_vision": {
     "title": "色觉测试",
-    "plate_counter": "图版 {current}/{total}",
-    "plate_name": "图版 {number}",
-    "progress": "完成 {percent}%",
+    "plate_counter": "第{current}张图板，共{total}张",
+    "plate_name": "图板{number}",
+    "progress": "完成{percent}%",
     "instructions": {
       "title": "测试说明",
-      "description": "查看下方的彩色圆点，并识别您能在图案中看到的任何数字或字母。"
+      "description": "查看下方的彩色点，并识别您可以在图案中看到的任何数字或字母。"
     },
     "hint": "💡 提示",
     "hint_dialog": {
       "title": "💡 有用的提示",
-      "message": "注意圆点图案中的不同颜色和色调。数字或字母由相似颜色的圆点组合而成。如果您难以看到任何图案，这些信息对评估也很有价值。",
+      "message": "注意点图案中的不同颜色和色调。数字或字母是由相似颜色的点组合在一起形成的。如果您难以看到任何图案，这些信息对评估也很有价值。",
       "got_it": "明白了！"
     },
     "question": "您看到什么？",
@@ -235,23 +235,23 @@
     },
     "result": {
       "title": "测试结果",
-      "score": "测试完成！\n\n得分：{correct}/{total} ({percentage}%)\n\n",
-      "excellent": "优秀！您的色觉似乎正常。",
-      "good": "结果不错，但建议咨询眼科护理专业人员进行全面检查。",
-      "consult": "建议咨询眼科护理专业人员进行全面的色觉评估。",
+      "score": "测试完成！\n\n得分：{correct}/{total}（{percentage}%）\n\n",
+      "excellent": "很好！您的色觉似乎正常。",
+      "good": "结果良好，但请考虑咨询眼科护理专业人员进行全面检查。",
+      "consult": "考虑咨询眼科护理专业人员进行全面的色觉评估。",
       "ok": "确定"
     },
     "tips": {
       "title": "💡 测试提示",
-      "tip1": "• 寻找由不同颜色的圆点形成的图案",
-      "tip2": "• 慢慢来 - 不用着急",
-      "tip3": "• 如果看不到任何东西，这也是有效信息",
+      "tip1": "• 寻找由不同颜色的点形成的图案",
+      "tip2": "• 慢慢来 - 不要着急",
+      "tip3": "• 如果您看不到任何东西，这也是有效信息",
       "tip4": "• 确保良好的照明条件以获得准确结果"
     },
     "buttons": {
-      "previous": "上一个",
+      "previous": "上一张",
       "check": "检查答案",
-      "next": "下一图版",
+      "next": "下一张图板",
       "finish": "完成测试"
     }
   },
@@ -267,163 +267,87 @@
     },
     "select_symptoms": "选择您的症状",
     "symptoms": {
-      "dryness": "干燥或刺痒感",
+      "dryness": "干燥或沙粒感",
       "irritation": "刺激或灼热感",
       "redness": "眼睛发红",
       "foreign_body": "感觉眼睛里有东西",
       "sensitivity": "对光敏感"
     },
     "buttons": {
-      "analyze": "分析 {count} 个症状",
+      "analyze": "分析{count}个症状",
       "complete": "完成评估",
       "retry": "重新测试",
-      "learn_more": "🔗 了解更多"
+      "learn_more": "📚 了解更多"
     },
     "results": {
       "recommendations_title": "建议：",
       "single": {
         "dryness": {
           "title": "轻度干眼症状",
-          "description": "您正在经历干燥。这是干眼症的常见症状。",
-          "recommendation": "考虑使用人工泪液并监测您的症状。定期从屏幕时间中休息并确保适当的水分摄入。"
+          "description": "您正在经历干燥。这是干眼的常见迹象。",
+          "recommendation": "考虑使用人工泪液并监测您的症状。定期从屏幕时间中休息，并确保适当的水分补充。"
         },
         "irritation": {
           "title": "检测到轻度刺激",
           "description": "刺激或灼热可能与干眼或环境因素有关。",
-          "recommendation": "考虑使用润滑眼药水并从屏幕中休息。尽可能避免干燥环境。"
+          "recommendation": "考虑使用润滑眼药水并从屏幕上休息。尽可能避免干燥环境。"
         },
         "redness": {
           "title": "检测到眼睛发红",
-          "description": "发红可能是干眼或其他疾病的迹象。",
+          "description": "发红可能是干眼或其他疾病的征兆。",
           "recommendation": "如果发红持续，请考虑咨询眼科护理专业人员。使用人工泪液并避免揉眼睛。"
         },
         "foreign_body": {
           "title": "异物感",
-          "description": "眼睛里有东西的感觉可能表明干眼或其他疾病。",
-          "recommendation": "使用润滑眼药水，如果感觉持续请咨询专业人员。避免触摸或揉眼睛。"
+          "description": "感觉眼睛里有东西可能表明干眼或其他疾病。",
+          "recommendation": "使用润滑眼药水，如果感觉持续，请咨询专业人员。避免触摸或揉眼睛。"
         },
         "sensitivity": {
           "title": "检测到光敏感",
           "description": "对光敏感可能与干眼或其他问题有关。",
-          "recommendation": "在户外佩戴太阳镜，如果敏感持续请考虑咨询眼科护理专业人员。"
+          "recommendation": "在户外佩戴太阳镜，如果敏感持续，请考虑咨询眼科护理专业人员。"
         }
       },
       "multiple": {
-        "title": "检测到多个症状",
-        "description": "您选择了多个症状，可能表明中度至重度干眼综合症。",
-        "recommendation": "建议咨询眼科护理专业人员进行全面评估和个性化治疗方案。"
+        "title": "检测到多种症状",
+        "description": "您选择了多种症状，这可能表明中度至重度干眼综合征。",
+        "recommendation": "建议咨询眼科护理专业人员进行全面评估和个性化治疗计划。"
       },
       "none": {
         "title": "无干眼症状",
         "description": "您目前似乎没有干眼症状。",
-        "recommendation": "继续定期眼科检查以保持良好的眼睛健康。保持良好的眼部卫生并休息屏幕。"
+        "recommendation": "继续进行定期眼科检查以保持良好的眼部健康。保持良好的眼部卫生并休息屏幕。"
       }
     },
     "tips": {
       "title": "💡 评估提示",
       "tip1": "• 考虑过去2-3天的症状",
-      "tip2": "• 诚实地说明频率和严重程度",
+      "tip2": "• 诚实说明频率和严重程度",
       "tip3": "• 考虑不同活动期间的症状",
       "tip4": "• 考虑可能影响您的环境因素"
     }
   },
-  "challenges": {
-    "color_diff_warm": {
-      "title": "暖色侦探",
-      "description": "发现不同的暖色方块"
-    },
-    "color_diff_cool": {
-      "title": "冷色侦探",
-      "description": "找到不同的冷色方块"
-    },
-    "color_diff_contrast": {
-      "title": "色彩对比大师",
-      "description": "发现对比色"
-    },
-    "sharpness_letters": {
-      "title": "字母清晰度",
-      "description": "找到最清晰的字母"
-    },
-    "sharpness_shapes": {
-      "title": "形状锐度",
-      "description": "识别最清晰的形状"
-    },
-    "contrast_grayscale": {
-      "title": "灰度对比",
-      "description": "找到对比度最高的灰色"
-    },
-    "contrast_color": {
-      "title": "色彩对比",
-      "description": "发现最鲜艳的颜色"
-    },
-    "speed_fast": {
-      "title": "闪电速度",
-      "description": "快！点击不同的"
-    },
-    "speed_pattern": {
-      "title": "模式识别",
-      "description": "快速找到打破模式的"
-    },
-    "peripheral": {
-      "title": "周边视觉",
-      "description": "发现边缘异常"
-    }
-  },
-  "achievements": {
-    "first_challenge": {
-      "title": "第一步",
-      "description": "完成你的第一个挑战"
-    },
-    "streak_3": {
-      "title": "变得持续",
-      "description": "保持3天连续记录"
-    },
-    "streak_7": {
-      "title": "周战士",
-      "description": "连续7天完成挑战"
-    },
-    "streak_30": {
-      "title": "视觉冠军",
-      "description": "不可阻挡的30天连续记录！"
-    },
-    "challenges_10": {
-      "title": "专注的学员",
-      "description": "完成10个挑战"
-    },
-    "challenges_50": {
-      "title": "视觉专家",
-      "description": "完成50个挑战"
-    },
-    "perfect_score": {
-      "title": "完美主义者",
-      "description": "在任何挑战中获得完美分数"
-    },
-    "color_master": {
-      "title": "色彩大师",
-      "description": "完成10个颜色挑战"
-    },
-    "speed_demon": {
-      "title": "速度恶魔",
-      "description": "完成10个速度挑战"
-    }
-  },
   "achievements_page": {
     "title": "成就",
-    "level": "等级 {level}",
-    "overall_progress": "整体进度",
+    "level": "等级{level}",
+    "overall_progress": "总体进度",
     "keep_collecting": "继续收集！",
-    "unlocked_count": "已解锁 {unlocked} / {total} 个成就",
-    "streak_master": "连续大师",
-    "challenge_collector": "挑战收藏家",
-    "perfect_vision": "完美视觉",
-    "special_achievements": "特殊成就",
+    "unlocked_count": "已解锁{unlocked}/{total}个成就",
+    "streak_master": "🔥 连续大师",
+    "challenge_collector": "🏆 挑战收集者",
+    "perfect_vision": "👁️ 完美视力",
+    "special_achievements": "✨ 特殊成就",
     "progress": "进度",
     "unlocked": "✓ 已解锁",
-    "close": "关闭"
+    "close": "关闭",
+    "view_details": "点击查看详情",
+    "completed_badge": "✓",
+    "progress_label": "进度：{current}/{required}"
   },
   "challenge_play": {
+    "round_counter": "第{current}轮，共{total}轮",
     "complete_title": "挑战完成！",
-    "round_counter": "回合 {current} / {total}",
+    "done": "继续",
     "grades": {
       "excellent": "优秀",
       "great": "很好",
@@ -434,34 +358,151 @@
       "accuracy": "准确度",
       "best_streak": "最佳连续",
       "avg_speed": "平均速度",
-      "xp_earned": "获得的XP"
+      "xp_earned": "获得经验值"
     },
-    "done": "完成"
+    "score_icons": {
+      "correct": "✓",
+      "wrong": "✗",
+      "streak": "🔥"
+    }
+  },
+  "challenges": {
+    "color_diff_warm": {
+      "title": "暖色调",
+      "description": "找出不同的色调"
+    },
+    "color_diff_cool": {
+      "title": "冷色调",
+      "description": "找出不同的颜色"
+    },
+    "color_diff_contrast": {
+      "title": "高对比度",
+      "description": "识别对比色"
+    },
+    "sharpness_letters": {
+      "title": "清晰字母",
+      "description": "找出最清晰的字母"
+    },
+    "sharpness_shapes": {
+      "title": "清晰形状",
+      "description": "找出最清晰的形状"
+    },
+    "contrast_grayscale": {
+      "title": "灰度对比",
+      "description": "找出最高对比度"
+    },
+    "contrast_color": {
+      "title": "颜色对比",
+      "description": "找出最亮的颜色"
+    },
+    "speed_fast": {
+      "title": "速度测试",
+      "description": "尽可能快地反应"
+    },
+    "speed_pattern": {
+      "title": "图案速度",
+      "description": "快速识别图案"
+    },
+    "peripheral": {
+      "title": "边缘视力",
+      "description": "使用您的周边视力"
+    }
+  },
+  "achievements": {
+    "first_challenge": {
+      "title": "第一步",
+      "description": "完成您的第一个挑战"
+    },
+    "streak_3": {
+      "title": "3天连续",
+      "description": "连续3天完成挑战"
+    },
+    "streak_7": {
+      "title": "每周战士",
+      "description": "连续7天完成挑战"
+    },
+    "streak_30": {
+      "title": "每月大师",
+      "description": "连续30天完成挑战"
+    },
+    "challenges_10": {
+      "title": "挑战者",
+      "description": "完成10个挑战"
+    },
+    "challenges_50": {
+      "title": "专家",
+      "description": "完成50个挑战"
+    },
+    "perfect_score": {
+      "title": "完美主义者",
+      "description": "获得95分或更高"
+    },
+    "color_master": {
+      "title": "色彩大师",
+      "description": "完成10个颜色挑战"
+    },
+    "speed_demon": {
+      "title": "速度恶魔",
+      "description": "完成10个速度挑战"
+    }
   },
   "daily_challenge": {
     "title": "每日挑战",
-    "current_streak": "当前连续记录",
+    "current_streak": "当前连续",
     "days": "天",
-    "completed": "✓ 已完成",
+    "completed": "✓ 完成",
     "pending": "待处理",
-    "level": "等级 {level}",
-    "xp_count": "{xp} XP",
-    "xp_to_next": "{current} / 500 XP 到等级 {next}",
+    "level": "等级{level}",
+    "xp_count": "总经验值{xp}",
+    "xp_to_next": "{current}/500经验值升至等级{next}",
+    "completed_today": "✓ 今日已完成",
     "start_challenge": "开始挑战",
-    "completed_today": "✓ 今天已完成",
     "achievements": "成就",
     "view_all": "查看全部",
-    "last_7_days": "最近7天"
+    "last_7_days": "最近7天",
+    "notifications": {
+      "daily_reminder": "每日提醒",
+      "notify_time": "在晚上8:00获得通知",
+      "test_sent": "测试通知已发送！",
+      "send_test": "发送测试通知"
+    },
+    "duration_seconds": "{seconds}秒",
+    "xp_reward": "+{xp}经验值"
   },
   "ai_chat": {
     "title": "AI助手",
     "typing": "AI正在输入...",
     "online": "在线 • 眼科护理专家",
-    "disclaimer": "我是AI助手，不是真正的医生。这只是教育信息，不是医疗建议。请咨询真正的眼科医生进行实际诊断或治疗。",
-    "quick_1": "我眼睛干涩，该怎么办？",
-    "quick_2": "告诉我关于散光的事",
+    "disclaimer": "我是AI助手，不是真正的医生。这仅供教育信息，不是医疗建议。请咨询真正的眼科医生以获得实际诊断或治疗。",
+    "quick_1": "我眼睛干涩，我该怎么办？",
+    "quick_2": "告诉我关于散光的信息",
     "quick_3": "屏幕时间的眼部护理提示",
-    "quick_4": "我应该什么时候看眼科医生？",
-    "input_placeholder": "询问您的眼睛健康..."
+    "quick_4": "我什么时候应该看眼科医生？",
+    "input_placeholder": "询问您的眼部健康..."
+  },
+  "phone_login": {
+    "welcome": "欢迎回来",
+    "subtitle": "输入您的电话号码以继续",
+    "phone_number": "电话号码",
+    "search_country": "搜索国家",
+    "login_button": "继续",
+    "error_empty": "电话号码为必填项",
+    "error_invalid": "请输入有效的电话号码",
+    "disclaimer_title": "重要提示",
+    "disclaimer_text": "继续操作即表示您同意通过短信接收验证码。可能会收取标准短信费用。",
+    "terms_prefix": "登录即表示您同意我们的",
+    "terms_link": "条款和条件",
+    "verification_sent": "验证码发送成功！",
+    "error_failed": "登录失败。请重试。",
+    "error_empty_response": "无效的服务器响应",
+    "error_invalid_number": "无效的电话号码",
+    "error_not_found": "服务不可用",
+    "error_server": "服务器错误。请稍后重试。",
+    "error_unknown": "发生错误。请重试。",
+    "error_network": "网络错误。请检查您的连接。",
+    "error_invalid_response": "服务器响应无效",
+    "error_timeout": "请求超时。请重试。",
+    "error_general": "出了点问题。请重试。",
+    "successfully": "登录成功"
   }
 }

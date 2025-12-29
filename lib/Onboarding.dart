@@ -4,12 +4,14 @@ import 'dart:io';
 import 'package:eyetest/home.dart';
 import 'package:eyetest/login.dart';
 import 'package:eyetest/paywall.dart';
+import 'package:eyetest/paywallandroid.dart';
 import 'package:flutter/material.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:device_frame/device_frame.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart'; // ADD THIS
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -24,6 +26,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final InAppReview inAppReview = InAppReview.instance;
   bool _hasRequestedReview = false;
   bool x = false;
+
   final List<Map<String, dynamic>> onboardingData = [
     {
       'title': 'Test your vision\nanytime, anywhere!',
@@ -53,6 +56,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       'backgroundColor': Colors.white,
     },
   ];
+
   @override
   void initState() {
     super.initState();
@@ -63,10 +67,43 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     x = await getdiscforvas();
   }
 
+  // IMPROVED: Better review request with fallback
   Future<void> _requestReview() async {
-    if (!_hasRequestedReview && await inAppReview.isAvailable()) {
-      _hasRequestedReview = true;
-      inAppReview.requestReview();
+    if (_hasRequestedReview) return;
+    _hasRequestedReview = true;
+
+    try {
+      // Check if in-app review is available
+      final isAvailable = await inAppReview.isAvailable();
+
+      print('📱 In-App Review Available: $isAvailable');
+      print('📱 Platform: ${Platform.operatingSystem}');
+
+      if (isAvailable) {
+        // Request the review
+        await inAppReview.requestReview();
+        print(
+          '✅ Review requested (but may not show due to Google Play quotas)',
+        );
+      } else {
+        print('⚠️ In-App Review not available');
+      }
+    } catch (e) {
+      print('❌ Error requesting review: $e');
+    }
+  }
+
+  // NEW: Fallback - Open Play Store/App Store directly
+  Future<void> _openStoreForReview() async {
+    try {
+      final appId = Platform.isAndroid
+          ? 'com.eyeshealthtest.app' // REPLACE with your Android package name
+          : '6621183937'; // REPLACE with your iOS App ID
+
+      await inAppReview.openStoreListing(appStoreId: appId);
+      print('✅ Opened store listing for review');
+    } catch (e) {
+      print('❌ Error opening store: $e');
     }
   }
 
@@ -81,20 +118,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       final hasActiveSubscription = await checkUserSubscription();
       final prefs = await SharedPreferences.getInstance();
       await prefs.setBool('hasSeenOnboarding', true);
+
       if (Platform.isAndroid) {
-        // print(x);
         if (x) {
           nextPage = PhoneLoginPage();
         } else {
           if (!hasActiveSubscription) {
-            nextPage = PaywallScreen();
+            nextPage = PaywallAndroid();
           } else {
             nextPage = HomePage();
           }
         }
       } else {
-        //  bool x = await getdiscforvas();
-
         if (x) {
           nextPage = PhoneLoginPage();
         } else {
@@ -105,22 +140,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           }
         }
       }
+
       Navigator.of(
         context,
       ).pushReplacement(MaterialPageRoute(builder: (_) => nextPage));
-      // if (Platform.isAndroid) {
-      //   final prefs = await SharedPreferences.getInstance();
-      //   await prefs.setBool('hasSeenOnboarding', true);
-      //   Navigator.of(
-      //     context,
-      //   ).pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
-      // } else {
-      //   final prefs = await SharedPreferences.getInstance();
-      //   await prefs.setBool('hasSeenOnboarding', true);
-      //   Navigator.of(
-      //     context,
-      //   ).pushReplacement(MaterialPageRoute(builder: (_) => PaywallScreen()));
-      // }
     }
   }
 
@@ -130,19 +153,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       final customerInfo = await Purchases.getCustomerInfo();
       final activeEntitlement = customerInfo.entitlements.active['pro'];
 
-      // setState(() {
       if (activeEntitlement != null) {
         isSubscribed = activeEntitlement.isActive;
         return isSubscribed;
-      } // });
-      else {
+      } else {
         return false;
       }
     } catch (e) {
       debugPrint('Error checking subscription: $e');
-      // setState(() {
       isSubscribed = false;
-      // });
       return isSubscribed;
     }
   }
@@ -161,6 +180,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       var typesof = jsonDecode(response.body);
       print("Discriminator: ${typesof['type']}");
       print("Discriminator: ${typesof['disclaimer']}");
+
       if (typesof['type'].toString().trim() == "vas") {
         return true;
       } else {
@@ -170,7 +190,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       print(response.statusCode);
       return false;
     }
-  } // Dummy async function for subscription check
+  }
 
   Widget _buildDots() {
     return Padding(
@@ -202,7 +222,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(height: 10),
-            // Title
             Text(
               item['title'],
               style: TextStyle(
@@ -215,7 +234,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 14),
-            // Subtitle
             Text(
               item['description'],
               style: TextStyle(
@@ -226,14 +244,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 35),
-            // Phone mockup with reviews using device_frame
+
+            // Phone mockup (keeping your existing code)
             Container(
               height: 450,
               child: Stack(
                 alignment: Alignment.center,
                 clipBehavior: Clip.none,
                 children: [
-                  // iPhone frame with device_frame package
                   Center(
                     child: Transform.scale(
                       scale: 0.85,
@@ -255,7 +273,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                // Logo from assets
                                 Container(
                                   width: 120,
                                   height: 120,
@@ -280,7 +297,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   ),
                                 ),
                                 SizedBox(height: 20),
-                                // App Name
                                 Text(
                                   'EyeTest',
                                   style: TextStyle(
@@ -305,7 +321,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                   ),
-                  // Review card - Top Left (closer to phone)
                   Positioned(
                     top: 20,
                     left: 15,
@@ -315,7 +330,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       Colors.purple,
                     ),
                   ),
-                  // Review card - Top Right (closer to phone)
                   Positioned(
                     top: 90,
                     right: 15,
@@ -325,7 +339,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       Colors.blue,
                     ),
                   ),
-                  // Review card - Bottom Left (closer to phone)
                   Positioned(
                     bottom: 90,
                     left: 15,
@@ -335,7 +348,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       Colors.orange,
                     ),
                   ),
-                  // Review card - Bottom Right (closer to phone)
                   Positioned(
                     bottom: 20,
                     right: 15,
@@ -349,26 +361,72 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
             SizedBox(height: 25),
-            // Star rating
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(5, (index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                  child: Icon(
-                    Icons.star_rounded,
-                    color: Color(0xFF049281),
-                    size: 44,
+
+            // IMPROVED: Tap to rate with better interaction
+            GestureDetector(
+              onTap: () {
+                print('⭐ Stars tapped - attempting review');
+                _requestReview();
+
+                // NEW: Fallback - open store after 2 seconds if review didn't show
+                Future.delayed(Duration(seconds: 2), () {
+                  // Optionally show a button to manually open store
+                });
+              },
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(5, (index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                        child: Icon(
+                          Icons.star_rounded,
+                          color: Color(0xFF049281),
+                          size: 44,
+                        ),
+                      );
+                    }),
                   ),
-                );
-              }),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Tap to rate us',
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.white.withOpacity(0.6),
+                  SizedBox(height: 8),
+                  Text(
+                    'Tap to rate us',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white.withOpacity(0.6),
+                    ),
+                  ),
+
+                  // NEW: Optional fallback button (shows after attempting review)
+                  if (Platform.isAndroid) ...[
+                    SizedBox(height: 20),
+                    TextButton(
+                      onPressed: _openStoreForReview,
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 12,
+                        ),
+                        backgroundColor: Colors.white.withOpacity(0.1),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(
+                            color: Colors.white.withOpacity(0.3),
+                            width: 1,
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        'Rate on Google Play',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
               ),
             ),
           ],
@@ -379,11 +437,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Widget _buildReviewCard(String text, String initial, Color color) {
     return Container(
-      padding: EdgeInsets.all(14), // Increased from 10 to 14
-      constraints: BoxConstraints(maxWidth: 170), // Increased from 145 to 170
+      padding: EdgeInsets.all(14),
+      constraints: BoxConstraints(maxWidth: 170),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(18), // Increased from 16 to 18
+        borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.25),
@@ -398,10 +456,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           Row(
             children: [
-              // Avatar with initial - Bigger
               Container(
-                width: 32, // Increased from 28 to 32
-                height: 32, // Increased from 28 to 32
+                width: 32,
+                height: 32,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: color,
@@ -418,33 +475,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     initial,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16, // Increased from 14 to 16
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
               ),
               SizedBox(width: 8),
-              // Stars - Bigger
               Expanded(
                 child: Row(
                   children: List.generate(
                     5,
-                    (index) => Icon(
-                      Icons.star,
-                      color: Color(0xFF049281),
-                      size: 16, // Increased from 14 to 16
-                    ),
+                    (index) =>
+                        Icon(Icons.star, color: Color(0xFF049281), size: 16),
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 10), // Increased from 8 to 10
+          SizedBox(height: 10),
           Text(
             text,
             style: TextStyle(
-              fontSize: 12, // Increased from 11 to 12
+              fontSize: 12,
               color: Colors.black87,
               height: 1.4,
               fontWeight: FontWeight.w500,
@@ -471,18 +524,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
                 // Trigger review when reaching the rate us page
                 if (onboardingData[i]['isRatingPage'] == true) {
-                  _requestReview();
+                  print("📱 Reached rating page - requesting review");
+                  // Delay to ensure page is fully visible
+                  Future.delayed(Duration(milliseconds: 500), () {
+                    _requestReview();
+                  });
                 }
               },
               itemBuilder: (context, i) {
                 final item = onboardingData[i];
 
-                // Check if this is the rating page
                 if (item['isRatingPage'] == true) {
                   return _buildRatingPage(item);
                 }
 
-                // Regular onboarding page
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

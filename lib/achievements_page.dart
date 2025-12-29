@@ -116,7 +116,6 @@ class _AchievementsPageState extends State<AchievementsPage>
     );
   }
 
-  // Update _buildHeader:
   Widget _buildHeader() {
     return Padding(
       padding: const EdgeInsets.all(20),
@@ -262,28 +261,20 @@ class _AchievementsPageState extends State<AchievementsPage>
     );
   }
 
-  // Update _buildCategorySection:
   Widget _buildCategorySection(
     String titleKey,
-    String emoji,
     List<Achievement> achievements,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Text(emoji, style: const TextStyle(fontSize: 24)),
-            const SizedBox(width: 12),
-            Text(
-              titleKey.tr(),
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+        Text(
+          titleKey.tr(),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(height: 16),
         ...achievements.map(
@@ -302,7 +293,6 @@ class _AchievementsPageState extends State<AchievementsPage>
       children: [
         _buildCategorySection(
           'achievements_page.streak_master',
-          '🔥',
           ChallengeService.allAchievements
               .where((a) => a.type == AchievementType.streak)
               .toList(),
@@ -310,7 +300,6 @@ class _AchievementsPageState extends State<AchievementsPage>
         const SizedBox(height: 24),
         _buildCategorySection(
           'achievements_page.challenge_collector',
-          '🎯',
           ChallengeService.allAchievements
               .where((a) => a.type == AchievementType.totalChallenges)
               .toList(),
@@ -318,7 +307,6 @@ class _AchievementsPageState extends State<AchievementsPage>
         const SizedBox(height: 24),
         _buildCategorySection(
           'achievements_page.perfect_vision',
-          '💯',
           ChallengeService.allAchievements
               .where((a) => a.type == AchievementType.perfectScore)
               .toList(),
@@ -326,7 +314,6 @@ class _AchievementsPageState extends State<AchievementsPage>
         const SizedBox(height: 24),
         _buildCategorySection(
           'achievements_page.special_achievements',
-          '✨',
           ChallengeService.allAchievements
               .where((a) => a.type == AchievementType.specific)
               .toList(),
@@ -343,8 +330,19 @@ class _AchievementsPageState extends State<AchievementsPage>
       1.0,
     );
 
+    // Get translated title and description using achievement ID
+    final translatedTitle = 'achievements.${achievement.id}.title'.tr();
+    final translatedDescription = 'achievements.${achievement.id}.description'
+        .tr();
+
     return GestureDetector(
-      onTap: () => _showAchievementDetails(achievement, isUnlocked, progress),
+      onTap: () => _showAchievementDetails(
+        achievement,
+        isUnlocked,
+        progress,
+        translatedTitle,
+        translatedDescription,
+      ),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         padding: const EdgeInsets.all(20),
@@ -378,7 +376,6 @@ class _AchievementsPageState extends State<AchievementsPage>
         ),
         child: Stack(
           children: [
-            // Shimmer effect for unlocked achievements
             if (isUnlocked)
               Positioned.fill(
                 child: AnimatedBuilder(
@@ -410,7 +407,6 @@ class _AchievementsPageState extends State<AchievementsPage>
               ),
             Row(
               children: [
-                // Achievement Icon
                 Container(
                   width: 70,
                   height: 70,
@@ -439,7 +435,6 @@ class _AchievementsPageState extends State<AchievementsPage>
                   ),
                 ),
                 const SizedBox(width: 16),
-                // Achievement Info
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -448,7 +443,7 @@ class _AchievementsPageState extends State<AchievementsPage>
                         children: [
                           Expanded(
                             child: Text(
-                              achievement.title,
+                              translatedTitle,
                               style: TextStyle(
                                 color: isUnlocked
                                     ? Colors.white
@@ -468,9 +463,9 @@ class _AchievementsPageState extends State<AchievementsPage>
                                 color: const Color(0xFF00E676),
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: const Text(
-                                '✓',
-                                style: TextStyle(
+                              child: Text(
+                                'achievements_page.completed_badge'.tr(),
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
@@ -481,7 +476,7 @@ class _AchievementsPageState extends State<AchievementsPage>
                       ),
                       const SizedBox(height: 6),
                       Text(
-                        achievement.description,
+                        translatedDescription,
                         style: TextStyle(
                           color: isUnlocked
                               ? const Color(0xFF049281)
@@ -504,7 +499,12 @@ class _AchievementsPageState extends State<AchievementsPage>
                         ),
                         const SizedBox(height: 6),
                         Text(
-                          '$progress / ${achievement.requiredCount}',
+                          'achievements_page.progress_label'.tr(
+                            namedArgs: {
+                              'current': '$progress',
+                              'required': '${achievement.requiredCount}',
+                            },
+                          ),
                           style: const TextStyle(
                             color: Color(0xFF049281),
                             fontSize: 12,
@@ -523,11 +523,12 @@ class _AchievementsPageState extends State<AchievementsPage>
     );
   }
 
-  // Update _showAchievementDetails dialog:
   void _showAchievementDetails(
     Achievement achievement,
     bool isUnlocked,
     int progress,
+    String title,
+    String description,
   ) {
     showDialog(
       context: context,
@@ -558,7 +559,7 @@ class _AchievementsPageState extends State<AchievementsPage>
               Text(achievement.emoji, style: const TextStyle(fontSize: 80)),
               const SizedBox(height: 16),
               Text(
-                achievement.title,
+                title,
                 style: TextStyle(
                   color: isUnlocked ? const Color(0xFF049281) : Colors.white,
                   fontSize: 24,
@@ -568,7 +569,7 @@ class _AchievementsPageState extends State<AchievementsPage>
               ),
               const SizedBox(height: 12),
               Text(
-                achievement.description,
+                description,
                 style: const TextStyle(color: Colors.white70, fontSize: 16),
                 textAlign: TextAlign.center,
               ),

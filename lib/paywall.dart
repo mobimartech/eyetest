@@ -62,7 +62,6 @@ class _PaywallScreenState extends State<PaywallScreen>
         !isFreeTrial
             ? 'Once you subscribe, the subscription will commence immediately. You have the option to cancel at any time. Subscriptions will be automatically renewed unless you disable auto-renewal at least 24 hours prior to the end of the current period.'
             : 'After free trial ends, the subscription will commence immediately. You have the option to cancel at any time. Subscriptions will be automatically renewed unless you disable auto-renewal at least 24 hours prior to the end of the current period.',
-
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.white.withOpacity(0.5),
@@ -275,6 +274,7 @@ class _PaywallScreenState extends State<PaywallScreen>
 
       if (customerInfo.activeSubscriptions.isNotEmpty) {
         if (!mounted) return;
+        Navigator.pop(context);
         Navigator.of(
           context,
         ).pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
@@ -294,6 +294,7 @@ class _PaywallScreenState extends State<PaywallScreen>
     try {
       final info = await Purchases.restorePurchases();
       if (info.entitlements.active.isNotEmpty) {
+        Navigator.pop(context);
         Navigator.of(
           context,
         ).pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
@@ -696,7 +697,7 @@ class _PaywallScreenState extends State<PaywallScreen>
                                     children: packages.map((pkg) {
                                       final isSelected =
                                           selectedPackage?.identifier ==
-                                          pkg.identifier;
+                                              pkg.identifier;
                                       return Container(
                                         // width: cardWidth,
                                         margin: EdgeInsets.symmetric(
@@ -706,12 +707,12 @@ class _PaywallScreenState extends State<PaywallScreen>
                                           onTap: purchasing
                                               ? null
                                               : () => setState(() {
-                                                  selectedPackage = pkg;
-                                                  isFreeTrial = hasFreeTrial(
-                                                    pkg,
-                                                  ); // Add this line
-                                                  handlePurchase();
-                                                }),
+                                                    selectedPackage = pkg;
+                                                    isFreeTrial = hasFreeTrial(
+                                                      pkg,
+                                                    ); // Add this line
+                                                    handlePurchase();
+                                                  }),
                                           child: AnimatedContainer(
                                             duration: Duration(
                                               milliseconds: 200,
@@ -755,9 +756,10 @@ class _PaywallScreenState extends State<PaywallScreen>
                                                           0xFF049281,
                                                         ),
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                              12,
-                                                            ),
+                                                            BorderRadius
+                                                                .circular(
+                                                          12,
+                                                        ),
                                                       ),
                                                       child: Center(
                                                         child: Text(
@@ -805,14 +807,15 @@ class _PaywallScreenState extends State<PaywallScreen>
                                                                     .annual)
                                                             ? Text(
                                                                 "\$59.99",
-                                                                style: TextStyle(
-                                                                  color:
-                                                                      const Color.fromARGB(
-                                                                        255,
-                                                                        249,
-                                                                        33,
-                                                                        29,
-                                                                      ),
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: const Color
+                                                                      .fromARGB(
+                                                                    255,
+                                                                    249,
+                                                                    33,
+                                                                    29,
+                                                                  ),
                                                                   fontSize: 10,
                                                                   // fontWeight:
                                                                   //     FontWeight
@@ -869,8 +872,8 @@ class _PaywallScreenState extends State<PaywallScreen>
                                   ),
                                   onPressed:
                                       purchasing || selectedPackage == null
-                                      ? null
-                                      : handlePurchase,
+                                          ? null
+                                          : handlePurchase,
                                   child: purchasing
                                       ? SizedBox(
                                           width: 24,
@@ -960,13 +963,10 @@ class _PaywallScreenState extends State<PaywallScreen>
                             bottom: 10,
                           ),
                           child: InkWell(
-                            onTap: () => Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(builder: (_) => HomePage()),
-                            ),
+                            onTap: () => Navigator.pop(context),
                             child: Container(
                               width: 30,
                               height: 30,
-
                               child: Center(
                                 child: Text(
                                   '×',

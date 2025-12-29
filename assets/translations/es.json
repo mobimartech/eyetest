@@ -3,49 +3,49 @@
   "app_subtitle": "Análisis de Visión",
   "premium_active": "Premium Activo",
   "free_version": "Versión Gratuita",
-  "upgrade": "MEJORAR",
+  "upgrade": "ACTUALIZAR",
   "pro": "PRO",
   "ask_ai": "Preguntar a IA",
   "total_tests": "Pruebas Totales",
-  "available": "Disponibles",
+  "available": "Disponible",
   "uses": "Usos",
   "vision_assessment_suite": "Suite de Evaluación Visual",
   "start_test": "Iniciar Prueba",
-  "upgrade_to_access": "Mejorar para Acceder",
+  "upgrade_to_access": "Actualizar para Acceder",
   "unlock_professional": "Desbloquear Análisis Profesional",
   "unlock_description": "Obtén acceso a todas las pruebas de visión con informes detallados y seguimiento",
-  "upgrade_now": "Mejorar Ahora",
+  "upgrade_now": "Actualizar Ahora",
   "done": "Hecho",
   "tests": {
     "visual_acuity": {
       "title": "Prueba de Agudeza Visual",
-      "description": "Evaluación integral de claridad utilizando metodología Snellen avanzada"
+      "description": "Evaluación integral de claridad usando metodología Snellen avanzada"
     },
     "vision_field": {
-      "title": "Análisis del Campo Visual",
+      "title": "Análisis de Campo Visual",
       "description": "Mapeo avanzado de visión periférica y detección de puntos ciegos"
     },
     "color_vision": {
       "title": "Prueba de Percepción del Color",
-      "description": "Detección profesional de deficiencias en la visión del color Ishihara"
+      "description": "Detección profesional de deficiencia de visión del color Ishihara"
     },
     "astigmatism": {
       "title": "Detección de Astigmatismo",
       "description": "Detección y medición precisa de irregularidades corneales"
     },
     "amsler_grid": {
-      "title": "Análisis de Cuadrícula de Amsler",
-      "description": "Detección de degeneración macular y distorsión de la visión central"
+      "title": "Análisis de Rejilla de Amsler",
+      "description": "Detección de degeneración macular y distorsión de visión central"
     },
     "dry_eye": {
       "title": "Evaluación de Ojo Seco",
-      "description": "Evaluación integral de estabilidad de la película lagrimal y comodidad ocular"
+      "description": "Evaluación integral de estabilidad de película lagrimal y comodidad ocular"
     }
   },
   "features": {
     "all_tests": "Las 6 Pruebas Profesionales",
-    "ai_chat": "Chat con Doctor de IA",
-    "analytics": "Análisis Detallado",
+    "ai_chat": "Chat con Oftalmólogo IA",
+    "analytics": "Análisis Detallados",
     "tracking": "Seguimiento de Progreso",
     "no_ads": "Sin Anuncios"
   },
@@ -54,8 +54,8 @@
     "step_counter": "Paso {current} de {total}",
     "progress": "{percent}% Completado",
     "dialog": {
-      "title": "¡Prueba Completa!",
-      "message": "Has completado la prueba de agudeza visual. Por favor consulta a un profesional del cuidado de los ojos para una evaluación completa.",
+      "title": "¡Prueba Completada!",
+      "message": "Has completado la prueba de agudeza visual. Por favor consulta a un profesional del cuidado ocular para una evaluación integral.",
       "ok": "OK"
     },
     "instructions": {
@@ -63,7 +63,7 @@
       "description": "Lee la línea más pequeña que puedas ver claramente, o identifica la dirección de la abertura en cada símbolo. Prueba desde la distancia apropiada y cubre un ojo a la vez si es necesario."
     },
     "chart": {
-      "name": "Tabla de Snellen {number}",
+      "name": "Tabla Snellen {number}",
       "distance": "Distancia",
       "distance_value": "6 m",
       "type": "Tipo",
@@ -75,7 +75,7 @@
       "finish": "Finalizar"
     },
     "tips": {
-      "title": "💡 Consejos para la Prueba",
+      "title": "💡 Consejos de Prueba",
       "tip1": "• Asegura buenas condiciones de iluminación",
       "tip2": "• Mantén el dispositivo a la distancia del brazo",
       "tip3": "• Prueba cada ojo por separado",
@@ -90,38 +90,37 @@
       "subtitle_complete": "Prueba Completada"
     },
     "instructions": {
-      "title": "Instrucciones de la Prueba",
-      "description": "Esta prueba evalúa tu visión periférica siguiendo un objeto en movimiento mientras te enfocas en un punto central."
+      "title": "Instrucciones de Prueba",
+      "description": "Esta prueba evalúa tu visión periférica rastreando un objeto en movimiento mientras te enfocas en un punto central."
     },
     "steps": {
       "title": "Cómo Realizar la Prueba",
       "step1": "Mantén tus ojos enfocados en el punto central en todo momento",
-      "step2": "Usa tu visión periférica para seguir el punto rojo en movimiento",
+      "step2": "Usa tu visión periférica para rastrear el punto rojo en movimiento",
       "step3": "Toca en cualquier lugar de la pantalla cuando pierdas de vista el objeto en movimiento"
     },
     "warning": {
       "title": "Notas Importantes",
-      "message": "Esta es una prueba de detección básica. Para una evaluación completa del campo visual, consulta a un profesional del cuidado de los ojos."
+      "message": "Esta es una prueba de detección básica. Para una evaluación integral del campo visual, por favor consulta a un profesional del cuidado ocular."
     },
     "testing": {
       "instruction": "Enfócate en el centro • Toca cuando el objeto desaparezca"
     },
     "complete": {
-      "title": "Prueba Completa",
-      "result": "Prueba completada. Si pierdes frecuentemente de vista objetos en movimiento en tu visión periférica, considera consultar a un profesional del cuidado de los ojos para un examen completo del campo visual."
+      "title": "Prueba Completada",
+      "result": "Prueba completada. Si frecuentemente pierdes de vista objetos en movimiento en tu visión periférica, considera consultar a un profesional del cuidado ocular para un examen integral del campo visual."
     },
     "buttons": {
       "start": "Iniciar Prueba de Campo Visual",
       "stop": "Detener Prueba",
-      "retry": "Realizar Prueba de Nuevo",
-      "learn_more": "🔗 Aprende más sobre pruebas de campo visual"
+      "retry": "Realizar Prueba Nuevamente",
+      "learn_more": "📚 Aprender más sobre pruebas de campo visual"
     }
   },
-
   "amsler_grid": {
-    "title": "Prueba de Cuadrícula de Amsler",
+    "title": "Prueba de Rejilla de Amsler",
     "header": {
-      "subtitle_testing": "Evaluación del Campo Visual",
+      "subtitle_testing": "Evaluación de Campo Visual",
       "subtitle_complete": "Prueba Completada"
     },
     "progress": {
@@ -129,42 +128,42 @@
       "complete": "100% Completado"
     },
     "instructions": {
-      "title": "Instrucciones de la Prueba",
-      "description": "Enfócate en el punto central de la cuadrícula a continuación. Observa si alguna línea parece ondulada, distorsionada, faltante o borrosa mientras mantienes tu enfoque en el centro."
+      "title": "Instrucciones de Prueba",
+      "description": "Enfócate en el punto central de la rejilla de abajo. Observa si alguna línea aparece ondulada, distorsionada, faltante o borrosa mientras mantienes tu enfoque en el centro."
     },
-    "chart_title": "Cuadrícula de Amsler",
+    "chart_title": "Rejilla de Amsler",
     "hint": "💡 Pista",
     "question": {
       "title": "¿Qué observas?",
-      "description": "Mientras te enfocas en el punto central, ¿alguna de las líneas parece ondulada, distorsionada o faltante?"
+      "description": "Mientras te enfocas en el punto central, ¿alguna de las líneas aparece ondulada, distorsionada o faltante?"
     },
     "answers": {
       "yes": "Sí, veo distorsiones",
-      "no": "No, la cuadrícula parece normal"
+      "no": "No, la rejilla aparece normal"
     },
     "result": {
       "positive": {
         "title": "Alteraciones Visuales Detectadas",
-        "description": "Has reportado ver distorsiones en la cuadrícula de Amsler. Esto podría indicar posibles problemas de visión que pueden afectar tu visión central, como problemas maculares u otras condiciones retinianas.",
-        "recommendation": "Recomendamos encarecidamente programar un examen ocular completo con un profesional del cuidado de los ojos para un diagnóstico y evaluación adecuados de tu visión central."
+        "description": "Has reportado ver distorsiones en la rejilla de Amsler. Esto podría indicar posibles problemas de visión que pueden afectar tu visión central, como problemas maculares u otras condiciones retinianas.",
+        "recommendation": "Recomendamos encarecidamente programar un examen ocular integral con un profesional del cuidado ocular para un diagnóstico adecuado y evaluación de tu visión central."
       },
       "negative": {
         "title": "No se Detectaron Alteraciones Visuales",
-        "description": "¡Excelente! Si la cuadrícula apareció normal con líneas rectas y sin distorsiones, tu detección de visión central parece normal. Sin embargo, esto es solo una prueba de detección básica.",
-        "recommendation": "Continúa con exámenes oculares regulares según lo recomendado por los profesionales del cuidado de los ojos para mantener una salud ocular óptima y monitorear cualquier cambio con el tiempo."
+        "description": "¡Excelente! Si la rejilla apareció normal con líneas rectas y sin distorsión, tu detección de visión central parece normal. Sin embargo, esta es solo una prueba de detección básica.",
+        "recommendation": "Continúa con exámenes oculares regulares según lo recomendado por profesionales del cuidado ocular para mantener una salud ocular óptima y monitorear cualquier cambio con el tiempo."
       },
       "recommendations_title": "Recomendaciones:"
     },
     "tips": {
-      "title": "💡 Consejos para la Prueba",
+      "title": "💡 Consejos de Prueba",
       "tip1": "• Mantén tus ojos enfocados en el punto central en todo momento",
       "tip2": "• Prueba cada ojo por separado si es posible",
-      "tip3": "• Mira desde tu distancia de lectura normal (30-35 cm)",
-      "tip4": "• Busca líneas onduladas, faltantes o distorsionadas de la cuadrícula"
+      "tip3": "• Observa desde tu distancia normal de lectura (30-35 cm)",
+      "tip4": "• Busca líneas de rejilla onduladas, faltantes o distorsionadas"
     },
     "buttons": {
-      "retry": "Realizar Prueba de Nuevo",
-      "learn_more": "🔗 Más Información"
+      "retry": "Realizar Prueba Nuevamente",
+      "learn_more": "📚 Aprender Más"
     }
   },
   "astigmatism": {
@@ -174,58 +173,58 @@
       "subtitle_complete": "Prueba Completada"
     },
     "instructions": {
-      "title": "Instrucciones de la Prueba",
-      "description": "Mira cuidadosamente las líneas en la imagen a continuación. Observa si alguna línea parece borrosa, ondulada, distorsionada o menos clara que otras."
+      "title": "Instrucciones de Prueba",
+      "description": "Mira cuidadosamente las líneas en la imagen de abajo. Observa si alguna línea aparece borrosa, ondulada, distorsionada o menos clara que otras."
     },
     "chart_title": "Tabla de Astigmatismo",
     "chart_note": "Enfócate en cada conjunto de líneas y compara su claridad",
     "hint": "💡 Pista",
     "question": {
       "title": "¿Qué observas?",
-      "description": "¿Alguna de las líneas parece borrosa, ondulada o distorsionada en comparación con otras?"
+      "description": "¿Alguna de las líneas aparece borrosa, ondulada o distorsionada en comparación con otras?"
     },
     "answers": {
-      "yes": "Sí, algunas líneas parecen distorsionadas",
-      "no": "No, todas las líneas parecen claras"
+      "yes": "Sí, algunas líneas aparecen distorsionadas",
+      "no": "No, todas las líneas aparecen claras"
     },
     "result": {
       "positive": {
         "title": "Posible Astigmatismo Detectado",
-        "description": "Según tu respuesta, es posible que tengas astigmatismo. Este es un error refractivo común que causa visión borrosa o distorsionada debido a una córnea o cristalino de forma irregular.",
-        "recommendation": "Considera programar un examen ocular completo con un profesional del cuidado de los ojos para un diagnóstico adecuado y opciones de tratamiento, que pueden incluir lentes correctivos u otros tratamientos."
+        "description": "Basado en tu respuesta, podrías tener astigmatismo. Este es un error refractivo común que causa visión borrosa o distorsionada debido a una córnea o lente de forma irregular.",
+        "recommendation": "Considera programar un examen ocular integral con un profesional del cuidado ocular para un diagnóstico adecuado y opciones de tratamiento, que pueden incluir lentes correctivos u otros tratamientos."
       },
       "negative": {
         "title": "No se Detectó Astigmatismo",
-        "description": "¡Genial! Si todas las líneas aparecieron claras y rectas, es probable que no tengas síntomas significativos de astigmatismo. Sin embargo, esto es solo una prueba de detección básica.",
-        "recommendation": "Continúa con exámenes oculares regulares según lo recomendado por los profesionales del cuidado de los ojos para mantener una salud ocular óptima y detectar cualquier cambio temprano."
+        "description": "¡Genial! Si todas las líneas aparecieron claras y rectas, probablemente no tengas síntomas significativos de astigmatismo. Sin embargo, esta es solo una prueba de detección básica.",
+        "recommendation": "Continúa con exámenes oculares regulares según lo recomendado por profesionales del cuidado ocular para mantener una salud ocular óptima y detectar cualquier cambio temprano."
       },
       "recommendations_title": "Recomendaciones:"
     },
     "tips": {
-      "title": "💡 Consejos para la Prueba",
-      "tip1": "• Mira la imagen desde tu distancia de lectura normal",
-      "tip2": "• Asegúrate de tener buenas condiciones de iluminación",
+      "title": "💡 Consejos de Prueba",
+      "tip1": "• Observa la imagen desde tu distancia normal de lectura",
+      "tip2": "• Asegura buenas condiciones de iluminación",
       "tip3": "• Prueba cada ojo por separado si es posible",
       "tip4": "• Tómate tu tiempo para observar cuidadosamente todas las líneas"
     },
     "buttons": {
-      "retry": "Realizar Prueba de Nuevo",
-      "learn_more": "🔗 Más Información"
+      "retry": "Realizar Prueba Nuevamente",
+      "learn_more": "📚 Aprender Más"
     }
   },
   "color_vision": {
-    "title": "Prueba de Visión de Color",
+    "title": "Prueba de Visión del Color",
     "plate_counter": "Lámina {current} de {total}",
     "plate_name": "Lámina {number}",
     "progress": "{percent}% Completado",
     "instructions": {
-      "title": "Instrucciones de la Prueba",
-      "description": "Mira los puntos de colores a continuación e identifica cualquier número o letra que puedas ver oculto dentro del patrón."
+      "title": "Instrucciones de Prueba",
+      "description": "Mira los puntos de colores de abajo e identifica cualquier número o letra que puedas ver oculto dentro del patrón."
     },
     "hint": "💡 Pista",
     "hint_dialog": {
       "title": "💡 Pista Útil",
-      "message": "Concéntrate en los diferentes colores y tonos en el patrón de puntos. Los números o letras se forman por puntos de colores similares agrupándose. Si tienes dificultades para ver algún patrón, esa información también es valiosa para la evaluación.",
+      "message": "Enfócate en los diferentes colores y tonos en el patrón de puntos. Los números o letras se forman por puntos de colores similares que se agrupan. Si tienes dificultad para ver algún patrón, esa información también es valiosa para la evaluación.",
       "got_it": "¡Entendido!"
     },
     "question": "¿Qué ves?",
@@ -235,18 +234,18 @@
       "incorrect": "Incorrecto. La respuesta correcta es: {answer}"
     },
     "result": {
-      "title": "Resultados de la Prueba",
-      "score": "¡Prueba Completa!\n\nPuntuación: {correct}/{total} ({percentage}%)\n\n",
+      "title": "Resultados de Prueba",
+      "score": "¡Prueba Completada!\n\nPuntuación: {correct}/{total} ({percentage}%)\n\n",
       "excellent": "¡Excelente! Tu visión del color parece ser normal.",
-      "good": "Buenos resultados, pero considera consultar a un profesional del cuidado de los ojos para un examen completo.",
-      "consult": "Considera consultar a un profesional del cuidado de los ojos para una evaluación completa de la visión del color.",
+      "good": "Buenos resultados, pero considera consultar a un profesional del cuidado ocular para un examen integral.",
+      "consult": "Considera consultar a un profesional del cuidado ocular para una evaluación exhaustiva de la visión del color.",
       "ok": "OK"
     },
     "tips": {
-      "title": "💡 Consejos para la Prueba",
+      "title": "💡 Consejos de Prueba",
       "tip1": "• Busca patrones formados por puntos de diferentes colores",
       "tip2": "• Tómate tu tiempo - no hay prisa",
-      "tip3": "• Si no puedes ver nada, eso también es información válida",
+      "tip3": "• Si no puedes ver nada, esa también es información válida",
       "tip4": "• Asegura buenas condiciones de iluminación para resultados precisos"
     },
     "buttons": {
@@ -256,7 +255,6 @@
       "finish": "Finalizar Prueba"
     }
   },
-
   "dry_eye": {
     "title": "Prueba de Ojo Seco",
     "header": {
@@ -264,150 +262,69 @@
       "subtitle_complete": "Prueba Completada"
     },
     "instructions": {
-      "title": "Lista de Verificación de Síntomas",
-      "description": "Selecciona todos los síntomas que has experimentado en los últimos días. Esto ayudará a evaluar tu condición de ojo seco."
+      "title": "Lista de Síntomas",
+      "description": "Selecciona todos los síntomas que hayas experimentado en los últimos días. Esto ayudará a evaluar tu condición de ojo seco."
     },
-    "select_symptoms": "Selecciona Tus Síntomas",
+    "select_symptoms": "Selecciona tus Síntomas",
     "symptoms": {
-      "dryness": "Sequedad o sensación de raspado",
+      "dryness": "Sequedad o sensación de arenilla",
       "irritation": "Irritación o sensación de ardor",
       "redness": "Enrojecimiento en los ojos",
-      "foreign_body": "Sensación de tener algo en el ojo",
+      "foreign_body": "Sensación de que hay algo en tu ojo",
       "sensitivity": "Sensibilidad a la luz"
     },
     "buttons": {
       "analyze": "Analizar {count} Síntomas",
       "complete": "Completar Evaluación",
-      "retry": "Realizar Prueba de Nuevo",
-      "learn_more": "🔗 Más Información"
+      "retry": "Realizar Prueba Nuevamente",
+      "learn_more": "📚 Aprender Más"
     },
     "results": {
       "recommendations_title": "Recomendaciones:",
       "single": {
         "dryness": {
           "title": "Síntomas Leves de Ojo Seco",
-          "description": "Estás experimentando sequedad. Este es un signo común de ojo seco.",
+          "description": "Estás experimentando sequedad. Esta es una señal común de ojo seco.",
           "recommendation": "Considera usar lágrimas artificiales y monitorear tus síntomas. Toma descansos regulares del tiempo de pantalla y asegura una hidratación adecuada."
         },
         "irritation": {
           "title": "Irritación Leve Detectada",
-          "description": "La irritación o el ardor podrían estar relacionados con el ojo seco o factores ambientales.",
-          "recommendation": "Considera usar gotas lubricantes para los ojos y tomar descansos de las pantallas. Evita ambientes secos cuando sea posible."
+          "description": "La irritación o ardor podría estar relacionada con ojo seco o factores ambientales.",
+          "recommendation": "Considera usar gotas lubricantes para ojos y tomar descansos de pantallas. Evita ambientes secos cuando sea posible."
         },
         "redness": {
           "title": "Enrojecimiento Ocular Detectado",
-          "description": "El enrojecimiento podría ser un signo de ojo seco u otras condiciones.",
-          "recommendation": "Considera consultar a un profesional del cuidado de los ojos si el enrojecimiento persiste. Usa lágrimas artificiales y evita frotar los ojos."
+          "description": "El enrojecimiento podría ser una señal de ojo seco u otras condiciones.",
+          "recommendation": "Considera consultar a un profesional del cuidado ocular si el enrojecimiento persiste. Usa lágrimas artificiales y evita frotar los ojos."
         },
         "foreign_body": {
           "title": "Sensación de Cuerpo Extraño",
-          "description": "La sensación de tener algo en el ojo podría indicar ojo seco u otra condición.",
-          "recommendation": "Usa gotas lubricantes para los ojos y consulta a un profesional si la sensación persiste. Evita tocar o frotar tus ojos."
+          "description": "La sensación de que hay algo en tu ojo podría indicar ojo seco u otra condición.",
+          "recommendation": "Usa gotas lubricantes para ojos y consulta a un profesional si la sensación persiste. Evita tocar o frotar tus ojos."
         },
         "sensitivity": {
           "title": "Sensibilidad a la Luz Detectada",
-          "description": "La sensibilidad a la luz puede estar asociada con el ojo seco u otros problemas.",
-          "recommendation": "Usa gafas de sol al aire libre y considera consultar a un profesional del cuidado de los ojos si la sensibilidad persiste."
+          "description": "La sensibilidad a la luz puede estar asociada con ojo seco u otros problemas.",
+          "recommendation": "Usa gafas de sol en exteriores y considera consultar a un profesional del cuidado ocular si la sensibilidad persiste."
         }
       },
       "multiple": {
         "title": "Múltiples Síntomas Detectados",
         "description": "Has seleccionado múltiples síntomas que pueden indicar síndrome de ojo seco moderado a severo.",
-        "recommendation": "Se recomienda consultar a un profesional del cuidado de los ojos para una evaluación completa y un plan de tratamiento personalizado."
+        "recommendation": "Se recomienda consultar a un profesional del cuidado ocular para una evaluación integral y un plan de tratamiento personalizado."
       },
       "none": {
         "title": "Sin Síntomas de Ojo Seco",
         "description": "No pareces tener síntomas de ojo seco actualmente.",
-        "recommendation": "Continúa con exámenes oculares regulares para mantener una buena salud ocular. Practica una buena higiene ocular y toma descansos de pantalla."
+        "recommendation": "Continúa con chequeos oculares regulares para mantener una buena salud ocular. Practica una buena higiene ocular y toma descansos de pantalla."
       }
     },
     "tips": {
       "title": "💡 Consejos de Evaluación",
-      "tip1": "• Considera los síntomas de los últimos 2-3 días",
-      "tip2": "• Sé honesto sobre la frecuencia y gravedad",
-      "tip3": "• Piensa en los síntomas durante diferentes actividades",
+      "tip1": "• Considera síntomas de los últimos 2-3 días",
+      "tip2": "• Sé honesto sobre frecuencia y severidad",
+      "tip3": "• Piensa en síntomas durante diferentes actividades",
       "tip4": "• Considera factores ambientales que puedan afectarte"
-    }
-  },
-
-  "challenges": {
-    "color_diff_warm": {
-      "title": "Detective de Colores Cálidos",
-      "description": "Detecta el cuadrado de color cálido diferente"
-    },
-    "color_diff_cool": {
-      "title": "Detective de Colores Fríos",
-      "description": "Encuentra el cuadrado de color frío diferente"
-    },
-    "color_diff_contrast": {
-      "title": "Maestro del Contraste de Color",
-      "description": "Detecta el color contrastante"
-    },
-    "sharpness_letters": {
-      "title": "Claridad de Letras",
-      "description": "Encuentra la letra más nítida"
-    },
-    "sharpness_shapes": {
-      "title": "Nitidez de Formas",
-      "description": "Identifica la forma más clara"
-    },
-    "contrast_grayscale": {
-      "title": "Contraste en Escala de Grises",
-      "description": "Encuentra el gris de mayor contraste"
-    },
-    "contrast_color": {
-      "title": "Contraste de Color",
-      "description": "Detecta el color más vibrante"
-    },
-    "speed_fast": {
-      "title": "Velocidad Relámpago",
-      "description": "¡Rápido! Toca el diferente"
-    },
-    "speed_pattern": {
-      "title": "Reconocimiento de Patrones",
-      "description": "Encuentra rápido el que rompe el patrón"
-    },
-    "peripheral": {
-      "title": "Visión Periférica",
-      "description": "Detecta la anomalía en el borde"
-    }
-  },
-  "achievements": {
-    "first_challenge": {
-      "title": "Primeros Pasos",
-      "description": "Completa tu primer desafío"
-    },
-    "streak_3": {
-      "title": "Siendo Constante",
-      "description": "Mantén una racha de 3 días"
-    },
-    "streak_7": {
-      "title": "Guerrero de la Semana",
-      "description": "Completa desafíos durante 7 días seguidos"
-    },
-    "streak_30": {
-      "title": "Campeón de la Visión",
-      "description": "¡Racha imparable de 30 días!"
-    },
-    "challenges_10": {
-      "title": "Aprendiz Dedicado",
-      "description": "Completa 10 desafíos"
-    },
-    "challenges_50": {
-      "title": "Experto en Visión",
-      "description": "Completa 50 desafíos"
-    },
-    "perfect_score": {
-      "title": "Perfeccionista",
-      "description": "Obtén una puntuación perfecta en cualquier desafío"
-    },
-    "color_master": {
-      "title": "Maestro del Color",
-      "description": "Completa 10 desafíos de color"
-    },
-    "speed_demon": {
-      "title": "Demonio de Velocidad",
-      "description": "Completa 10 desafíos de velocidad"
     }
   },
   "achievements_page": {
@@ -416,17 +333,21 @@
     "overall_progress": "Progreso General",
     "keep_collecting": "¡Sigue coleccionando!",
     "unlocked_count": "{unlocked} / {total} Logros Desbloqueados",
-    "streak_master": "Maestro de Rachas",
-    "challenge_collector": "Coleccionista de Desafíos",
-    "perfect_vision": "Visión Perfecta",
-    "special_achievements": "Logros Especiales",
+    "streak_master": "🔥 Maestro de Rachas",
+    "challenge_collector": "🏆 Coleccionista de Desafíos",
+    "perfect_vision": "👁️ Visión Perfecta",
+    "special_achievements": "✨ Logros Especiales",
     "progress": "Progreso",
     "unlocked": "✓ DESBLOQUEADO",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "view_details": "Toca para ver detalles",
+    "completed_badge": "✓",
+    "progress_label": "Progreso: {current} / {required}"
   },
   "challenge_play": {
-    "complete_title": "¡Desafío Completo!",
-    "round_counter": "Ronda {current} / {total}",
+    "round_counter": "Ronda {current} de {total}",
+    "complete_title": "¡Desafío Completado!",
+    "done": "Continuar",
     "grades": {
       "excellent": "EXCELENTE",
       "great": "GENIAL",
@@ -437,34 +358,151 @@
       "accuracy": "Precisión",
       "best_streak": "Mejor Racha",
       "avg_speed": "Velocidad Promedio",
-      "xp_earned": "XP Ganado"
+      "xp_earned": "XP Ganada"
     },
-    "done": "Hecho"
+    "score_icons": {
+      "correct": "✓",
+      "wrong": "✗",
+      "streak": "🔥"
+    }
+  },
+  "challenges": {
+    "color_diff_warm": {
+      "title": "Colores Cálidos",
+      "description": "Encuentra el tono diferente"
+    },
+    "color_diff_cool": {
+      "title": "Colores Fríos",
+      "description": "Identifica el color diferente"
+    },
+    "color_diff_contrast": {
+      "title": "Alto Contraste",
+      "description": "Identifica el color contrastante"
+    },
+    "sharpness_letters": {
+      "title": "Letras Nítidas",
+      "description": "Encuentra la letra más clara"
+    },
+    "sharpness_shapes": {
+      "title": "Formas Nítidas",
+      "description": "Identifica la forma más nítida"
+    },
+    "contrast_grayscale": {
+      "title": "Contraste Gris",
+      "description": "Encuentra el mayor contraste"
+    },
+    "contrast_color": {
+      "title": "Contraste de Color",
+      "description": "Identifica el color más brillante"
+    },
+    "speed_fast": {
+      "title": "Prueba de Velocidad",
+      "description": "Reacciona lo más rápido posible"
+    },
+    "speed_pattern": {
+      "title": "Velocidad de Patrón",
+      "description": "Identifica el patrón rápidamente"
+    },
+    "peripheral": {
+      "title": "Visión Periférica",
+      "description": "Usa tu visión periférica"
+    }
+  },
+  "achievements": {
+    "first_challenge": {
+      "title": "Primeros Pasos",
+      "description": "Completa tu primer desafío"
+    },
+    "streak_3": {
+      "title": "Racha de 3 Días",
+      "description": "Completa desafíos 3 días seguidos"
+    },
+    "streak_7": {
+      "title": "Guerrero Semanal",
+      "description": "Completa desafíos 7 días seguidos"
+    },
+    "streak_30": {
+      "title": "Maestro Mensual",
+      "description": "Completa desafíos 30 días seguidos"
+    },
+    "challenges_10": {
+      "title": "Retador",
+      "description": "Completa 10 desafíos"
+    },
+    "challenges_50": {
+      "title": "Experto",
+      "description": "Completa 50 desafíos"
+    },
+    "perfect_score": {
+      "title": "Perfeccionista",
+      "description": "Obtén 95 puntos o más"
+    },
+    "color_master": {
+      "title": "Maestro del Color",
+      "description": "Completa 10 desafíos de color"
+    },
+    "speed_demon": {
+      "title": "Demonio de Velocidad",
+      "description": "Completa 10 desafíos de velocidad"
+    }
   },
   "daily_challenge": {
     "title": "Desafío Diario",
     "current_streak": "Racha Actual",
     "days": "días",
-    "completed": "✓ Completado",
+    "completed": "✓ Hecho",
     "pending": "Pendiente",
     "level": "Nivel {level}",
-    "xp_count": "{xp} XP",
-    "xp_to_next": "{current} / 500 XP al Nivel {next}",
-    "start_challenge": "Iniciar Desafío",
+    "xp_count": "{xp} XP Total",
+    "xp_to_next": "{current}/500 XP al Nivel {next}",
     "completed_today": "✓ Completado Hoy",
+    "start_challenge": "Iniciar Desafío",
     "achievements": "Logros",
-    "view_all": "Ver Todos",
-    "last_7_days": "Últimos 7 Días"
+    "view_all": "Ver Todo",
+    "last_7_days": "Últimos 7 Días",
+    "notifications": {
+      "daily_reminder": "Recordatorio Diario",
+      "notify_time": "Recibe notificación a las 8:00 PM",
+      "test_sent": "¡Notificación de prueba enviada!",
+      "send_test": "Enviar Notificación de Prueba"
+    },
+    "duration_seconds": "{seconds}s",
+    "xp_reward": "+{xp} XP"
   },
   "ai_chat": {
     "title": "Asistente IA",
     "typing": "IA escribiendo...",
-    "online": "En línea • Especialista en Cuidado de los Ojos",
-    "disclaimer": "Soy un asistente de IA, no un médico real. Esta es solo información educativa, no asesoramiento médico. Por favor, consulta a un oftalmólogo real para diagnóstico o tratamiento real.",
+    "online": "En línea • Especialista en Cuidado Ocular",
+    "disclaimer": "Soy un asistente de IA, no un médico real. Esta es información educativa solamente, no consejo médico. Por favor consulta a un oftalmólogo real para diagnóstico o tratamiento actual.",
     "quick_1": "Tengo ojos secos, ¿qué puedo hacer?",
-    "quick_2": "Cuéntame sobre el astigmatismo",
-    "quick_3": "Consejos para el cuidado de los ojos frente a pantallas",
+    "quick_2": "Háblame sobre el astigmatismo",
+    "quick_3": "Consejos de cuidado ocular para tiempo de pantalla",
     "quick_4": "¿Cuándo debo ver a un oftalmólogo?",
     "input_placeholder": "Pregunta sobre tu salud ocular..."
+  },
+  "phone_login": {
+    "welcome": "Bienvenido de Nuevo",
+    "subtitle": "Ingresa tu número de teléfono para continuar",
+    "phone_number": "Número de Teléfono",
+    "search_country": "Buscar País",
+    "login_button": "Continuar",
+    "error_empty": "El número de teléfono es requerido",
+    "error_invalid": "Por favor ingresa un número de teléfono válido",
+    "disclaimer_title": "Aviso Importante",
+    "disclaimer_text": "Al continuar, aceptas recibir un código de verificación por SMS. Pueden aplicarse tarifas estándar de mensajes.",
+    "terms_prefix": "Al iniciar sesión, aceptas nuestros",
+    "terms_link": "Términos y Condiciones",
+    "verification_sent": "¡Código de verificación enviado exitosamente!",
+    "error_failed": "Inicio de sesión fallido. Por favor intenta nuevamente.",
+    "error_empty_response": "Respuesta de servidor inválida",
+    "error_invalid_number": "Número de teléfono inválido",
+    "error_not_found": "Servicio no disponible",
+    "error_server": "Error del servidor. Por favor intenta más tarde.",
+    "error_unknown": "Ocurrió un error. Por favor intenta nuevamente.",
+    "error_network": "Error de red. Verifica tu conexión.",
+    "error_invalid_response": "Respuesta inválida del servidor",
+    "error_timeout": "Tiempo de espera agotado. Por favor intenta nuevamente.",
+    "error_general": "Algo salió mal. Por favor intenta nuevamente.",
+    "successfully": "Sesión iniciada exitosamente"
   }
 }

@@ -328,103 +328,28 @@
       "tip4": "• Consider environmental factors that may affect you"
     }
   },
-  "challenges": {
-    "color_diff_warm": {
-      "title": "Warm Color Detective",
-      "description": "Spot the different warm-colored square"
-    },
-    "color_diff_cool": {
-      "title": "Cool Color Detective",
-      "description": "Find the different cool-colored square"
-    },
-    "color_diff_contrast": {
-      "title": "Color Contrast Master",
-      "description": "Spot the contrasting color"
-    },
-    "sharpness_letters": {
-      "title": "Letter Clarity",
-      "description": "Find the sharpest letter"
-    },
-    "sharpness_shapes": {
-      "title": "Shape Sharpness",
-      "description": "Identify the clearest shape"
-    },
-    "contrast_grayscale": {
-      "title": "Grayscale Contrast",
-      "description": "Find the highest contrast gray"
-    },
-    "contrast_color": {
-      "title": "Color Contrast",
-      "description": "Spot the most vibrant color"
-    },
-    "speed_fast": {
-      "title": "Lightning Speed",
-      "description": "Quick! Tap the different one"
-    },
-    "speed_pattern": {
-      "title": "Pattern Recognition",
-      "description": "Find the pattern breaker fast"
-    },
-    "peripheral": {
-      "title": "Peripheral Vision",
-      "description": "Spot the edge anomaly"
-    }
-  },
-  "achievements": {
-    "first_challenge": {
-      "title": "First Steps",
-      "description": "Complete your first challenge"
-    },
-    "streak_3": {
-      "title": "Getting Consistent",
-      "description": "Maintain a 3-day streak"
-    },
-    "streak_7": {
-      "title": "Week Warrior",
-      "description": "Complete challenges for 7 days straight"
-    },
-    "streak_30": {
-      "title": "Vision Champion",
-      "description": "Unstoppable 30-day streak!"
-    },
-    "challenges_10": {
-      "title": "Dedicated Trainee",
-      "description": "Complete 10 challenges"
-    },
-    "challenges_50": {
-      "title": "Vision Expert",
-      "description": "Complete 50 challenges"
-    },
-    "perfect_score": {
-      "title": "Perfectionist",
-      "description": "Get a perfect score on any challenge"
-    },
-    "color_master": {
-      "title": "Color Master",
-      "description": "Complete 10 color challenges"
-    },
-    "speed_demon": {
-      "title": "Speed Demon",
-      "description": "Complete 10 speed challenges"
-    }
-  },
+
   "achievements_page": {
     "title": "Achievements",
     "level": "Level {level}",
     "overall_progress": "Overall Progress",
     "keep_collecting": "Keep collecting!",
     "unlocked_count": "{unlocked} / {total} Achievements Unlocked",
-    "streak_master": "Streak Master",
-    "challenge_collector": "Challenge Collector",
-    "perfect_vision": "Perfect Vision",
-    "special_achievements": "Special Achievements",
+    "streak_master": "🔥 Streak Master",
+    "challenge_collector": "🏆 Challenge Collector",
+    "perfect_vision": "👁️ Perfect Vision",
+    "special_achievements": "✨ Special Achievements",
     "progress": "Progress",
     "unlocked": "✓ UNLOCKED",
-    "close": "Close"
+    "close": "Close",
+    "view_details": "Tap to view details",
+    "completed_badge": "✓",
+    "progress_label": "Progress: {current} / {required}"
   },
   "challenge_play": {
+    "round_counter": "Round {current} of {total}",
     "complete_title": "Challenge Complete!",
-    "round_counter": "Round {current} / {total}",
+    "done": "Continue",
     "grades": {
       "excellent": "EXCELLENT",
       "great": "GREAT",
@@ -437,22 +362,114 @@
       "avg_speed": "Avg Speed",
       "xp_earned": "XP Earned"
     },
-    "done": "Done"
+    "score_icons": {
+      "correct": "✓",
+      "wrong": "✗",
+      "streak": "🔥"
+    }
+  },
+  "challenges": {
+    "color_diff_warm": {
+      "title": "Warm Colors",
+      "description": "Find the different shade"
+    },
+    "color_diff_cool": {
+      "title": "Cool Colors",
+      "description": "Spot the odd color"
+    },
+    "color_diff_contrast": {
+      "title": "High Contrast",
+      "description": "Identify the contrasting color"
+    },
+    "sharpness_letters": {
+      "title": "Sharp Letters",
+      "description": "Find the clearest letter"
+    },
+    "sharpness_shapes": {
+      "title": "Sharp Shapes",
+      "description": "Spot the sharpest shape"
+    },
+    "contrast_grayscale": {
+      "title": "Gray Contrast",
+      "description": "Find the highest contrast"
+    },
+    "contrast_color": {
+      "title": "Color Contrast",
+      "description": "Spot the brightest color"
+    },
+    "speed_fast": {
+      "title": "Speed Test",
+      "description": "React as fast as possible"
+    },
+    "speed_pattern": {
+      "title": "Pattern Speed",
+      "description": "Identify the pattern quickly"
+    },
+    "peripheral": {
+      "title": "Edge Vision",
+      "description": "Use your peripheral vision"
+    }
+  },
+  "achievements": {
+    "first_challenge": {
+      "title": "First Steps",
+      "description": "Complete your first challenge"
+    },
+    "streak_3": {
+      "title": "3-Day Streak",
+      "description": "Complete challenges 3 days in a row"
+    },
+    "streak_7": {
+      "title": "Week Warrior",
+      "description": "Complete challenges 7 days in a row"
+    },
+    "streak_30": {
+      "title": "Monthly Master",
+      "description": "Complete challenges 30 days in a row"
+    },
+    "challenges_10": {
+      "title": "Challenger",
+      "description": "Complete 10 challenges"
+    },
+    "challenges_50": {
+      "title": "Expert",
+      "description": "Complete 50 challenges"
+    },
+    "perfect_score": {
+      "title": "Perfectionist",
+      "description": "Score 95 or higher"
+    },
+    "color_master": {
+      "title": "Color Master",
+      "description": "Complete 10 color challenges"
+    },
+    "speed_demon": {
+      "title": "Speed Demon",
+      "description": "Complete 10 speed challenges"
+    }
   },
   "daily_challenge": {
     "title": "Daily Challenge",
     "current_streak": "Current Streak",
     "days": "days",
-    "completed": "✓ Completed",
+    "completed": "✓ Done",
     "pending": "Pending",
     "level": "Level {level}",
-    "xp_count": "{xp} XP",
-    "xp_to_next": "{current} / 500 XP to Level {next}",
-    "start_challenge": "Start Challenge",
+    "xp_count": "{xp} Total XP",
+    "xp_to_next": "{current}/500 XP to Level {next}",
     "completed_today": "✓ Completed Today",
+    "start_challenge": "Start Challenge",
     "achievements": "Achievements",
     "view_all": "View All",
-    "last_7_days": "Last 7 Days"
+    "last_7_days": "Last 7 Days",
+    "notifications": {
+      "daily_reminder": "Daily Reminder",
+      "notify_time": "Get notified at 8:00 PM",
+      "test_sent": "Test notification sent!",
+      "send_test": "Send Test Notification"
+    },
+    "duration_seconds": "{seconds}s",
+    "xp_reward": "+{xp} XP"
   },
   "ai_chat": {
     "title": "AI Assistant",

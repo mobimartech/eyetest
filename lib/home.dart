@@ -11,6 +11,7 @@ import 'package:eyetest/chatai.dart';
 import 'package:eyetest/daily_challenge_page.dart';
 import 'package:eyetest/notification_service.dart';
 import 'package:eyetest/paywall.dart';
+import 'package:eyetest/paywallandroid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -139,10 +140,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         MaterialPageRoute(builder: (context) => destination),
       );
     } else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => PaywallScreen()),
-      );
+      if (Platform.isAndroid) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => PaywallAndroid()),
+        );
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => PaywallScreen()),
+        );
+      }
     }
   }
 
@@ -261,7 +269,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               const SizedBox(width: 8),
               const SizedBox(height: 12),
               // UPGRADE BUTTON - Below language selector
-              if (!isSubscribed)
+              if (!isSubscribed && !isloggedin)
                 AnimatedBuilder(
                   animation: _floatingAnimation,
                   builder: (context, child) {
@@ -380,10 +388,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   Widget _buildPremiumButton() {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => PaywallScreen()),
-      ),
+      onTap: () {
+        if (Platform.isAndroid) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => PaywallAndroid()),
+          );
+        } else {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => PaywallScreen()),
+          );
+        }
+      },
       child: Container(
         decoration: BoxDecoration(
           gradient: const LinearGradient(
@@ -693,7 +710,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              challenge.title,
+                              challenge.title.tr(),
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -750,9 +767,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           child: Text(
                             isCompleted ? '✓' : '→',
                             style: TextStyle(
-                              color: isCompleted
-                                  ? Colors.white54
-                                  : Colors.white,
+                              color:
+                                  isCompleted ? Colors.white54 : Colors.white,
                               fontSize: 16,
                               fontWeight: FontWeight.w800,
                             ),
@@ -987,10 +1003,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   Widget _buildPremiumCTA() {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => PaywallScreen()),
-      ),
+      onTap: () {
+        if (Platform.isAndroid) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => PaywallAndroid()),
+          );
+        } else {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => PaywallScreen()),
+          );
+        }
+      },
       child: Container(
         decoration: BoxDecoration(
           color: const Color(0xFF1A1A1A),
@@ -1270,9 +1295,8 @@ class _LanguageItem extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
-                      color: isSelected
-                          ? const Color(0xFF00E5FF)
-                          : Colors.white,
+                      color:
+                          isSelected ? const Color(0xFF00E5FF) : Colors.white,
                     ),
                   ),
                   Text(

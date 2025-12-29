@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'package:eyetest/login.dart';
+import 'package:eyetest/paywallandroid.dart';
 import 'package:http/http.dart' as http;
 import 'package:eyetest/Onboarding.dart';
 import 'package:eyetest/home.dart';
@@ -94,18 +95,20 @@ class _SplashScreenState extends State<SplashScreen>
 
     // Replace this with your actual subscription check logic
     final hasActiveSubscription = await checkUserSubscription();
-
+    print("Has active subscription: $hasActiveSubscription");
     Widget nextPage;
     if (!hasViewedOnboarding) {
       nextPage = OnboardingScreen();
     } else if (Platform.isAndroid) {
       bool x = await getdiscforvas();
-      print(x);
+      print("get disc for vas returned: $x");
       if (x) {
         nextPage = PhoneLoginPage();
       } else {
+        print(
+            "Navigating based on subscription status:: ${hasActiveSubscription}");
         if (!hasActiveSubscription) {
-          nextPage = PaywallScreen();
+          nextPage = PaywallAndroid();
         } else {
           nextPage = HomePage();
         }
@@ -271,8 +274,7 @@ class _SplashScreenState extends State<SplashScreen>
                       glowCtrl,
                     ]),
                     builder: (context, _) {
-                      final scale =
-                          Tween<double>(begin: 0.6, end: 1.0)
+                      final scale = Tween<double>(begin: 0.6, end: 1.0)
                               .animate(
                                 CurvedAnimation(
                                   parent: logoCtrl,

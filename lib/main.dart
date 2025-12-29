@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp> {
       PurchasesConfiguration(
         Platform.isIOS
             ? "appl_HLNlRmifZJLrajFZwzSWgBNvflh"
-            : "goog_zTGrNazGxFcAfwDvOpCZRqlmcEm",
+            : "goog_JTKuoYqLKfvVJZphiCVcJbFeeXT",
       ),
     );
   }
@@ -161,9 +161,8 @@ class _MyAppState extends State<MyApp> {
   void _initAppsFlyer() {
     print("=== Initializing AppsFlyer ===");
     final options = AppsFlyerOptions(
-      afDevKey: Platform.isIOS
-          ? 'FjSERtDKGm29LmgGqGBpdn'
-          : "kea9rcdAoPshWf9oAdryw",
+      afDevKey:
+          Platform.isIOS ? 'FjSERtDKGm29LmgGqGBpdn' : "kea9rcdAoPshWf9oAdryw",
       appId: Platform.isIOS ? '6621183937' : "",
       showDebug: true,
       timeToWaitForATTUserAuthorization: 60,
@@ -282,8 +281,7 @@ class _MyAppState extends State<MyApp> {
       "attribution_data": {
         "af_status": extractedParams["af_status"] ?? "Unknown",
         "af_message": extractedParams["af_message"] ?? "",
-        "media_source":
-            extractedParams["media_source"] ??
+        "media_source": extractedParams["media_source"] ??
             extractedParams["pid"] ??
             "organic",
         "campaign": extractedParams["campaign"],
